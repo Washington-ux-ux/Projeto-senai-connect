@@ -1,0 +1,17 @@
+[
+  {
+    "id": "room-001",
+    "name": "Geral",
+    "description": "Canal geral de comunicação",
+    "createdAt": "2024-05-20T10:00:00Z",
+    "messages": [
+      {
+        "id": "msg-001",
+        "userId": "1",
+        "userName": "Administrador",
+        "content": "Bem-vindo ao SENAI Connect!",
+        "createdAt": "2024-05-20T10:15:00Z"
+      }
+    ]
+  }
+]

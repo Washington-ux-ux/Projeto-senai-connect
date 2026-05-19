@@ -1,0 +1,24 @@
+{
+  "name": "senai-connect",
+  "version": "1.0.0",
+  "description": "O **SENAI Connect** é uma plataforma corporativa de comunicação interna desenvolvida para melhorar a interação entre alunos, professores, coordenação e direção do SENAI.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.0",
+    "typescript": "^6.0.3"
+  }
+}

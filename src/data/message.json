@@ -1,0 +1,12 @@
+[
+{
+  "id": "1",
+  "roomId": "room-turma-dev-2024",
+  "senderId": "u123-abc-456",
+  "senderName": "João Silva",
+  "content": "Pessoal, alguém sabe se a aula de hoje será no Lab 04?",
+  "fileUrl": null,
+  "isPinned": false,
+  "createdAt": "2024-05-21T19:05:00Z"
+}
+]

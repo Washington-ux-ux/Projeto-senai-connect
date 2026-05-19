@@ -1,0 +1,19 @@
+[
+{
+  "id": "1",
+  "title": "Nova Parceria de Estágios: Indústria X",
+  "content": "Estamos felizes em anunciar que a Indústria X abriu 20 vagas para alunos de TI...",
+  "summary": "O SENAI fechou parceria com a Indústria X para 20 vagas de estágio em TI.",
+  "category": "INTERNSHIP",
+  "author": {
+    "name": "Coordenação Acadêmica",
+    "id": "1"
+},
+  "reactions": {
+    "like": 15,
+    "claps": 8
+},
+  "attachmentUrl": "",
+  "createdAt": "2024-05-21T14:30:00Z"
+}
+]
