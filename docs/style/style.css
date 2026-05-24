@@ -1,0 +1,143 @@
+/* CSS geral para as paginas */
+
+/* fontes */
+
+@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap');
+
+
+:root {
+    /* text */
+    --font-primary: 'Roboto', sans-serif;
+    --font-secondary: 'Changa One', cursive;
+
+    /* colors */
+    --color-primary: #1E90FF;
+    --color-secondary: #FF6347;
+    --color-background: #F5F5F5;
+    --color-text: #333333;
+    --color-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: var(--font-primary);
+    color: var(--color-text);
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Banner */
+
+.banner {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.banner img {
+    width: 237px;
+    height: 70px;
+    object-fit: contain;
+}
+
+/* Navegação */
+
+nav {
+    background-color: var(--color-secondary);
+    padding: 15px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+a {
+    color: #004a99;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+a:hover {
+    background: #004a99;
+    color: white;
+}
+
+header {
+    background: linear-gradient(
+        rgba(30, 144, 255, 0.85),
+        rgba(30, 144, 255, 0.85)
+    );
+    
+    color: var(--color-white);
+    text-align: center;
+    padding: 80px 20px;
+}
+
+header h1 {
+    font-family: var(--font-secondary);
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+
+
+/* Para Mobile geral */
+
+@media (max-width: 768px) {
+
+    .banner {
+        flex-direction: column;
+    }
+
+    .banner img {
+        width: 200px;
+        height: auto;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .calendar {
+        width: 95%;
+        padding: 20px;
+    }
+}

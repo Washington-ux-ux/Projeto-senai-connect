@@ -7,6 +7,7 @@ function createApp() {
 
     app.use(json());
     app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'docs')));
     app.use('/api', router);
 
     return app;

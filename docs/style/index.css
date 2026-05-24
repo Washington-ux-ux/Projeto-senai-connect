@@ -1,0 +1,79 @@
+/* CSS para a página inicio, index.html */
+
+/* fontes */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Calendário */
+.calendar {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.calendar-header h2 {
+    font-family: var(--font-secondary);
+    color: var(--color-primary);
+    font-size: 2rem;
+}
+
+.calendar-header button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.calendar-header button:hover {
+    background-color: #006edc;
+}
+
+.calendar-days,
+.calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.calendar-days div {
+    text-align: center;
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+.calendar-dates div {
+    height: 80px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.calendar-dates div:hover {
+    background-color: var(--color-primary);
+    color: white;
+    cursor: pointer;
+}
+
+.today {
+    background-color: var(--color-secondary) !important;
+    color: white;
+}
