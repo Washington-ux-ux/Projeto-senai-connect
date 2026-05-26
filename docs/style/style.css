@@ -237,6 +237,10 @@ body.dark-mode .banner {
     background-color: #16213e;
 }
 
+body.dark-mode .banner div:nth-child(2) img {
+    filter: brightness(1.5) contrast(1.2);
+}
+
 body.dark-mode nav {
     background-color: #0f3460;
 }
@@ -319,13 +323,55 @@ body.dark-mode .close-btn:hover {
     }
 
     .banner img {
-        width: 200px;
-        height: auto;
+        display: none;
+    }
+
+    nav {
+        flex-direction: column;
+        padding: 15px;
     }
 
     nav ul {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
+        width: 100%;
+        align-items: center;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 12px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        margin: 0;
+    }
+
+    nav ul li a:hover {
+        background-color: #e9ecef;
+    }
+
+    .fa-sun,
+    .fa-moon {
+        margin: 5px;
+        font-size: 1.5rem;
+    }
+
+    #login-container {
+        position: static;
+        margin-top: 15px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .profile-container {
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
     }
 
     header h1 {
@@ -339,5 +385,15 @@ body.dark-mode .close-btn:hover {
     .calendar {
         width: 95%;
         padding: 20px;
+    }
+
+    /* Tema Escuro Mobile */
+    body.dark-mode nav ul li a {
+        background-color: #16213e;
+        color: #e0e0e0;
+    }
+
+    body.dark-mode nav ul li a:hover {
+        background-color: #0f3460;
     }
 }

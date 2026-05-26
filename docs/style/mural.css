@@ -46,16 +46,6 @@ tr:hover {
     transition: 0.3s;
 }
 
-.nav-mural a {
-    text-decoration: none;
-    font-weight: bold;
-    margin: 0 10px;
-    padding: 10px;
-    border-radius: 5px;
-    transition: 0.3s;
-    display: inline-block;
-}
-
 /* Tema Escuro */
 body.dark-mode h1 {
     color: #4a9eff;
