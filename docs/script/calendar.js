@@ -28,7 +28,7 @@ function renderCalendar() {
 
     monthYear.textContent = `${monthNames[month]} ${year}`;
 
-    // espaços vazios antes do primeiro dia
+   
 
     for (let i = 0; i < firstDay; i++) {
         const empty = document.createElement("div");
@@ -36,15 +36,12 @@ function renderCalendar() {
         calendarDates.appendChild(empty);
     }
 
-    // dias do mês
 
     for (let day = 1; day <= lastDate; day++) {
 
         const dayElement = document.createElement("div");
 
         dayElement.textContent = day;
-
-        // dia atual
 
         if (
             day === today.getDate() &&

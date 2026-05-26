@@ -666,3 +666,72 @@ body .container:first-of-type {
         font-size: 0.95em;
     }
 }
+
+/* Tema Escuro */
+body.dark-mode .about-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.dark-mode .about-section h1 {
+    color: #4a9eff;
+}
+
+body.dark-mode .about-section h2 {
+    color: #e0e0e0;
+    border-bottom-color: #4a9eff;
+}
+
+body.dark-mode .about-section h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .about-section p {
+    color: #b0b0b0;
+}
+
+body.dark-mode .about-intro {
+    background-color: #16213e;
+    border-left-color: #4a9eff;
+}
+
+body.dark-mode .about-intro p {
+    color: #e0e0e0;
+}
+
+body.dark-mode .about-intro strong {
+    color: #4a9eff;
+}
+
+body.dark-mode .problem,
+body.dark-mode .solution {
+    background-color: #16213e;
+}
+
+body.dark-mode .problem li,
+body.dark-mode .solution li {
+    color: #e0e0e0;
+}
+
+body.dark-mode .objectives,
+body.dark-mode .features,
+body.dark-mode .categories,
+body.dark-mode .users-types,
+body.dark-mode .benefits,
+body.dark-mode .extras,
+body.dark-mode .request-status,
+body.dark-mode .target-audience {
+    background-color: #16213e;
+}
+
+body.dark-mode .objectives p,
+body.dark-mode .target-audience p {
+    color: #e0e0e0;
+}
+
+body.dark-mode .status-item p {
+    color: #b0b0b0;
+}
+
+body.dark-mode .arrow {
+    color: #4a9eff;
+}

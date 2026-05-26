@@ -1,7 +1,5 @@
-// Seleciona o container de login na navbar
 const loginContainer = document.getElementById('login-container');
 
-// Insere o botão de abrir e a estrutura da caixa de login (Modal)
 loginContainer.innerHTML = `
     <button id="btn-login-open" class="btn-nav-login">Entrar</button>
 

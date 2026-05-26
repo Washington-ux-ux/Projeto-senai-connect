@@ -3,6 +3,7 @@ h1 {
     color: #004a99;
     margin-bottom: 15px;
     font-size: 2.5rem;
+    margin-top: 20px;
 }
 
 p {
@@ -55,4 +56,38 @@ tr:hover {
     display: inline-block;
 }
 
+/* Tema Escuro */
+body.dark-mode h1 {
+    color: #4a9eff;
+}
+
+body.dark-mode p {
+    color: #e0e0e0;
+}
+
+body.dark-mode table {
+    background-color: #16213e;
+}
+
+body.dark-mode th {
+    background-color: #0f3460;
+}
+
+body.dark-mode td {
+    border-bottom: 1px solid #0f3460;
+    color: #e0e0e0;
+}
+
+body.dark-mode tr:hover {
+    background-color: #1a1a2e;
+}
+
+body.dark-mode table a {
+    color: #4a9eff;
+}
+
+body.dark-mode table a:hover {
+    background-color: #4a9eff;
+    color: #1a1a2e;
+}
 

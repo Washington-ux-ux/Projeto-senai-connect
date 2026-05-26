@@ -1,7 +1,6 @@
 /* CSS geral para as paginas */
 
 /* fontes */
-
 @import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap');
 
 
@@ -36,7 +35,6 @@ body {
 }
 
 /* Banner */
-
 .banner {
     background-color: var(--color-primary);
     color: white;
@@ -227,7 +225,90 @@ header p {
     background-color: #004085;
 }
 
+/* Tema Escuro */
+body.dark-mode {
+    --color-background: #1a1a2e;
+    --color-text: #e0e0e0;
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
 
+body.dark-mode .banner {
+    background-color: #16213e;
+}
+
+body.dark-mode nav {
+    background-color: #0f3460;
+}
+
+body.dark-mode nav ul li a {
+    color: #e0e0e0;
+}
+
+body.dark-mode nav ul li a:hover {
+    color: #1E90FF;
+}
+
+body.dark-mode a {
+    color: #4a9eff;
+}
+
+body.dark-mode a:hover {
+    background: #4a9eff;
+    color: #1a1a2e;
+}
+
+body.dark-mode header {
+    background: linear-gradient(
+        rgba(15, 52, 96, 0.95),
+        rgba(15, 52, 96, 0.95)
+    );
+}
+
+body.dark-mode .modal-box {
+    background-color: #16213e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .modal-box h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .modal-box input {
+    background-color: #1a1a2e;
+    border-color: #4a9eff;
+    color: #e0e0e0;
+}
+
+body.dark-mode .close-btn {
+    color: #e0e0e0;
+}
+
+body.dark-mode .close-btn:hover {
+    color: #4a9eff;
+}
+
+/* Ícones de tema */
+.fa-sun,
+.fa-moon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.fa-sun:hover,
+.fa-moon:hover {
+    transform: scale(1.2);
+}
+
+.fa-sun {
+    color: #f39c12;
+}
+
+.fa-moon {
+    color: #3498db;
+}
 
 /* Para Mobile geral */
 

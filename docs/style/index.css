@@ -77,3 +77,34 @@
     background-color: var(--color-secondary) !important;
     color: white;
 }
+
+/* Tema Escuro */
+body.dark-mode .calendar {
+    background-color: #16213e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .calendar-header h2 {
+    color: #4a9eff;
+}
+
+body.dark-mode .calendar-header button {
+    background-color: #4a9eff;
+}
+
+body.dark-mode .calendar-header button:hover {
+    background-color: #1E90FF;
+}
+
+body.dark-mode .calendar-days div {
+    color: #e0e0e0;
+}
+
+body.dark-mode .calendar-dates div {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .calendar-dates div:hover {
+    background-color: #4a9eff;
+}
