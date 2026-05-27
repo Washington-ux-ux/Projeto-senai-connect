@@ -1,9 +1,10 @@
 import * as httphelper from '../utils/http-helper'
 import * as repository from '../repository/userRepository'
+import * as auth from '../utils/auth'
 
-export const getMyUserService = async () => {
+export const getMyUserService = async (userId: string) => {
     try {
-        const data = await repository.getMyUser()
+        const data = await repository.getMyUser(userId)
         if (data) {
             return await httphelper.ok(data)
         } else {
@@ -16,9 +17,11 @@ export const getMyUserService = async () => {
 
 export const RegisterUserService = async (userData: any) => {
     try {
-        const data = await repository.RegisterUser(userData)
+        const hashedPassword = await auth.hashPassword(userData.password)
+        const userDataWithHash = { ...userData, password: hashedPassword }
+        const data = await repository.RegisterUser(userDataWithHash)
         if (data) {
-            return await httphelper.created()
+            return await httphelper.created(data)
         } else {
             return await httphelper.badRequest()
         }
@@ -29,12 +32,28 @@ export const RegisterUserService = async (userData: any) => {
 
 export const LoginUserService = async (email: string, password: string) => {
     try {
-        const data = await repository.LoginUser(email, password)
-        if (data) {
-            return await httphelper.ok(data)
-        } else {
-            return await httphelper.badRequest()
+        const user = await repository.LoginUser(email, password)
+        if (!user) {
+            return await httphelper.badRequest({ message: 'User not found' })
         }
+
+        const isPasswordValid = await auth.comparePassword(password, user.password)
+        if (!isPasswordValid) {
+            return await httphelper.badRequest({ message: 'Invalid password' })
+        }
+
+        const token = auth.generateToken(user.id, user.email, user.role)
+        return await httphelper.ok({ 
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                avatarUrl: user.avatarUrl,
+                course: user.course
+            },
+            token 
+        })
     } catch (error) {
         return await httphelper.badRequest()
     }

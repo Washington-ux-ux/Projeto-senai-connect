@@ -2,7 +2,8 @@ import { Request, Response } from "express"
 import * as service from "../services/usersServices"
 
 export const getMyUser = async (req: Request, res: Response) => {
-    const response = await service.getMyUserService()
+    const userId = (req as any).userId
+    const response = await service.getMyUserService(userId)
     return res.status(response.statusCode).json(response.body)
 }
 

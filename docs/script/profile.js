@@ -34,26 +34,48 @@ document.addEventListener("click", function (event) {
 
 async function loadUserData() {
     try {
-        const mockFetch = () => new Promise(resolve => 
-            setTimeout(() => resolve({
-                name: "Ana Beatriz Silva",
-                sex: "Feminino",
-                birth: "14/05/2005",
-                class: "3º Ano - Técnico em Informática"
-            }), 800)
-        );
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+            console.error("Usuário não está logado");
+            if(document.getElementById('userName')) {
+                document.getElementById('userName').value = "Não logado";
+                document.getElementById('userSex').value = "-";
+                document.getElementById('userBirth').value = "-";
+                document.getElementById('userClass').value = "-";
+            }
+            return;
+        }
 
-        const data = await mockFetch();
+        const response = await fetch('http://localhost:3000/api/user/me', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar dados do usuário');
+        }
+
+        const data = await response.json();
+        console.log('Dados do usuário recebidos:', data);
 
         if(document.getElementById('userName')) {
-            document.getElementById('userName').value = data.name;
-            document.getElementById('userSex').value = data.sex;
-            document.getElementById('userBirth').value = data.birth;
-            document.getElementById('userClass').value = data.class;
+            document.getElementById('userName').value = data.name || 'Não disponível';
+            document.getElementById('userSex').value = 'Não informado';
+            document.getElementById('userBirth').value = 'Não informado';
+            document.getElementById('userClass').value = data.course || 'Não informado';
         }
         
     } catch (error) {
         console.error("Erro ao carregar dados do usuário:", error);
+        if(document.getElementById('userName')) {
+            document.getElementById('userName').value = "Erro ao carregar";
+            document.getElementById('userSex').value = "-";
+            document.getElementById('userBirth').value = "-";
+            document.getElementById('userClass').value = "-";
+        }
     }
 }
 

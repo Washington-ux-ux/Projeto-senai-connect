@@ -4,33 +4,38 @@ import * as postsController from "./src/controllers/postsControllers"
 import * as requestsController from "./src/controllers/requestsControllers"
 import * as chatController from "./src/controllers/chatControllers"
 import * as academicEventsController from "./src/controllers/academicEventsController"
+import { authenticate, authorize } from "./src/middlewares/authMiddleware";
 
 const router = Router();
 
-// User routes
-router.get('/user/me', userController.getMyUser);
+// Public User routes
 router.post('/user/register', userController.RegisterUser);
 router.post('/user/login', userController.LoginUser);
 
-// Posts routes
+// Protected User routes
+router.get('/user/me', authenticate, userController.getMyUser);
+
+// Public Posts routes (read-only)
 router.get('/posts', postsController.getPosts);
 router.get('/posts/:id', postsController.getPostsById);
-router.get('/posts/summary', postsController.summaryIAPosts);
-router.post('/posts', postsController.createPosts);
-router.delete('/posts/:id', postsController.deletePosts);
-router.post('/posts/:id/emoji', postsController.emojiPosts);
 
-// Requests Routes
-router.get('/requests', requestsController.getAllRequests);
-router.get('/requests/my', requestsController.getMyRequests);
-router.post('/requests', requestsController.postRequests);
-router.put('/requests/:id', requestsController.updateRequests);
+// Protected Posts routes (write operations)
+router.get('/posts/summary', authenticate, postsController.summaryIAPosts);
+router.post('/posts', authenticate, authorize('TEACHER', 'COORDINATOR', 'DIRECTOR', 'ADMIN'), postsController.createPosts);
+router.delete('/posts/:id', authenticate, authorize('TEACHER', 'COORDINATOR', 'DIRECTOR', 'ADMIN'), postsController.deletePosts);
+router.post('/posts/:id/emoji', authenticate, postsController.emojiPosts);
 
-// ChatRooms Routes
-router.get('/chat/rooms', chatController.getChatRoom);
-router.get('/chat/rooms/:roomId/messages', chatController.getMessagesRoom);
+// Protected Requests Routes
+router.get('/requests', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), requestsController.getAllRequests);
+router.get('/requests/my', authenticate, requestsController.getMyRequests);
+router.post('/requests', authenticate, requestsController.postRequests);
+router.put('/requests/:id', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), requestsController.updateRequests);
 
-// AcademicEvents Routes
+// Protected ChatRooms Routes
+router.get('/chat/rooms', authenticate, chatController.getChatRoom);
+router.get('/chat/rooms/:roomId/messages', authenticate, chatController.getMessagesRoom);
+
+// Public AcademicEvents Routes
 router.get('/academic-events', academicEventsController.getAcademicEvents);
 router.get('/academic-events/date/:calendar', academicEventsController.getAcademicEventByCalendar);
 

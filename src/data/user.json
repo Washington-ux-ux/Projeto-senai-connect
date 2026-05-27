@@ -1,12 +1,50 @@
 [
-{
-  "id": "1",
-  "name": "Administrador",
-  "email": "admin@senai.br",
-  "registration": "202410987",
-  "role": "admin",
-  "avatarUrl": "",
-  "course": "",
-  "createdAt": "2024-05-20T10:00:00Z"
-}
+  {
+    "id": "1",
+    "name": "Administrador",
+    "email": "admin@senai.br",
+    "password": "$2b$10$Jw9VxJ1g13CEYxa.qc5Udelg0yHcA0KApfNFn6gwsrOY7FdHsvDny",
+    "cpf": "12345678901",
+    "registration": "202410987",
+    "role": "admin",
+    "avatarUrl": "",
+    "course": "",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "2",
+    "name": "Coordenador",
+    "email": "coordenador@senai.br",
+    "password": "$2b$10$mEEAbqH3UkxjVefT6tgq1uEP8iIuZnxh/ckV8/Q5qxYkPLy8U8yEG",
+    "cpf": "98765432100",
+    "registration": "202410654",
+    "role": "coordinator",
+    "avatarUrl": "",
+    "course": "Desenvolvimento de Sistemas",
+    "createdAt": "2024-05-21T09:30:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Diretor",
+    "email": "diretor@senai.br",
+    "password": "$2b$10$53Imo3Bbxc6tUBTmyBiVHOvGR2VTBKvnvny//93R3vixsIJ/DrnYy",
+    "cpf": "45678912355",
+    "registration": "202410321",
+    "role": "director",
+    "avatarUrl": "",
+    "course": "",
+    "createdAt": "2024-05-22T08:15:00Z"
+  },
+  {
+    "id": "4",
+    "name": "Aluno",
+    "email": "aluno@senai.br",
+    "password": "$2b$10$7bZSKuqZHSMH.qam0oaAXetdng7xtT.gm0nMn4D6nhYCouIuPP9d.",
+    "cpf": "74185296311",
+    "registration": "202411999",
+    "role": "student",
+    "avatarUrl": "",
+    "course": "Desenvolvimento de Sistemas",
+    "createdAt": "2024-05-23T14:45:00Z"
+  }
 ]
