@@ -20,23 +20,27 @@ router.get('/posts', postsController.getPosts);
 router.get('/posts/:id', postsController.getPostsById);
 
 // Protected Posts routes (write operations)
-router.get('/posts/summary', authenticate, postsController.summaryIAPosts);
+router.get('/posts/summary', authenticate, authorize('TEACHER', 'COORDINATOR', 'DIRECTOR', 'ADMIN'), postsController.summaryIAPosts);
 router.post('/posts', authenticate, authorize('TEACHER', 'COORDINATOR', 'DIRECTOR', 'ADMIN'), postsController.createPosts);
-router.delete('/posts/:id', authenticate, authorize('TEACHER', 'COORDINATOR', 'DIRECTOR', 'ADMIN'), postsController.deletePosts);
+router.delete('/posts/:id', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), postsController.deletePosts);
 router.post('/posts/:id/emoji', authenticate, postsController.emojiPosts);
 
 // Protected Requests Routes
 router.get('/requests', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), requestsController.getAllRequests);
 router.get('/requests/my', authenticate, requestsController.getMyRequests);
-router.post('/requests', authenticate, requestsController.postRequests);
+router.post('/requests', authenticate, authorize('STUDENT', 'TEACHER'), requestsController.postRequests);
 router.put('/requests/:id', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), requestsController.updateRequests);
 
 // Protected ChatRooms Routes
 router.get('/chat/rooms', authenticate, chatController.getChatRoom);
 router.get('/chat/rooms/:roomId/messages', authenticate, chatController.getMessagesRoom);
 
-// Public AcademicEvents Routes
+// Public AcademicEvents Routes (read-only)
 router.get('/academic-events', academicEventsController.getAcademicEvents);
 router.get('/academic-events/date/:calendar', academicEventsController.getAcademicEventByCalendar);
+
+// Protected AcademicEvents Routes (write operations)
+router.post('/academic-events', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), academicEventsController.createAcademicEvent);
+router.delete('/academic-events/:id', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), academicEventsController.deleteAcademicEvent);
 
 export default router;

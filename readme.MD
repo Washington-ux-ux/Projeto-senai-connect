@@ -49,10 +49,11 @@ Desenvolver uma plataforma web responsiva que permita:
 ## 🔐 Sistema de Login
 
 
-- Login com autenticação segura
+- Login com autenticação JWT segura
 - Recuperação de senha
-- Controle de permissões
+- Controle de permissões por role
 - Sessão de usuário
+- Proteção de rotas com middleware
 
 
 ---
@@ -68,15 +69,20 @@ Desenvolver uma plataforma web responsiva que permita:
 - Histórico de comunicados
 - Pesquisa de comunicados
 - Comentários e reações
+- Criação de posts/eventos por ADMIN, DIRECTOR, COORDINATOR e TEACHER
+- Exclusão de posts/eventos por ADMIN, DIRECTOR e COORDINATOR
+- Atualização automática da página após criar/excluir
 
 
 ### Categorias
 - Cursos
-- Eventos
+- Eventos (EVENT)
 - Direção
-- Estágios
+- Estágios (INTERNSHIP)
 - Manutenção
 - Acadêmico
+- Apresentações (PRESENTATION)
+- Anúncios (ANNOUNCEMENT)
 
 
 ---
@@ -147,10 +153,11 @@ Desenvolver uma plataforma web responsiva que permita:
 
 
 - Gerenciamento de usuários
+- Criação de alunos por ADMIN, DIRECTOR e COORDINATOR
 - Controle de comunicados
 - Relatórios do sistema
 - Estatísticas de acesso
-- Controle de permissões
+- Controle de permissões por role
 
 
 ---
@@ -161,11 +168,11 @@ Desenvolver uma plataforma web responsiva que permita:
 
 | Usuário | Permissões |
 |---|---|
-| Aluno | Visualizar comunicados e enviar solicitações |
-| Professor | Criar comunicados e gerenciar turmas |
-| Coordenação | Gerenciar setores e informações |
-| Direção | Comunicação institucional |
-| Administrador | Controle total do sistema |
+| Aluno | Visualizar comunicados, eventos e enviar solicitações |
+| Professor | Criar posts/eventos, enviar mensagens para turmas |
+| Coordenação | Criar/excluir posts/eventos, criar alunos, gerenciar solicitações |
+| Direção | Criar/excluir posts/eventos, criar alunos, gerenciar solicitações |
+| Administrador | Controle total do sistema, criar/excluir posts/eventos e alunos |
 
 
 ---
@@ -209,26 +216,33 @@ Desenvolver uma plataforma web responsiva que permita:
 
 
 ## Front-end
-- React
 - HTML5
 - CSS3
 - JavaScript
+- TypeScript (para scripts)
 
 
 ## Back-end
 - Node.js
 - Express
+- TypeScript
 
 
 ## Banco de Dados
-- MySQL
+- JSON (armazenamento temporário)
+- Planejado: MySQL
+
+
+## Autenticação
+- JWT (JSON Web Tokens)
+- bcrypt (criptografia de senhas)
 
 
 ## Ferramentas
 - GitHub
 - Figma
 - Postman
-- Docker
+- tsx (execução TypeScript)
 
 
 ---
@@ -276,11 +290,12 @@ senai-connect/
 # 🔒 Segurança
 
 
-- Autenticação JWT
-- Criptografia de senhas
-- Controle de acesso
-- Proteção de rotas
+- Autenticação JWT com tokens seguros
+- Criptografia de senhas com bcrypt
+- Controle de acesso por role (RBAC)
+- Proteção de rotas com middleware
 - Validação de dados
+- Autorização baseada em roles (ADMIN, DIRECTOR, COORDINATOR, TEACHER, STUDENT)
 
 
 ---

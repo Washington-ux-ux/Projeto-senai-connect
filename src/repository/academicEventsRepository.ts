@@ -12,4 +12,27 @@ export const getAcademicEventByDate = async (date: string) => {
     return events;
 }
 
+export const createAcademicEvent = async (eventData: any) => {
+    const newEvent = {
+        id: String(academicEvents.length + 1),
+        title: eventData.title,
+        description: eventData.description,
+        date: eventData.date,
+        type: eventData.type || 'EVENT',
+        location: eventData.location || '',
+        isHoliday: eventData.isHoliday || false
+    }
+    academicEvents.push(newEvent)
+    return newEvent
+}
+
+export const deleteAcademicEvent = async (id: string) => {
+    const index = academicEvents.findIndex((event: any) => event.id === id)
+    if (index === -1) {
+        throw new Error('Event not found')
+    }
+    const deletedEvent = academicEvents.splice(index, 1)[0]
+    return deletedEvent
+}
+
     

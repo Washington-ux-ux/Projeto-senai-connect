@@ -5,7 +5,6 @@ export const getAllRequests = async () => {
     return requestJson
 }
 
-// Nota: Meu historico de requests, não geral
 export const getMyRequests = async () => {
     const requests = await getAllRequests()
     return requests.filter((request: any) => request.studentId === 1)
