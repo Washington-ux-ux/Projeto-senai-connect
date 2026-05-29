@@ -20,7 +20,7 @@
     "registration": "202410654",
     "role": "coordinator",
     "avatarUrl": "",
-    "course": "Desenvolvimento de Sistemas",
+    "course": "",
     "createdAt": "2024-05-21T09:30:00Z"
   },
   {
@@ -46,5 +46,31 @@
     "avatarUrl": "",
     "course": "Desenvolvimento de Sistemas",
     "createdAt": "2024-05-23T14:45:00Z"
+  },
+  {
+    "id": "5",
+    "name": "sadsa",
+    "email": "sds@hotmail.com",
+    "password": "$2b$10$/MO/ID1ZEStxXzVgI0DCUenen0vHD7cA8DnQLgl8njoWPzyUATSCS",
+    "cpf": "11111111111",
+    "registration": "00",
+    "role": "STUDENT",
+    "avatarUrl": "",
+    "course": "Desenvolvimento de sistemas",
+    "createdAt": "2026-05-29T20:19:50.137Z"
+  },
+  {
+    "id": "6",
+    "name": "sadsa",
+    "email": "ssds@hotmail.com",
+    "password": "$2b$10$CuFJdrujR6KTUNnq6hQGUOuFwOM5A0rlMd0/FiVjcaeFDIpScV1gC",
+    "cpf": "12332112",
+    "registration": "123",
+    "role": "STUDENT",
+    "avatarUrl": "",
+    "course": "Desenvolvimento de sistemas",
+    "gender": "Masculino",
+    "birthdate": "2000-03-08",
+    "createdAt": "2026-05-29T20:29:30.438Z"
   }
 ]

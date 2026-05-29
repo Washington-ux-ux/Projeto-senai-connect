@@ -40,6 +40,7 @@ async function loadUserData() {
             console.error("Usuário não está logado");
             if(document.getElementById('userName')) {
                 document.getElementById('userName').value = "Não logado";
+                document.getElementById('userRole').value = "-";
                 document.getElementById('userSex').value = "-";
                 document.getElementById('userBirth').value = "-";
                 document.getElementById('userClass').value = "-";
@@ -63,8 +64,30 @@ async function loadUserData() {
 
         if(document.getElementById('userName')) {
             document.getElementById('userName').value = data.name || 'Não disponível';
-            document.getElementById('userSex').value = 'Não informado';
-            document.getElementById('userBirth').value = 'Não informado';
+            
+            const roleMap = {
+                'ADMIN': 'Administrador',
+                'DIRECTOR': 'Diretor',
+                'COORDINATOR': 'Coordenador',
+                'TEACHER': 'Professor',
+                'STUDENT': 'Aluno',
+                'admin': 'Administrador',
+                'director': 'Diretor',
+                'coordinator': 'Coordenador',
+                'teacher': 'Professor',
+                'student': 'Aluno'
+            };
+            document.getElementById('userRole').value = roleMap[data.role] || data.role || 'Não informado';
+            
+            document.getElementById('userSex').value = data.gender || 'Não informado';
+            
+            if (data.birthdate) {
+                const birthDate = new Date(data.birthdate);
+                document.getElementById('userBirth').value = birthDate.toLocaleDateString('pt-BR');
+            } else {
+                document.getElementById('userBirth').value = 'Não informado';
+            }
+            
             document.getElementById('userClass').value = data.course || 'Não informado';
         }
         
@@ -72,6 +95,7 @@ async function loadUserData() {
         console.error("Erro ao carregar dados do usuário:", error);
         if(document.getElementById('userName')) {
             document.getElementById('userName').value = "Erro ao carregar";
+            document.getElementById('userRole').value = "-";
             document.getElementById('userSex').value = "-";
             document.getElementById('userBirth').value = "-";
             document.getElementById('userClass').value = "-";

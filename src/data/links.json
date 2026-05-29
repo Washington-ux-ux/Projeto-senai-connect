@@ -1,0 +1,65 @@
+[
+  {
+    "id": "1",
+    "name": "Site Oficial do Senai",
+    "description": "O site oficial do Senai, onde você pode encontrar informações sobre cursos, eventos e muito mais.",
+    "url": "https://www.pe.senai.br",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "2",
+    "name": "Torne-se um Aluno",
+    "description": "Descubra como se tornar um aluno do Senai e aproveite as oportunidades de aprendizado.",
+    "url": "https://mkt.pe.senai.br/tecnicos",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Via Senai",
+    "description": "Veja vagas de emprego e estágio disponíveis no Senai.",
+    "url": "https://viasenai.sistemafiepe.org.br/home/student-landing",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "4",
+    "name": "Editais",
+    "description": "Confira os editais disponíveis no Senai.",
+    "url": "https://www.pe.senai.br/editais/",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "5",
+    "name": "Estante de livros",
+    "description": "Accesse a estante de livros do Senai.",
+    "url": "https://estantedelivros.senai.br",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "6",
+    "name": "Portal do Aluno",
+    "description": "Acesse o portal do aluno Senai",
+    "url": "https://www.pe.senai.br/sou-aluno/",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "7",
+    "name": "Canal do YouTube do Senai",
+    "description": "Assista a vídeos relacionados ao Senai, incluindo tutoriais, eventos e muito mais.",
+    "url": "https://www.youtube.com/@senaibrasil",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "8",
+    "name": "Cursos de curta duração",
+    "description": "Descubra nossos cursos de curta duração e amplie suas habilidades.",
+    "url": "https://cursos.pe.senai.br/ficss",
+    "createdAt": "2024-05-20T10:00:00Z"
+  },
+  {
+    "id": "9",
+    "name": " Meu senai",
+    "description": "Acesse os seus sites do senai",
+    "url": "https://meusenai.senai.br",
+    "createdAt": "2026-05-29T22:48:31.201Z"
+  }
+]

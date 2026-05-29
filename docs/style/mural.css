@@ -81,3 +81,27 @@ body.dark-mode table a:hover {
     color: #1a1a2e;
 }
 
+.btn-add-link {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    background-color: #004a99;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-link:hover {
+    background-color: #0066cc;
+}
+
+body.dark-mode .btn-add-link {
+    background-color: #4a9eff;
+}
+
+body.dark-mode .btn-add-link:hover {
+    background-color: #6bb3ff;
+}

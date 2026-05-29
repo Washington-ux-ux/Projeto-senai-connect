@@ -4,6 +4,7 @@ import * as postsController from "./src/controllers/postsControllers"
 import * as requestsController from "./src/controllers/requestsControllers"
 import * as chatController from "./src/controllers/chatControllers"
 import * as academicEventsController from "./src/controllers/academicEventsController"
+import * as linksController from "./src/controllers/linksControllers"
 import { authenticate, authorize } from "./src/middlewares/authMiddleware";
 
 const router = Router();
@@ -42,5 +43,11 @@ router.get('/academic-events/date/:calendar', academicEventsController.getAcadem
 // Protected AcademicEvents Routes (write operations)
 router.post('/academic-events', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), academicEventsController.createAcademicEvent);
 router.delete('/academic-events/:id', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), academicEventsController.deleteAcademicEvent);
+
+// Public Links Routes (read-only)
+router.get('/links', linksController.getLinks);
+
+// Protected Links Routes (write operations)
+router.post('/links', authenticate, authorize('COORDINATOR', 'DIRECTOR', 'ADMIN'), linksController.createLink);
 
 export default router;

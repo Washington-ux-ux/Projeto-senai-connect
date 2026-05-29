@@ -41,62 +41,36 @@
         
         <h1>Mural de Links</h1>
         <p>Bem-vindo ao Mural de Links do Senai Connect! Aqui você pode encontrar os links relacionados ao Senai.</p>
+        
+        <button id="btn-add-link" class="btn-add-link" style="display: none;">+ Adicionar Novo Link</button>
 
-        <table>
+        <table id="links-table">
             <tr>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Link</th>
             </tr>
-
-            <tr>
-                <td>Site Oficial do Senai</td>
-                <td>O site oficial do Senai, onde você pode encontrar informações sobre cursos, eventos e muito mais.</td>
-                <td><a href="https://www.pe.senai.br">Acessar</a></td>
-            </tr>
-
-            <tr>
-                <td>Torne-se um Aluno</td>
-                <td>Descubra como se tornar um aluno do Senai e aproveite as oportunidades de aprendizado.</td>
-                <td><a href="https://mkt.pe.senai.br/tecnicos">Acessar</a></td>
-            </tr>
-
-            <tr>
-                <td>Via Senai</td>
-                <td>Veja vagas de emprego e estágio disponíveis no Senai.</td>
-                <td><a href="https://viasenai.sistemafiepe.org.br/home/student-landing">Acessar</a></td>
-            </tr>
-
-            <tr>
-                <td>Editais</td>
-                <td>Confira os editais disponíveis no Senai.</td>
-                <td><a href="https://www.pe.senai.br/editais/">Acessar</a></td>
-            </tr>
-
-            <tr>
-                <td>Estante de livros</td>
-                <td>Accesse a estante de livros do Senai.</td>
-                <td><a href="https://estantedelivros.senai.br">Acessar</a></td>
-            </tr>
-
-            <tr>
-                <td>Portal do Aluno</td>
-                <td>Acesse o portal do aluno Senai</td>
-                <td><a href="https://www.pe.senai.br/sou-aluno/">Acessar</a></td>
-            </tr>
-
-            <tr>
-                <td>Canal do YouTube do Senai</td>
-                <td>Assista a vídeos relacionados ao Senai, incluindo tutoriais, eventos e muito mais.</td>
-                <td><a href="https://www.youtube.com/@senaibrasil">Acessar</a></td>
-            </tr>
-
-            <tr>
-                <td>Cursos de curta duração</td>
-                <td>Descubra nossos cursos de curta duração e amplie suas habilidades.</td>
-                <td><a href="https://cursos.pe.senai.br/ficss">Acessar</a></td>
-            </tr>
         </table>
+
+        <div id="add-link-modal" class="modal-overlay">
+            <div class="modal-box">
+                <span id="btn-add-link-close" class="close-btn">&times;</span>
+                <h2>Adicionar Novo Link</h2>
+                <form id="add-link-form">
+                    <div class="input-group">
+                        <input type="text" id="link-name" placeholder="Nome do link" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="link-description" placeholder="Descrição" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="url" id="link-url" placeholder="URL do link" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Adicionar</button>
+                </form>
+                <p id="add-link-error" class="error-message"></p>
+            </div>
+        </div>
 
 
 
@@ -109,5 +83,6 @@
     <script src="./script/login.js"></script>
     <script src="./script/dayNightMode.js"></script>
     <script src="./script/profile.js"></script>
+    <script src="./script/mural.js"></script>
 </body>
 </html>

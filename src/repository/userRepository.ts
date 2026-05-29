@@ -1,4 +1,6 @@
 import userJson from '../data/user.json'
+import * as fs from 'fs'
+import * as path from 'path'
 
 // Nota: retorna o usuário logado, ou seja, o usuário que fez login
 export const getMyUser = async (userId: string) => {
@@ -15,6 +17,8 @@ export const getMyUser = async (userId: string) => {
         role: user.role,
         avatarUrl: user.avatarUrl,
         course: user.course,
+        gender: user.gender || 'Não informado',
+        birthdate: user.birthdate || '',
         createdAt: user.createdAt
     }
 }
@@ -30,9 +34,15 @@ export const RegisterUser = async (userData: any) => {
         role: userData.role || 'STUDENT',
         avatarUrl: userData.avatarUrl || '',
         course: userData.course || '',
+        gender: userData.gender || 'Não informado',
+        birthdate: userData.birthdate || '',
         createdAt: new Date().toISOString()
     }
     userJson.push(newUser)
+    
+    const filePath = path.join(__dirname, '../data/user.json')
+    fs.writeFileSync(filePath, JSON.stringify(userJson, null, 2))
+    
     return newUser
 }
 

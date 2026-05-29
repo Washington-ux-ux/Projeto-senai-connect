@@ -93,7 +93,7 @@ function showLoggedInUser() {
     if (hasAdminPrivileges) {
         dropdownContent = `
             <a href="#" id="btn-create-post">Criar Post/Evento</a>
-            <a href="#" id="btn-create-user">Criar Aluno</a>
+            <a href="#" id="btn-create-user">Registrar Novo Usuário</a>
             <a href="#" id="btn-logout">Sair</a>
         `;
     } else {
@@ -147,7 +147,7 @@ function showLoggedInUser() {
         <div id="create-user-modal" class="modal-overlay">
             <div class="modal-box">
                 <span id="btn-create-user-close" class="close-btn">&times;</span>
-                <h2>Criar Aluno</h2>
+                <h2>Registrar Novo Usuário</h2>
                 <form id="create-user-form">
                     <div class="input-group">
                         <input type="text" id="user-name" placeholder="Nome completo" required>
@@ -173,6 +173,18 @@ function showLoggedInUser() {
                     </div>
                     <div class="input-group">
                         <input type="text" id="user-course" placeholder="Curso">
+                    </div>
+                    <div class="input-group">
+                        <select id="user-gender">
+                            <option value="">Selecione o sexo</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Outro">Outro</option>
+                            <option value="Não informado">Não informado</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <input type="date" id="user-birthdate" placeholder="Data de Nascimento">
                     </div>
                     <button type="submit" class="btn-submit">Criar</button>
                 </form>
@@ -281,7 +293,9 @@ function showLoggedInUser() {
                 cpf: document.getElementById('user-cpf').value,
                 registration: document.getElementById('user-registration').value,
                 role: document.getElementById('user-role').value,
-                course: document.getElementById('user-course').value
+                course: document.getElementById('user-course').value,
+                gender: document.getElementById('user-gender').value,
+                birthdate: document.getElementById('user-birthdate').value
             };
 
             try {
@@ -299,9 +313,9 @@ function showLoggedInUser() {
                     createUserModal.classList.remove('active');
                     createUserForm.reset();
                     createUserError.textContent = '';
-                    alert('Aluno criado com sucesso!');
+                    alert('Usuário registrado com sucesso!');
                 } else {
-                    createUserError.textContent = data.message || 'Erro ao criar aluno';
+                    createUserError.textContent = data.message || 'Erro ao registrar usuário';
                 }
             } catch (error) {
                 createUserError.textContent = 'Erro de conexão com o servidor';
