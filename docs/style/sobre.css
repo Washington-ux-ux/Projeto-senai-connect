@@ -433,56 +433,6 @@ body .container:first-of-type {
     line-height: 1.6;
 }
 
-/* Status das Solicitações */
-.request-status {
-    background: white;
-    padding: 50px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    margin-bottom: 60px;
-}
-
-.status-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.status-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    min-width: 150px;
-}
-
-.status-badge {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    text-align: center;
-    min-width: 130px;
-}
-
-.status-item p {
-    font-size: 0.9em;
-    text-align: center;
-    color: #666;
-    margin: 0;
-}
-
-.arrow {
-    color: #3498db;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
 /* Público-Alvo */
 .target-audience {
     background: white;
@@ -718,7 +668,6 @@ body.dark-mode .categories,
 body.dark-mode .users-types,
 body.dark-mode .benefits,
 body.dark-mode .extras,
-body.dark-mode .request-status,
 body.dark-mode .target-audience {
     background-color: #16213e;
 }
@@ -726,12 +675,4 @@ body.dark-mode .target-audience {
 body.dark-mode .objectives p,
 body.dark-mode .target-audience p {
     color: #e0e0e0;
-}
-
-body.dark-mode .status-item p {
-    color: #b0b0b0;
-}
-
-body.dark-mode .arrow {
-    color: #4a9eff;
 }

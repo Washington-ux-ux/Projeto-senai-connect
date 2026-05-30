@@ -41,6 +41,8 @@ async function loadEvents() {
             });
         });
 
+        allEvents.sort((a, b) => new Date(b.date) - new Date(a.date));
+
         eventsContainer.innerHTML = '';
 
         if (allEvents.length === 0) {
@@ -64,7 +66,7 @@ async function loadEvents() {
             }
 
             eventCard.innerHTML = `
-                <img src="./assets/images/download.jfif" alt="${event.title}">
+                <img src="./assets/images/download.png" alt="${event.title}">
                 <h2>${event.title}</h2>
                 <p>${event.description}</p>
                 <p>Data: ${formattedDate}</p>

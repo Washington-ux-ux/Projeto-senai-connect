@@ -85,12 +85,13 @@ async function loadLinks() {
     try {
         const response = await fetch('http://localhost:3000/api/links');
         const links = await response.json();
-
-      
+        
+        const headerRow = linksTable.querySelector('tr');
         linksTable.innerHTML = '';
-        linksTable.appendChild(headerRow);
+        if (headerRow) {
+            linksTable.appendChild(headerRow);
+        }
 
-      
         links.forEach(link => {
             const row = document.createElement('tr');
             row.innerHTML = `
