@@ -5,10 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const addLinkForm = document.getElementById('add-link-form');
     const addLinkError = document.getElementById('add-link-error');
     const linksTable = document.getElementById('links-table');
+    const editLinkModal = document.getElementById('edit-link-modal');
+    const btnEditLinkClose = document.getElementById('btn-edit-link-close');
+    const editLinkForm = document.getElementById('edit-link-form');
+    const editLinkError = document.getElementById('edit-link-error');
 
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'DIRECTOR' || user.role === 'COORDINATOR' || 
-                                  user.role === 'admin' || user.role === 'director' || user.role === 'coordinator';
+    const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'COORDINATOR' || 
+                                  user.role === 'admin' || user.role === 'coordinator';
 
     if (hasAdminPrivileges && btnAddLink) {
         btnAddLink.style.display = 'block';
@@ -27,6 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
             addLinkModal.classList.remove('active');
             addLinkForm.reset();
             addLinkError.textContent = '';
+        });
+    }
+
+    if (btnEditLinkClose) {
+        btnEditLinkClose.addEventListener('click', () => {
+            editLinkModal.classList.remove('active');
+            editLinkForm.reset();
+            editLinkError.textContent = '';
         });
     }
 
@@ -69,11 +81,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (editLinkForm) {
+        editLinkForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const linkId = document.getElementById('edit-link-id').value;
+            const linkData = {
+                name: document.getElementById('edit-link-name').value,
+                description: document.getElementById('edit-link-description').value,
+                url: document.getElementById('edit-link-url').value
+            };
+
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`http://localhost:3000/api/links/${linkId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(linkData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    editLinkModal.classList.remove('active');
+                    editLinkForm.reset();
+                    editLinkError.textContent = '';
+                    alert('Link atualizado com sucesso!');
+                    loadLinks();
+                } else {
+                    editLinkError.textContent = data.message || 'Erro ao atualizar link';
+                }
+            } catch (error) {
+                editLinkError.textContent = 'Erro de conexão com o servidor';
+            }
+        });
+    }
+
     window.addEventListener('click', (event) => {
         if (event.target === addLinkModal) {
             addLinkModal.classList.remove('active');
             addLinkForm.reset();
             addLinkError.textContent = '';
+        }
+        if (event.target === editLinkModal) {
+            editLinkModal.classList.remove('active');
+            editLinkForm.reset();
+            editLinkError.textContent = '';
         }
     });
 });
@@ -82,26 +138,130 @@ async function loadLinks() {
     const linksTable = document.getElementById('links-table');
     if (!linksTable) return;
 
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'COORDINATOR' || 
+                                  user.role === 'admin' || user.role === 'coordinator';
+
     try {
         const response = await fetch('http://localhost:3000/api/links');
         const links = await response.json();
         
         const headerRow = linksTable.querySelector('tr');
         linksTable.innerHTML = '';
+                
+
         if (headerRow) {
-            linksTable.appendChild(headerRow);
+            const newHeaderRow = document.createElement('tr');
+            if (hasAdminPrivileges) {
+                newHeaderRow.innerHTML = `
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Link</th>
+                    <th>Ações</th>
+                `;
+            } else {
+                newHeaderRow.innerHTML = `
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Link</th>
+                `;
+            }
+            linksTable.appendChild(newHeaderRow);
         }
 
-        links.forEach(link => {
+        links.sort((a, b) => a.name.localeCompare(b.name));
+
+        links.forEach((link, index) => {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${link.name}</td>
-                <td>${link.description}</td>
-                <td><a href="${link.url}" target="_blank" rel="noopener noreferrer">Acessar</a></td>
-            `;
+            if (hasAdminPrivileges) {
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${link.name}</td>
+                    <td>${link.description}</td>
+                    <td><a href="${link.url}" target="_blank" rel="noopener noreferrer">Acessar</a></td>
+                    <td>
+                        <button class="btn-edit-link" data-id="${link.id}">Editar</button>
+                        <button class="btn-delete-link" data-id="${link.id}">Excluir</button>
+                    </td>
+                `;
+            } else {
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${link.name}</td>
+                    <td>${link.description}</td>
+                    <td><a href="${link.url}" target="_blank" rel="noopener noreferrer">Acessar</a></td>
+                `;
+            }
             linksTable.appendChild(row);
         });
+
+       
+        if (hasAdminPrivileges) {
+            const editButtons = document.querySelectorAll('.btn-edit-link');
+            const deleteButtons = document.querySelectorAll('.btn-delete-link');
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const linkId = button.getAttribute('data-id');
+                    openEditModal(linkId);
+                });
+            });
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const linkId = button.getAttribute('data-id');
+                    
+                    if (confirm('Tem certeza que deseja excluir este link?')) {
+                        const token = localStorage.getItem('token');
+                        
+                        try {
+                            const response = await fetch(`http://localhost:3000/api/links/${linkId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`
+                                }
+                            });
+
+                            if (response.ok) {
+                                alert('Link excluído com sucesso!');
+                                loadLinks();
+                            } else {
+                                const data = await response.json();
+                                alert(data.message || 'Erro ao excluir link');
+                            }
+                        } catch (error) {
+                            alert('Erro de conexão com o servidor');
+                        }
+                    }
+                });
+            });
+        }
     } catch (error) {
         console.error('Erro ao carregar links:', error);
+    }
+}
+
+async function openEditModal(linkId) {
+    const editLinkModal = document.getElementById('edit-link-modal');
+    const editLinkForm = document.getElementById('edit-link-form');
+    
+    try {
+        const response = await fetch('http://localhost:3000/api/links');
+        const links = await response.json();
+        const link = links.find(l => l.id === linkId);
+        
+        if (link) {
+            document.getElementById('edit-link-id').value = link.id;
+            document.getElementById('edit-link-name').value = link.name;
+            document.getElementById('edit-link-description').value = link.description;
+            document.getElementById('edit-link-url').value = link.url;
+            editLinkModal.classList.add('active');
+        }
+    } catch (error) {
+        console.error('Erro ao carregar link:', error);
     }
 }

@@ -46,9 +46,11 @@
 
         <table id="links-table">
             <tr>
+                <th>#</th>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Link</th>
+                <th>Ações</th>
             </tr>
         </table>
 
@@ -69,6 +71,27 @@
                     <button type="submit" class="btn-submit">Adicionar</button>
                 </form>
                 <p id="add-link-error" class="error-message"></p>
+            </div>
+        </div>
+
+        <div id="edit-link-modal" class="modal-overlay">
+            <div class="modal-box">
+                <span id="btn-edit-link-close" class="close-btn">&times;</span>
+                <h2>Editar Link</h2>
+                <form id="edit-link-form">
+                    <input type="hidden" id="edit-link-id">
+                    <div class="input-group">
+                        <input type="text" id="edit-link-name" placeholder="Nome do link" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="edit-link-description" placeholder="Descrição" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="url" id="edit-link-url" placeholder="URL do link" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Salvar</button>
+                </form>
+                <p id="edit-link-error" class="error-message"></p>
             </div>
         </div>
 

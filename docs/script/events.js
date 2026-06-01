@@ -5,8 +5,8 @@ async function loadEvents() {
     try {
 
         const user = JSON.parse(localStorage.getItem('user') || '{}');
-        const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'DIRECTOR' || user.role === 'COORDINATOR' || 
-                                      user.role === 'admin' || user.role === 'director' || user.role === 'coordinator';
+        const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'COORDINATOR' || 
+                                      user.role === 'admin' || user.role === 'coordinator';
 
         const postsResponse = await fetch('http://localhost:3000/api/posts');
         const posts = await postsResponse.json();

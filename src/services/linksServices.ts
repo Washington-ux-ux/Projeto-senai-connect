@@ -26,3 +26,29 @@ export const createLinkService = async (linkData: any) => {
         return await httphelper.badRequest()
     }
 }
+
+export const updateLinkService = async (id: string, linkData: any) => {
+    try {
+        const data = await repository.updateLink(id, linkData)
+        if (data) {
+            return await httphelper.ok(data)
+        } else {
+            return await httphelper.badRequest()
+        }
+    } catch (error) {
+        return await httphelper.badRequest()
+    }
+}
+
+export const deleteLinkService = async (id: string) => {
+    try {
+        const data = await repository.deleteLink(id)
+        if (data) {
+            return await httphelper.ok(data)
+        } else {
+            return await httphelper.badRequest()
+        }
+    } catch (error) {
+        return await httphelper.badRequest()
+    }
+}

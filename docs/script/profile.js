@@ -67,12 +67,10 @@ async function loadUserData() {
             
             const roleMap = {
                 'ADMIN': 'Administrador',
-                'DIRECTOR': 'Diretor',
                 'COORDINATOR': 'Coordenador',
                 'TEACHER': 'Professor',
                 'STUDENT': 'Aluno',
                 'admin': 'Administrador',
-                'director': 'Diretor',
                 'coordinator': 'Coordenador',
                 'teacher': 'Professor',
                 'student': 'Aluno'

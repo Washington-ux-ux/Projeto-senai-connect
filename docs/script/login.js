@@ -84,8 +84,8 @@ function showLoggedInUser() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     console.log('Usuário logado:', user);
     console.log('Role do usuário:', user.role);
-    const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'DIRECTOR' || user.role === 'COORDINATOR' || 
-                                  user.role === 'admin' || user.role === 'director' || user.role === 'coordinator';
+    const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'COORDINATOR' || 
+                                  user.role === 'admin' || user.role === 'coordinator';
     console.log('Tem privilégios de admin?', hasAdminPrivileges);
     
     let dropdownContent = '';
@@ -169,6 +169,7 @@ function showLoggedInUser() {
                             <option value="">Selecione o cargo</option>
                             <option value="STUDENT">Aluno</option>
                             <option value="TEACHER">Professor</option>
+                            <option value="COORDINATOR">Coordenador</option>
                         </select>
                     </div>
                     <div class="input-group">
