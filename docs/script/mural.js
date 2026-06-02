@@ -181,7 +181,7 @@ async function loadLinks() {
                     <td>${link.name}</td>
                     <td>${link.description}</td>
                     <td><a href="${link.url}" target="_blank" rel="noopener noreferrer">Acessar</a></td>
-                    <td>
+                    <td class="actions-cell">
                         <button class="btn-edit-link" data-id="${link.id}">Editar</button>
                         <button class="btn-delete-link" data-id="${link.id}">Excluir</button>
                     </td>

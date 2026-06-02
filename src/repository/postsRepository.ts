@@ -16,6 +16,7 @@ export const createPosts = async (postData: any) => {
         content: postData.content,
         summary: postData.summary || '',
         category: postData.category,
+        visibility: postData.visibility || 'ALL',
         author: {
             name: postData.authorName,
             id: postData.authorId

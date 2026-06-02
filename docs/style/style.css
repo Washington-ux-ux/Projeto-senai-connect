@@ -150,7 +150,8 @@ header p {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,62 +168,113 @@ header p {
 }
 
 .modal-box {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 40px;
+    border-radius: 16px;
     width: 100%;
-    max-width: 350px;
+    max-width: 500px;
     position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .modal-box h2 {
-    margin-bottom: 20px;
-    color: #333;
+    margin-bottom: 25px;
+    color: #1a1a2e;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
     cursor: pointer;
     color: #666;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .close-btn:hover {
-    color: #000;
+    color: #fff;
+    background-color: #dc3545;
+    transform: rotate(90deg);
 }
 
 .modal-box form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
 }
 
-.modal-box input {
+.modal-box input,
+.modal-box textarea,
+.modal-box select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
     box-sizing: border-box;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.modal-box input:focus,
+.modal-box textarea:focus,
+.modal-box select:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+}
+
+.modal-box textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-box select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
 }
 
 .btn-submit {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
     color: white;
     border: none;
-    padding: 12px;
-    border-radius: 4px;
+    padding: 16px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+    margin-top: 10px;
 }
 
 .btn-submit:hover {
-    background-color: #004085;
+    background: linear-gradient(135deg, #004494 0%, #003373 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 86, 179, 0.4);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
 }
 
 .error-message {
@@ -354,18 +406,42 @@ body.dark-mode header {
 }
 
 body.dark-mode .modal-box {
-    background-color: #16213e;
+    background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
     color: #e0e0e0;
+    border-color: rgba(74, 158, 255, 0.2);
 }
 
 body.dark-mode .modal-box h2 {
     color: #e0e0e0;
 }
 
-body.dark-mode .modal-box input {
+body.dark-mode .modal-box input,
+body.dark-mode .modal-box textarea,
+body.dark-mode .modal-box select {
     background-color: #1a1a2e;
     border-color: #4a9eff;
     color: #e0e0e0;
+}
+
+body.dark-mode .modal-box input:focus,
+body.dark-mode .modal-box textarea:focus,
+body.dark-mode .modal-box select:focus {
+    border-color: #6bb3ff;
+    box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.2);
+}
+
+body.dark-mode .modal-box select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a9eff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+
+body.dark-mode .btn-submit {
+    background: linear-gradient(135deg, #4a9eff 0%, #0066cc 100%);
+    box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+}
+
+body.dark-mode .btn-submit:hover {
+    background: linear-gradient(135deg, #0066cc 0%, #0055aa 100%);
+    box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
 }
 
 body.dark-mode .close-btn {

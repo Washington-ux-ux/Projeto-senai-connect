@@ -17,14 +17,23 @@ async function loadEvents() {
 
         posts.forEach(post => {
             if (post.category === 'INTERNSHIP' || post.category === 'EVENT' || post.category === 'PRESENTATION' || post.category === 'ANNOUNCEMENT') {
-                allEvents.push({
-                    type: 'post',
-                    id: post.id,
-                    title: post.title,
-                    description: post.summary || post.content,
-                    date: post.createdAt,
-                    category: post.category
-                });
+                // Verificar visibilidade
+                const canView = !post.visibility || 
+                                post.visibility === 'ALL' || 
+                                post.visibility === user.role || 
+                                user.role === 'ADMIN' || 
+                                user.role === 'COORDINATOR';
+                
+                if (canView) {
+                    allEvents.push({
+                        type: 'post',
+                        id: post.id,
+                        title: post.title,
+                        description: post.summary || post.content,
+                        date: post.createdAt,
+                        category: post.category
+                    });
+                }
             }
         });
 

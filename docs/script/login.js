@@ -137,6 +137,15 @@ function showLoggedInUser() {
                             <option value="ANNOUNCEMENT">Anúncio</option>
                         </select>
                     </div>
+                    <div class="input-group">
+                        <select id="post-visibility" required>
+                            <option value="">Selecione a visibilidade</option>
+                            <option value="ALL">Todos</option>
+                            <option value="STUDENT">Apenas Alunos</option>
+                            <option value="TEACHER">Apenas Professores</option>
+                            <option value="COORDINATOR">Apenas Coordenadores</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn-submit">Criar</button>
                 </form>
                 <p id="create-post-error" class="error-message"></p>
@@ -172,7 +181,7 @@ function showLoggedInUser() {
                             <option value="COORDINATOR">Coordenador</option>
                         </select>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group" id="user-course-group">
                         <input type="text" id="user-course" placeholder="Curso">
                     </div>
                     <div class="input-group">
@@ -245,6 +254,27 @@ function showLoggedInUser() {
             createUserError.textContent = '';
         });
 
+      
+        const userRoleSelect = document.getElementById('user-role');
+        const userCourseGroup = document.getElementById('user-course-group');
+        
+        if (userRoleSelect && userCourseGroup) {
+            const toggleCourseField = () => {
+                const selectedRole = userRoleSelect.value;
+                if (selectedRole === 'STUDENT') {
+                    userCourseGroup.style.display = 'block';
+                    document.getElementById('user-course').required = true;
+                } else {
+                    userCourseGroup.style.display = 'none';
+                    document.getElementById('user-course').required = false;
+                    document.getElementById('user-course').value = '';
+                }
+            };
+            
+            userRoleSelect.addEventListener('change', toggleCourseField);
+            toggleCourseField(); 
+        }
+
         createPostForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -253,7 +283,8 @@ function showLoggedInUser() {
                 title: document.getElementById('post-title').value,
                 content: document.getElementById('post-content').value,
                 summary: document.getElementById('post-summary').value,
-                category: document.getElementById('post-category').value
+                category: document.getElementById('post-category').value,
+                visibility: document.getElementById('post-visibility').value
             };
 
             try {

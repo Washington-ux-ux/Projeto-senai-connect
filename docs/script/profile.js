@@ -89,6 +89,19 @@ async function loadUserData() {
             
             document.getElementById('userClass').value = data.course || 'Não informado';
             
+            const userClassField = document.getElementById('userClass');
+            const userClassLabel = userClassField?.previousElementSibling;
+            if (userClassField && userClassLabel) {
+                const rolesWithoutClass = ['ADMIN', 'COORDINATOR', 'TEACHER', 'admin', 'coordinator', 'teacher'];
+                if (rolesWithoutClass.includes(data.role)) {
+                    userClassField.style.display = 'none';
+                    userClassLabel.style.display = 'none';
+                } else {
+                    userClassField.style.display = 'block';
+                    userClassLabel.style.display = 'block';
+                }
+            }
+            
             if (data.createdAt) {
                 const createdAt = new Date(data.createdAt);
                 document.getElementById('userCreatedAt').value = createdAt.toLocaleDateString('pt-BR');
