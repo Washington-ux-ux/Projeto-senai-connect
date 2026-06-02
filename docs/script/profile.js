@@ -44,6 +44,7 @@ async function loadUserData() {
                 document.getElementById('userSex').value = "-";
                 document.getElementById('userBirth').value = "-";
                 document.getElementById('userClass').value = "-";
+                document.getElementById('userCreatedAt').value = "-";
             }
             return;
         }
@@ -87,6 +88,13 @@ async function loadUserData() {
             }
             
             document.getElementById('userClass').value = data.course || 'Não informado';
+            
+            if (data.createdAt) {
+                const createdAt = new Date(data.createdAt);
+                document.getElementById('userCreatedAt').value = createdAt.toLocaleDateString('pt-BR');
+            } else {
+                document.getElementById('userCreatedAt').value = 'Não informado';
+            }
         }
         
     } catch (error) {
@@ -97,6 +105,7 @@ async function loadUserData() {
             document.getElementById('userSex').value = "-";
             document.getElementById('userBirth').value = "-";
             document.getElementById('userClass').value = "-";
+            document.getElementById('userCreatedAt').value = "-";
         }
     }
 }
