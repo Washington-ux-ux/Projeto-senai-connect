@@ -1,396 +1,272 @@
 # SENAI Connect
 
+Plataforma corporativa de comunicação interna para o SENAI, desenvolvida para centralizar a interação entre alunos, professores, coordenação e direção.
 
 ## 📌 Sobre o Projeto
 
-
-O **SENAI Connect** é uma plataforma corporativa de comunicação interna desenvolvida para melhorar a interação entre alunos, professores, coordenação e direção do SENAI.
-
-
-O sistema centraliza comunicados, mensagens, notificações e solicitações institucionais em um único ambiente digital, tornando a comunicação mais rápida, organizada e eficiente.
-
+O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados, eventos, links úteis e solicitações institucionais em um único ambiente digital. O sistema utiliza autenticação JWT, controle de acesso por roles e armazenamento em JSON para prototipagem rápida.
 
 ---
 
 
-# 🎯 Objetivo
+## 🎯 Funcionalidades Implementadas
 
+### 🔐 Sistema de Autenticação
+- Registro de usuários com criptografia de senhas (bcrypt)
+- Login com autenticação JWT
+- Controle de sessão via localStorage
+- Middleware de autenticação e autorização por roles
+- Roles: ADMIN, COORDINATOR, DIRECTOR, TEACHER, STUDENT
 
-Desenvolver uma plataforma web responsiva que permita:
+### 📢 Plataforma de Posts/Comunicados
+- Criação de posts por TEACHER, COORDINATOR e ADMIN
+- Exclusão de posts por COORDINATOR e ADMIN
+- Categorias: EVENT, INTERNSHIP, PRESENTATION, ANNOUNCEMENT
+- Sistema de visibilidade (ALL, STUDENT, TEACHER, COORDINATOR)
+- Reações com emojis (like, claps)
+- Resumo automático via IA (endpoint disponível)
 
+### 📅 Eventos Acadêmicos
+- Criação de eventos por COORDINATOR e ADMIN
+- Exclusão de eventos por COORDINATOR e ADMIN
+- Tipos: EXAM, HOLIDAY, PRESENTATION, WORK
+- Exibição unificada com posts na página de eventos
 
-- Comunicação institucional eficiente
-- Divulgação de comunicados oficiais
-- Contato entre alunos e direção
-- Organização acadêmica
-- Centralização de informações
-- Melhor experiência de comunicação interna
+### 🔗 Mural de Links
+- Visualização de links úteis para todos os usuários
+- Criação de links por COORDINATOR e ADMIN
+- Edição e exclusão de links por COORDINATOR e ADMIN
+- Interface em tabela com ações administrativas
 
-
----
-
-
-# 🏢 Público-Alvo
-
-
-- Alunos
-- Professores
-- Coordenação
-- Direção
-- Administração do SENAI
-
-
----
-
-
-# 🚀 Funcionalidades
-
-
-## 🔐 Sistema de Login
-
-
-- Login com autenticação JWT segura
-- Recuperação de senha
-- Controle de permissões por role
-- Sessão de usuário
-- Proteção de rotas com middleware
-
-
----
-
-
-## 📢 Plataforma de Comunicados
-
-
-- Publicação de avisos oficiais
-- Comunicados urgentes
-- Categorias de avisos
-- Upload de arquivos
-- Histórico de comunicados
-- Pesquisa de comunicados
-- Comentários e reações
-- Criação de posts/eventos por ADMIN, DIRECTOR, COORDINATOR e TEACHER
-- Exclusão de posts/eventos por ADMIN, DIRECTOR e COORDINATOR
-- Atualização automática da página após criar/excluir
-
-
-### Categorias
-- Cursos
-- Eventos (EVENT)
-- Direção
-- Estágios (INTERNSHIP)
-- Manutenção
-- Acadêmico
-- Apresentações (PRESENTATION)
-- Anúncios (ANNOUNCEMENT)
-
-
----
-
-
-## 💬 Comunicação com a Direção
-
-
-- Envio de mensagens privadas
-- Solicitações formais
+### 📋 Sistema de Solicitações
+- Envio de solicitações por alunos
+- Status: SENT, ANALYZING, RESPONDED, FINISHED
 - Sistema de protocolos
 - Agendamento de reuniões
-- Feedback institucional
 
-
-### Status das solicitações
-- Enviada
-- Em análise
-- Respondida
-- Finalizada
-
-
----
-
-
-## 🧑‍🤝‍🧑 Chat Corporativo
-
-
-- Conversas privadas
-- Grupos por turma
-- Grupos por curso
-- Compartilhamento de arquivos
-- Mensagens em tempo real
+### 💬 Chat Corporativo
+- Salas de chat (PRIVATE, GROUP)
+- Mensagens com suporte a arquivos
 - Mensagens fixadas
+- Membros em salas de grupo
 
-
----
-
-
-## 🔔 Sistema de Notificações
-
-
-- Notificações em tempo real
-- Avisos importantes
-- Alertas acadêmicos
-- Mudança de sala
-- Eventos do SENAI
-- Atividades disponíveis
-
+### 🌙 Interface do Usuário
+- Tema claro/escuro
+- Calendário interativo
+- Menu de usuário com dropdown
+- Modais para criação de posts, usuários e links
+- Design responsivo
 
 ---
 
 
-## 📅 Organização Acadêmica
+## 🛠️ Tecnologias Utilizadas
 
+### Backend
+- **Node.js** + **Express** - Servidor web e API REST
+- **TypeScript** - Tipagem estática
+- **JWT** - Autenticação via tokens
+- **bcrypt** - Criptografia de senhas
+- **JSON** - Armazenamento de dados (prototipagem)
 
-- Calendário escolar
-- Agenda de provas
-- Horários de aula
-- Eventos
-- Mural da turma
+### Frontend
+- **HTML5** - Estrutura das páginas
+- **CSS3** - Estilização com tema claro/escuro
+- **JavaScript** - Lógica de interface e chamadas à API
+- **Font Awesome** - Ícones
 
-
----
-
-
-## 📊 Painel Administrativo
-
-
-- Gerenciamento de usuários
-- Criação de alunos por ADMIN, DIRECTOR e COORDINATOR
-- Controle de comunicados
-- Relatórios do sistema
-- Estatísticas de acesso
-- Controle de permissões por role
-
+### Ferramentas
+- **tsx** - Execução de TypeScript
+- **tsup** - Build do projeto
+- **chalk** - Logs coloridos no console
 
 ---
 
 
-# 👥 Tipos de Usuários
+## 📂 Estrutura do Projeto
 
-
-| Usuário | Permissões |
-|---|---|
-| Aluno | Visualizar comunicados, eventos e enviar solicitações |
-| Professor | Criar posts/eventos, enviar mensagens para turmas |
-| Coordenação | Criar/excluir posts/eventos, criar alunos, gerenciar solicitações |
-| Direção | Criar/excluir posts/eventos, criar alunos, gerenciar solicitações |
-| Administrador | Controle total do sistema, criar/excluir posts/eventos e alunos |
-
-
----
-
-
-# 🧠 Funcionalidades Extras
-
-
-## 🤖 Inteligência Artificial
-- Resumo automático de comunicados
-- Organização automática de mensagens
-
-
-## 🌙 Tema Escuro
-- Interface moderna
-- Melhor experiência visual
-
-
-## 📱 Responsividade
-- Compatível com celulares
-- Compatível com tablets
-- Compatível com computadores
-
-
-## 📈 Dashboard
-- Gráficos
-- Métricas do sistema
-- Usuários ativos
-
-
-## 🏆 Gamificação
-- Sistema de pontos
-- Medalhas
-- Participação dos alunos
-
-
----
-
-
-# 🛠️ Tecnologias Utilizadas
-
-
-## Front-end
-- HTML5
-- CSS3
-- JavaScript
-- TypeScript (para scripts)
-
-
-## Back-end
-- Node.js
-- Express
-- TypeScript
-
-
-## Banco de Dados
-- JSON (armazenamento temporário)
-- Planejado: MySQL
-
-
-## Autenticação
-- JWT (JSON Web Tokens)
-- bcrypt (criptografia de senhas)
-
-
-## Ferramentas
-- GitHub
-- Figma
-- Postman
-- tsx (execução TypeScript)
-
-
----
-
-
-# 🧱 Arquitetura do Sistema
-
-
-```bash
-Frontend → API REST → Banco de Dados
 ```
-
-
----
-
-
-# 📂 Estrutura do Projeto
-
-
-```bash
 senai-connect/
-│
-├── frontend/
-│   ├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-│
-├── backend/
-│   ├── controllers/
-│   ├── routes/
-│   ├── models/
-│   ├── middlewares/
-│   └── database/
-│
-├── docs/
-│
-└── README.md
+├── src/
+│   ├── controllers/        # Controladores da API
+│   │   ├── usersControllers.ts
+│   │   ├── postsControllers.ts
+│   │   ├── academicEventsController.ts
+│   │   ├── linksControllers.ts
+│   │   ├── chatControllers.ts
+│   │   └── requestsControllers.ts
+│   ├── models/            # Interfaces TypeScript
+│   │   ├── user-model.ts
+│   │   ├── posts-model.ts
+│   │   ├── academicEvent-model.ts
+│   │   ├── requests-model.ts
+│   │   ├── chatRoom-model.ts
+│   │   └── message-model.ts
+│   ├── services/           # Lógica de negócio
+│   │   ├── usersServices.ts
+│   │   ├── postsServices.ts
+│   │   ├── academicEventsServices.ts
+│   │   ├── linksServices.ts
+│   │   ├── chatServices.ts
+│   │   └── requestsServices.ts
+│   ├── repository/        # Acesso aos dados
+│   │   ├── userRepository.ts
+│   │   ├── postsRepository.ts
+│   │   ├── academicEventsRepository.ts
+│   │   ├── linksRepository.ts
+│   │   ├── chatRepository.ts
+│   │   └── requestsRepository.ts
+│   ├── middlewares/       # Middlewares Express
+│   │   └── authMiddleware.ts
+│   ├── utils/             # Utilitários
+│   │   ├── auth.ts
+│   │   └── http-helper.ts
+│   └── data/              # Arquivos JSON (banco de dados)
+│       ├── user.json
+│       ├── posts.json
+│       ├── academicEvent.json
+│       ├── links.json
+│       ├── requests.json
+│       ├── chat.json
+│       └── message.json
+├── docs/                  # Frontend
+│   ├── index.html         # Página inicial com calendário
+│   ├── eventos.html       # Página de eventos
+│   ├── mural.html         # Mural de links
+│   ├── sobre.html         # Página sobre o projeto
+│   ├── perfil.html        # Perfil do usuário
+│   ├── script/            # JavaScript do frontend
+│   │   ├── login.js
+│   │   ├── events.js
+│   │   ├── mural.js
+│   │   ├── calendar.js
+│   │   ├── dayNightMode.js
+│   │   └── profile.js
+│   ├── style/             # CSS
+│   │   ├── style.css
+│   │   ├── index.css
+│   │   ├── eventos.css
+│   │   ├── mural.css
+│   │   ├── sobre.css
+│   │   └── profile.css
+│   └── assets/            # Imagens e ícones
+├── server.ts              # Entry point do servidor
+├── app.ts                 # Configuração do Express
+├── routes.ts              # Definição das rotas da API
+├── package.json           # Dependências do projeto
+├── .env                   # Variáveis de ambiente
+└── README.md              # Este arquivo
 ```
 
-
 ---
 
 
-# 🔒 Segurança
+## � API Endpoints
 
+### Autenticação
+- `POST /api/user/register` - Registrar novo usuário
+- `POST /api/user/login` - Fazer login
+- `GET /api/user/me` - Obter dados do usuário autenticado
 
-- Autenticação JWT com tokens seguros
-- Criptografia de senhas com bcrypt
-- Controle de acesso por role (RBAC)
-- Proteção de rotas com middleware
-- Validação de dados
-- Autorização baseada em roles (ADMIN, DIRECTOR, COORDINATOR, TEACHER, STUDENT)
+### Posts
+- `GET /api/posts` - Listar todos os posts
+- `GET /api/posts/:id` - Obter post por ID
+- `POST /api/posts` - Criar post (TEACHER, COORDINATOR, ADMIN)
+- `DELETE /api/posts/:id` - Excluir post (COORDINATOR, ADMIN)
+- `POST /api/posts/:id/emoji` - Adicionar/remover reação
+- `GET /api/posts/summary` - Resumo IA (TEACHER, COORDINATOR, ADMIN)
 
+### Eventos Acadêmicos
+- `GET /api/academic-events` - Listar eventos
+- `GET /api/academic-events/date/:calendar` - Buscar por data
+- `POST /api/academic-events` - Criar evento (COORDINATOR, ADMIN)
+- `DELETE /api/academic-events/:id` - Excluir evento (COORDINATOR, ADMIN)
 
----
+### Links
+- `GET /api/links` - Listar links
+- `POST /api/links` - Criar link (COORDINATOR, ADMIN)
+- `PUT /api/links/:id` - Atualizar link (COORDINATOR, ADMIN)
+- `DELETE /api/links/:id` - Excluir link (COORDINATOR, ADMIN)
 
+### Chat
+- `GET /api/chat/room` - Listar salas de chat
+- `GET /api/chat/messages/:roomId` - Obter mensagens da sala
 
-# 📋 Requisitos Funcionais
+### Solicitações
+- `GET /api/requests` - Listar todas as solicitações
+- `GET /api/requests/my` - Listar solicitações do usuário
+- `POST /api/requests` - Criar solicitação
+- `PUT /api/requests/:id` - Atualizar solicitação
 
+## 👥 Roles e Permissões
 
-- Usuário deve conseguir realizar login
-- Direção deve publicar comunicados
-- Alunos devem enviar solicitações
-- Sistema deve enviar notificações
-- Usuários devem participar de chats
-- Administração deve gerenciar usuários
+| Role | Permissões |
+|------|------------|
+| **STUDENT** | Visualizar posts, eventos, links; enviar solicitações |
+| **TEACHER** | Criar posts; visualizar tudo |
+| **COORDINATOR** | Criar/excluir posts, eventos, links; criar usuários; gerenciar solicitações |
+| **ADMIN** | Controle total do sistema |
 
+## 🚀 Como Executar
 
----
+### Pré-requisitos
+- Node.js instalado
+- npm ou yarn
 
+### Instalação
+```bash
+npm install
+```
 
-# ⚙️ Requisitos Não Funcionais
+### Executar em desenvolvimento
+```bash
+npm run dev
+```
 
+O servidor será iniciado em `http://localhost:3000`
 
-- Sistema responsivo
-- Interface intuitiva
-- Alta disponibilidade
-- Segurança de dados
-- Boa performance
+### Variáveis de Ambiente
+Crie um arquivo `.env` na raiz do projeto:
+```
+PORT=3000
+JWT_SECRET=sua-chave-secreta-aqui
+```
 
+## � Segurança
 
----
+- Senhas criptografadas com bcrypt
+- Autenticação via JWT com expiração de 24h
+- Middleware de autenticação em rotas protegidas
+- Autorização baseada em roles (RBAC)
+- Validação de dados nos controllers
 
+## 📊 Dados
 
-# 📌 Diferenciais do Projeto
+O projeto utiliza arquivos JSON para armazenamento temporário de dados. Para produção, recomenda-se migrar para um banco de dados relacional como MySQL ou PostgreSQL.
 
+## 🎨 Páginas do Frontend
 
-- Comunicação centralizada
-- Interface moderna
-- Organização institucional
-- Sistema em tempo real
-- Dashboard administrativo
-- Integração acadêmica
+- **index.html** - Página inicial com calendário interativo
+- **eventos.html** - Exibição de posts e eventos acadêmicos
+- **mural.html** - Mural de links úteis
+- **sobre.html** - Informações sobre o projeto
+- **perfil.html** - Perfil do usuário
 
+## 📈 Futuras Melhorias
 
----
+- Migração para banco de dados relacional (MySQL/PostgreSQL)
+- Implementação de WebSocket para chat em tempo real
+- Sistema de notificações push
+- Upload de arquivos para posts
+- Integração com calendário externo (Google Calendar)
+- Aplicativo mobile (React Native)
+- Testes automatizados
+- CI/CD pipeline
 
+## 👨‍💻 Desenvolvimento
 
-# 🎨 Protótipos
+Projeto desenvolvido para a disciplina de Desenvolvimento de Sistemas do SENAI.
 
-
-Os protótipos da interface serão desenvolvidos no Figma.
-
-
----
-
-
-# 📖 Documentação
-
-
-O projeto contará com:
-
-
-- Diagrama UML
-- Casos de uso
-- DER do banco de dados
-- API REST documentada
-- Protótipos de interface
-
-
----
-
-
-# 📈 Futuras Melhorias
-
-
-- Aplicativo mobile
-- Videochamadas
-- Integração com e-mail
-- Chat com IA
-- QR Code para presença
-- Sistema de enquetes
-
-
----
-
-
-# 👨‍💻 Desenvolvedores
-
-
-Projeto desenvolvido para a disciplina de Desenvolvimento de Sistemas.
-
-
----
-
-
-# 📄 Licença
-
+## 📄 Licença
 
 Este projeto é destinado para fins educacionais.

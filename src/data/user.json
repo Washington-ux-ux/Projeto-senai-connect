@@ -86,5 +86,19 @@
     "gender": "Masculino",
     "birthdate": "2000-03-08",
     "createdAt": "2026-06-01T21:12:17.171Z"
+  },
+  {
+    "id": "8",
+    "name": "Peitica",
+    "email": "peitica@hotmail.com",
+    "password": "$2b$10$YkpivcA37es5K1CjWlYoNuMBKN/.MqgR9xjRbIfEgtLGuGYHGS1kG",
+    "cpf": "123321456",
+    "registration": "03",
+    "role": "STUDENT",
+    "avatarUrl": "",
+    "course": "Ingles",
+    "gender": "Masculino",
+    "birthdate": "2002-03-20",
+    "createdAt": "2026-06-02T21:51:01.759Z"
   }
 ]

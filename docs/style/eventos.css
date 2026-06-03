@@ -101,3 +101,30 @@ body.dark-mode .btn-delete-event {
 body.dark-mode .btn-delete-event:hover {
     background-color: #ff8787;
 }
+
+.btn-load-more {
+    margin: 30px auto;
+    padding: 12px 24px;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+}
+
+.btn-load-more:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
+body.dark-mode .btn-load-more {
+    background-color: #4a9eff;
+}
+
+body.dark-mode .btn-load-more:hover {
+    background-color: #3a8eef;
+}
