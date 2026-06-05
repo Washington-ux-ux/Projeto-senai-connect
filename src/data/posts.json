@@ -15,5 +15,24 @@
     },
     "attachmentUrl": "",
     "createdAt": "2024-05-21T14:30:00Z"
+  },
+  {
+    "id": "p1780681492607-3jgo4zn0q",
+    "title": "Não haverá aula",
+    "summary": "Por motivos de muitas chuvas, no dia 06/06/2026, não haverá aula presencialmente. Os professores passaram tarefas online pelo Classroom.",
+    "category": "ANNOUNCEMENT",
+    "visibility": [
+      "ALL"
+    ],
+    "author": {},
+    "reactions": {
+      "like": 0,
+      "claps": 0
+    },
+    "attachmentUrl": "",
+    "imageUrl": "aviso1.png",
+    "eventDate": "2026-06-06",
+    "location": "SENAI Areias",
+    "createdAt": "2026-06-05T17:44:52.609Z"
   }
 ]

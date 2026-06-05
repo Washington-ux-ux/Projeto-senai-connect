@@ -40,11 +40,10 @@ async function loadUserData() {
             console.error("Usuário não está logado");
             if(document.getElementById('userName')) {
                 document.getElementById('userName').value = "Não logado";
-                document.getElementById('userRole').value = "-";
-                document.getElementById('userSex').value = "-";
-                document.getElementById('userBirth').value = "-";
-                document.getElementById('userClass').value = "-";
-                document.getElementById('userCreatedAt').value = "-";
+                document.getElementById('userRole').value = "Não logado";
+                document.getElementById('userSex').value = "Não logado";
+                document.getElementById('userClass').value = "Não logado";
+                document.getElementById('userCreatedAt').value = "Não logado";
             }
             return;
         }
@@ -80,12 +79,7 @@ async function loadUserData() {
             
             document.getElementById('userSex').value = data.gender || 'Não informado';
             
-            if (data.birthdate) {
-                const birthDate = new Date(data.birthdate);
-                document.getElementById('userBirth').value = birthDate.toLocaleDateString('pt-BR');
-            } else {
-                document.getElementById('userBirth').value = 'Não informado';
-            }
+            
             
             document.getElementById('userClass').value = data.course || 'Não informado';
             
@@ -116,7 +110,6 @@ async function loadUserData() {
             document.getElementById('userName').value = "Erro ao carregar";
             document.getElementById('userRole').value = "-";
             document.getElementById('userSex').value = "-";
-            document.getElementById('userBirth').value = "-";
             document.getElementById('userClass').value = "-";
             document.getElementById('userCreatedAt').value = "-";
         }
