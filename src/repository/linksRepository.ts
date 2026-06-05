@@ -1,57 +1,61 @@
-import linksJson from '../data/links.json'
-import * as fs from 'fs'
-import * as path from 'path'
+import fs from 'fs';
+import path from 'path';
+
+const linksFilePath = path.join(__dirname, '../data/links.json');
+
+const readLinksJson = (): any[] => {
+    const data = fs.readFileSync(linksFilePath, 'utf-8');
+    return JSON.parse(data);
+};
+
+const writeLinksJson = (data: any[]): void => {
+    fs.writeFileSync(linksFilePath, JSON.stringify(data, null, 2));
+};
 
 export const getLinks = async () => {
-    return linksJson
+    return readLinksJson();
 }
 
 export const createLink = async (linkData: any) => {
+    const links = readLinksJson();
     const newLink = {
-        id: String(linksJson.length + 1),
+        id: String(links.length + 1),
         name: linkData.name,
         description: linkData.description,
         url: linkData.url,
         createdAt: new Date().toISOString()
     }
-    linksJson.push(newLink)
-    
-    const filePath = path.join(__dirname, '../data/links.json')
-    fs.writeFileSync(filePath, JSON.stringify(linksJson, null, 2))
-    
+    links.push(newLink);
+    writeLinksJson(links);
     return newLink
 }
 
 export const updateLink = async (id: string, linkData: any) => {
-    const index = linksJson.findIndex((link: any) => link.id === id)
+    const links = readLinksJson();
+    const index = links.findIndex((link: any) => link.id === id)
     if (index === -1) {
         throw new Error('Link not found')
     }
     
-    linksJson[index] = {
-        ...linksJson[index],
+    links[index] = {
+        ...links[index],
         name: linkData.name,
         description: linkData.description,
         url: linkData.url
     }
-    
-    const filePath = path.join(__dirname, '../data/links.json')
-    fs.writeFileSync(filePath, JSON.stringify(linksJson, null, 2))
-    
-    return linksJson[index]
+    writeLinksJson(links);
+    return links[index]
 }
 
 export const deleteLink = async (id: string) => {
-    const index = linksJson.findIndex((link: any) => link.id === id)
+    const links = readLinksJson();
+    const index = links.findIndex((link: any) => link.id === id)
     if (index === -1) {
         throw new Error('Link not found')
     }
     
-    const deletedLink = linksJson[index]
-    linksJson.splice(index, 1)
-    
-    const filePath = path.join(__dirname, '../data/links.json')
-    fs.writeFileSync(filePath, JSON.stringify(linksJson, null, 2))
-    
+    const deletedLink = links[index]
+    links.splice(index, 1);
+    writeLinksJson(links);
     return deletedLink
 }

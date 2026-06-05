@@ -1,11 +1,23 @@
-import academicEvents from '../data/academicEvent.json'
+import fs from 'fs';
+import path from 'path';
+
+const academicEventsFilePath = path.join(__dirname, '../data/academicEvent.json');
+
+const readAcademicEventsJson = (): any[] => {
+    const data = fs.readFileSync(academicEventsFilePath, 'utf-8');
+    return JSON.parse(data);
+};
+
+const writeAcademicEventsJson = (data: any[]): void => {
+    fs.writeFileSync(academicEventsFilePath, JSON.stringify(data, null, 2));
+};
 
 export const getAllAcademicEvents = async () => {
-    return academicEvents
+    return readAcademicEventsJson();
 }
 
 export const getAcademicEventByDate = async (date: string) => {
-    const events = academicEvents.filter((event: any) => event.date.startsWith(date));
+    const events = readAcademicEventsJson().filter((event: any) => event.date.startsWith(date));
     if (events.length === 0) {
         throw new Error('No events found for the given date');
     }
@@ -13,8 +25,9 @@ export const getAcademicEventByDate = async (date: string) => {
 }
 
 export const createAcademicEvent = async (eventData: any) => {
+    const events = readAcademicEventsJson();
     const newEvent = {
-        id: String(academicEvents.length + 1),
+        id: String(events.length + 1),
         title: eventData.title,
         description: eventData.description,
         date: eventData.date,
@@ -22,16 +35,19 @@ export const createAcademicEvent = async (eventData: any) => {
         location: eventData.location || '',
         isHoliday: eventData.isHoliday || false
     }
-    academicEvents.push(newEvent)
+    events.push(newEvent);
+    writeAcademicEventsJson(events);
     return newEvent
 }
 
 export const deleteAcademicEvent = async (id: string) => {
-    const index = academicEvents.findIndex((event: any) => event.id === id)
+    const events = readAcademicEventsJson();
+    const index = events.findIndex((event: any) => event.id === id)
     if (index === -1) {
         throw new Error('Event not found')
     }
-    const deletedEvent = academicEvents.splice(index, 1)[0]
+    const deletedEvent = events.splice(index, 1)[0];
+    writeAcademicEventsJson(events);
     return deletedEvent
 }
 

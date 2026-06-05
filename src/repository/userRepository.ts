@@ -1,10 +1,21 @@
-import userJson from '../data/user.json'
-import * as fs from 'fs'
-import * as path from 'path'
+import fs from 'fs';
+import path from 'path';
+
+const userFilePath = path.join(__dirname, '../data/user.json');
+
+const readUserJson = (): any[] => {
+    const data = fs.readFileSync(userFilePath, 'utf-8');
+    return JSON.parse(data);
+};
+
+const writeUserJson = (data: any[]): void => {
+    fs.writeFileSync(userFilePath, JSON.stringify(data, null, 2));
+};
 
 // Nota: retorna o usuário logado, ou seja, o usuário que fez login
 export const getMyUser = async (userId: string) => {
-    const user = userJson.find((u: any) => u.id === userId)
+    const users = readUserJson();
+    const user = users.find((u: any) => u.id === userId)
     if (!user) {
         throw new Error('User not found')
     }
@@ -24,8 +35,9 @@ export const getMyUser = async (userId: string) => {
 }
 
 export const RegisterUser = async (userData: any) => {
+    const users = readUserJson();
     const newUser = {
-        id: String(userJson.length + 1),
+        id: String(users.length + 1),
         name: userData.name,
         email: userData.email,
         password: userData.password,
@@ -38,16 +50,14 @@ export const RegisterUser = async (userData: any) => {
         birthdate: userData.birthdate || '',
         createdAt: new Date().toISOString()
     }
-    userJson.push(newUser)
-    
-    const filePath = path.join(__dirname, '../data/user.json')
-    fs.writeFileSync(filePath, JSON.stringify(userJson, null, 2))
-    
+    users.push(newUser);
+    writeUserJson(users);
     return newUser
 }
 
 export const LoginUser = async (email: string, password: string) => {
-    const user: any = userJson.find((u: any) => u.email === email)
+    const users = readUserJson();
+    const user: any = users.find((u: any) => u.email === email)
     if (!user) {
         throw new Error('User not found')
     }
@@ -64,5 +74,4 @@ export const LoginUser = async (email: string, password: string) => {
         course: user.course,
         createdAt: user.createdAt
     }
-    
 }

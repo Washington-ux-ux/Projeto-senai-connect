@@ -22,9 +22,10 @@ async function loadEvents() {
         posts.forEach(post => {
             if (post.category === 'INTERNSHIP' || post.category === 'EVENT' || post.category === 'PRESENTATION' || post.category === 'ANNOUNCEMENT') {
                
-                const canView = !post.visibility || 
-                                post.visibility === 'ALL' || 
-                                post.visibility === user.role || 
+                const postVisibility = Array.isArray(post.visibility) ? post.visibility : [post.visibility];
+                const canView = !postVisibility || 
+                                postVisibility.includes('ALL') || 
+                                postVisibility.includes(user.role) || 
                                 user.role === 'ADMIN' || 
                                 user.role === 'COORDINATOR';
                 
@@ -34,8 +35,10 @@ async function loadEvents() {
                         id: post.id,
                         title: post.title,
                         description: post.summary || post.content,
-                        date: post.createdAt,
-                        category: post.category
+                        date: post.eventDate || post.createdAt,
+                        category: post.category,
+                        imageUrl: post.imageUrl || 'aviso1.png',
+                        location: post.location || 'SENAI Areias'
                     });
                 }
             }
@@ -91,8 +94,9 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
             deleteButton = `<button class="btn-delete-event" data-id="${event.id}" data-type="${event.type}">Excluir</button>`;
         }
 
+        const imageUrl = event.type === 'post' ? event.imageUrl : 'aviso1.png';
         eventCard.innerHTML = `
-            <img src="./assets/images/download.png" alt="${event.title}">
+            <img src="./assets/images/${imageUrl}" alt="${event.title}">
             <h2>${event.title}</h2>
             <p>${event.description}</p>
             <p>Data: ${formattedDate}</p>

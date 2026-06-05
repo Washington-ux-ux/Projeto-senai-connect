@@ -120,31 +120,78 @@ function showLoggedInUser() {
                 <h2>Criar Post/Evento</h2>
                 <form id="create-post-form">
                     <div class="input-group">
+                        <label>Selecione a imagem:</label>
+                        <div class="image-selector">
+                            <label class="image-checkbox">
+                                <input type="checkbox" name="post-image" value="aviso1.png" checked>
+                                <img src="./assets/images/aviso1.png" alt="Aviso 1">
+                                <span>Aviso 1</span>
+                            </label>
+                            <label class="image-checkbox">
+                                <input type="checkbox" name="post-image" value="aviso2.png">
+                                <img src="./assets/images/aviso2.png" alt="Aviso 2">
+                                <span>Aviso 2</span>
+                            </label>
+                            <label class="image-checkbox">
+                                <input type="checkbox" name="post-image" value="aviso3.png">
+                                <img src="./assets/images/aviso3.png" alt="Aviso 3">
+                                <span>Aviso 3</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-group">
                         <input type="text" id="post-title" placeholder="Título" required>
                     </div>
                     <div class="input-group">
-                        <textarea id="post-content" placeholder="Conteúdo" required></textarea>
+                        <textarea id="post-summary" placeholder="Aviso" required></textarea>
                     </div>
                     <div class="input-group">
-                        <input type="text" id="post-summary" placeholder="Resumo">
+                        <label>Data do evento:</label>
+                        <input type="date" id="post-date" required>
                     </div>
                     <div class="input-group">
-                        <select id="post-category" required>
-                            <option value="">Selecione a categoria</option>
-                            <option value="EVENT">Evento</option>
-                            <option value="INTERNSHIP">Estágio</option>
-                            <option value="PRESENTATION">Apresentação</option>
-                            <option value="ANNOUNCEMENT">Anúncio</option>
-                        </select>
+                        <label>Local do evento:</label>
+                        <input type="text" id="post-location" value="SENAI Areias">
                     </div>
                     <div class="input-group">
-                        <select id="post-visibility" required>
-                            <option value="">Selecione a visibilidade</option>
-                            <option value="ALL">Todos</option>
-                            <option value="STUDENT">Apenas Alunos</option>
-                            <option value="TEACHER">Apenas Professores</option>
-                            <option value="COORDINATOR">Apenas Coordenadores</option>
-                        </select>
+                        <label>Selecione a categoria:</label>
+                        <div class="category-selector">
+                            <label class="category-checkbox">
+                                <input type="checkbox" name="post-category" value="EVENT" checked>
+                                <span>Evento</span>
+                            </label>
+                            <label class="category-checkbox">
+                                <input type="checkbox" name="post-category" value="INTERNSHIP">
+                                <span>Estágio</span>
+                            </label>
+                            <label class="category-checkbox">
+                                <input type="checkbox" name="post-category" value="PRESENTATION">
+                                <span>Apresentação</span>
+                            </label>
+                            <label class="category-checkbox">
+                                <input type="checkbox" name="post-category" value="ANNOUNCEMENT">
+                                <span>Anúncio</span>
+                            </label>
+                        </div>
+                    </div>
+                    <label>Selecione a visibilidade:</label>
+                    <div class="visibility-container">
+                        <label class="visibility-checkbox">
+                            <input type="checkbox" name="post-visibility" value="ALL">
+                            <span>Todos</span>
+                        </label>
+                        <label class="visibility-checkbox">
+                            <input type="checkbox" name="post-visibility" value="STUDENT">
+                            <span>Alunos</span>
+                        </label>
+                        <label class="visibility-checkbox">
+                            <input type="checkbox" name="post-visibility" value="TEACHER">
+                            <span>Professores</span>
+                        </label>
+                        <label class="visibility-checkbox">
+                            <input type="checkbox" name="post-visibility" value="COORDINATOR">
+                            <span>Coordenadores</span>
+                        </label>
                     </div>
                     <button type="submit" class="btn-submit">Criar</button>
                 </form>
@@ -234,6 +281,10 @@ function showLoggedInUser() {
             e.preventDefault();
             userDropdown.classList.remove('active');
             createPostModal.classList.add('active');
+            
+            // Preencher data de hoje automaticamente
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('post-date').value = today;
         });
 
         btnCreateUser.addEventListener('click', (e) => {
@@ -246,6 +297,54 @@ function showLoggedInUser() {
             createPostModal.classList.remove('active');
             createPostForm.reset();
             createPostError.textContent = '';
+        });
+
+
+        const visibilityCheckboxes = document.querySelectorAll('input[name="post-visibility"]');
+        visibilityCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.value === 'ALL' && e.target.checked) {
+                    visibilityCheckboxes.forEach(cb => {
+                        if (cb.value !== 'ALL') {
+                            cb.checked = false;
+                        }
+                    });
+                } else if (e.target.value !== 'ALL' && e.target.checked) {
+
+                    const allCheckbox = document.querySelector('input[name="post-visibility"][value="ALL"]');
+                    if (allCheckbox) {
+                        allCheckbox.checked = false;
+                    }
+                }
+            });
+        });
+
+       
+        const imageCheckboxes = document.querySelectorAll('input[name="post-image"]');
+        imageCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    imageCheckboxes.forEach(cb => {
+                        if (cb !== e.target) {
+                            cb.checked = false;
+                        }
+                    });
+                }
+            });
+        });
+
+       
+        const categoryCheckboxes = document.querySelectorAll('input[name="post-category"]');
+        categoryCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    categoryCheckboxes.forEach(cb => {
+                        if (cb !== e.target) {
+                            cb.checked = false;
+                        }
+                    });
+                }
+            });
         });
 
         btnCreateUserClose.addEventListener('click', () => {
@@ -279,12 +378,28 @@ function showLoggedInUser() {
             e.preventDefault();
             
             const token = localStorage.getItem('token');
+            const visibilityCheckboxes = document.querySelectorAll('input[name="post-visibility"]:checked');
+            const visibilityArray = Array.from(visibilityCheckboxes).map(cb => cb.value);
+            
+            if (visibilityArray.length === 0) {
+                createPostError.textContent = 'Selecione pelo menos uma visibilidade';
+                return;
+            }
+            
+            const selectedImageCheckbox = document.querySelector('input[name="post-image"]:checked');
+            const selectedImage = selectedImageCheckbox ? selectedImageCheckbox.value : 'aviso1.png';
+            
+            const selectedCategoryCheckbox = document.querySelector('input[name="post-category"]:checked');
+            const selectedCategory = selectedCategoryCheckbox ? selectedCategoryCheckbox.value : 'EVENT';
+            
             const postData = {
                 title: document.getElementById('post-title').value,
-                content: document.getElementById('post-content').value,
                 summary: document.getElementById('post-summary').value,
-                category: document.getElementById('post-category').value,
-                visibility: document.getElementById('post-visibility').value
+                category: selectedCategory,
+                visibility: visibilityArray,
+                imageUrl: selectedImage,
+                eventDate: document.getElementById('post-date').value,
+                location: document.getElementById('post-location').value
             };
 
             try {
