@@ -21,6 +21,7 @@ router.get('/posts/:id', postsController.getPostsById);
 // Protected Posts routes (write operations)
 router.get('/posts/summary', authenticate, authorize('TEACHER', 'COORDINATOR', 'ADMIN'), postsController.summaryIAPosts);
 router.post('/posts', authenticate, authorize('TEACHER', 'COORDINATOR', 'ADMIN'), postsController.createPosts);
+router.put('/posts/:id', authenticate, authorize('TEACHER', 'COORDINATOR', 'ADMIN'), postsController.updatePosts);
 router.delete('/posts/:id', authenticate, authorize('COORDINATOR', 'ADMIN'), postsController.deletePosts);
 router.post('/posts/:id/emoji', authenticate, postsController.emojiPosts);
 

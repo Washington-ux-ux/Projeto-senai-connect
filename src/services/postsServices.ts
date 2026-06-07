@@ -14,7 +14,7 @@ export const getPostsService = async () => {
     }
 }
 
-export const getPostsByIdService = async (id: number) => {
+export const getPostsByIdService = async (id: string) => {
     try {
         const data = await repository.getPostsById(id)
         if (data) {
@@ -69,6 +69,19 @@ export const emojiPostsService = async (postId: string, emoji: string, action: '
 export const summaryIAPostsService = async (postId: string, summary: string) => {
     try {
         const data = await repository.summaryIAPosts(postId, summary)
+        if (data) {
+            return await httphelper.ok(data)
+        } else {
+            return await httphelper.badRequest()
+        }
+    } catch (error) {
+        return await httphelper.badRequest()
+    }
+}
+
+export const updatePostsService = async (postId: string, postData: any) => {
+    try {
+        const data = await repository.updatePosts(postId, postData)
         if (data) {
             return await httphelper.ok(data)
         } else {

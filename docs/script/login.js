@@ -140,7 +140,13 @@ function showLoggedInUser() {
                                 <img src="./assets/images/aviso3.png" alt="Aviso 3">
                                 <span>Aviso 3</span>
                             </label>
+                            <label class="image-checkbox">
+                                <input type="checkbox" name="post-image" value="custom">
+                                <img src="./assets/images/aviso1.png" alt="Imagem própria" style="opacity: 0.5;">
+                                <span>Imagem própria</span>
+                            </label>
                         </div>
+                        <input type="file" id="custom-image-upload" accept="image/*" style="display: none;">
                     </div>
                     <div class="input-group">
                         <input type="text" id="post-title" placeholder="Título" required>
@@ -277,12 +283,106 @@ function showLoggedInUser() {
     const createPostError = document.getElementById("create-post-error");
     const createUserError = document.getElementById("create-user-error");
 
+    console.log('Verificando se modal de edição existe...');
+    if (!document.getElementById('edit-post-modal')) {
+      console.log('Modal não encontrado, injetando...');
+      const editModalHTML = `
+        <div id="edit-post-modal" class="modal-overlay">
+            <div class="modal-box">
+                <span id="btn-edit-post-close" class="close-btn">&times;</span>
+                <h2>Editar Post/Evento</h2>
+                <form id="edit-post-form">
+                    <input type="hidden" id="edit-post-id">
+                    <div class="input-group">
+                        <label>Selecione Layout:</label>
+                        <div class="image-selector">
+                            <label class="image-checkbox">
+                                <input type="checkbox" name="edit-post-image" value="aviso1.png">
+                                <img src="./assets/images/aviso1.png" alt="Aviso 1">
+                                <span>Aviso 1</span>
+                            </label>
+                            <label class="image-checkbox">
+                                <input type="checkbox" name="edit-post-image" value="aviso2.png">
+                                <img src="./assets/images/aviso2.png" alt="Aviso 2">
+                                <span>Aviso 2</span>
+                            </label>
+                            <label class="image-checkbox">
+                                <input type="checkbox" name="edit-post-image" value="aviso3.png">
+                                <img src="./assets/images/aviso3.png" alt="Aviso 3">
+                                <span>Aviso 3</span>
+                            </label>
+                            <label class="image-checkbox">
+                                <input type="checkbox" name="edit-post-image" value="custom">
+                                <img src="./assets/images/aviso1.png" alt="Imagem própria" style="opacity: 0.5;">
+                                <span>Imagem própria</span>
+                            </label>
+                        </div>
+                        <input type="file" id="edit-custom-image-upload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="edit-post-title" placeholder="Título" required>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="edit-post-summary" placeholder="Aviso" required></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Data do evento:</label>
+                        <input type="date" id="edit-post-date" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Local do evento:</label>
+                        <input type="text" id="edit-post-location" value="SENAI Areias">
+                    </div>
+                    <div class="input-group">
+                        <label>Selecione a categoria:</label>
+                        <div class="category-selector">
+                            <label class="category-checkbox">
+                                <input type="checkbox" name="edit-post-category" value="EVENT">
+                                <span>Evento</span>
+                            </label>
+                            <label class="category-checkbox">
+                                <input type="checkbox" name="edit-post-category" value="INTERNSHIP">
+                                <span>Empregabilidade</span>
+                            </label>
+                            <label class="category-checkbox">
+                                <input type="checkbox" name="edit-post-category" value="ANNOUNCEMENT">
+                                <span>Comunicado</span>
+                            </label>
+                        </div>
+                    </div>
+                    <label>Selecione a visibilidade:</label>
+                    <div class="visibility-container">
+                        <label class="visibility-checkbox">
+                            <input type="checkbox" name="edit-post-visibility" value="ALL">
+                            <span>Todos</span>
+                        </label>
+                        <label class="visibility-checkbox">
+                            <input type="checkbox" name="edit-post-visibility" value="STUDENT">
+                            <span>Alunos</span>
+                        </label>
+                        <label class="visibility-checkbox">
+                            <input type="checkbox" name="edit-post-visibility" value="TEACHER">
+                            <span>Professores</span>
+                        </label>
+                        <label class="visibility-checkbox">
+                            <input type="checkbox" name="edit-post-visibility" value="COORDINATOR">
+                            <span>Coordenadores</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-submit">Salvar Alterações</button>
+                </form>
+                <p id="edit-post-error" class="error-message"></p>
+            </div>
+        </div>
+      `;
+      document.body.insertAdjacentHTML('beforeend', editModalHTML);
+    }
+
     btnCreatePost.addEventListener("click", (e) => {
       e.preventDefault();
       userDropdown.classList.remove("active");
       createPostModal.classList.add("active");
 
-      // Preencher data de hoje automaticamente
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("post-date").value = today;
     });
@@ -297,6 +397,187 @@ function showLoggedInUser() {
       createPostModal.classList.remove("active");
       createPostForm.reset();
       createPostError.textContent = "";
+    });
+
+    const btnEditPostClose = document.getElementById("btn-edit-post-close");
+    const editPostModal = document.getElementById("edit-post-modal");
+    const editPostForm = document.getElementById("edit-post-form");
+    const editPostError = document.getElementById("edit-post-error");
+    const editCustomImageUpload = document.getElementById("edit-custom-image-upload");
+
+    if (btnEditPostClose) {
+      btnEditPostClose.addEventListener("click", () => {
+        editPostModal.classList.remove("active");
+        editPostForm.reset();
+        editPostError.textContent = "";
+      });
+    }
+
+    const editImageCheckboxes = document.querySelectorAll('input[name="edit-post-image"]');
+    editImageCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', (e) => {
+        editImageCheckboxes.forEach(cb => cb.checked = false);
+        e.target.checked = true;
+        
+        if (e.target.value === 'custom') {
+          const customImg = e.target.parentElement.querySelector('img');
+          // Só abre o diálogo de upload se a imagem não estiver carregada (opacity < 1)
+          if (customImg && (customImg.style.opacity === '0.5' || customImg.style.opacity === '')) {
+            editCustomImageUpload.click();
+          }
+        }
+      });
+    });
+
+    editCustomImageUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const customCheckbox = document.querySelector('input[name="edit-post-image"][value="custom"]');
+          const customImg = customCheckbox.parentElement.querySelector('img');
+          customImg.src = event.target.result;
+          customImg.style.opacity = '1';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    const editCategoryCheckboxes = document.querySelectorAll('input[name="edit-post-category"]');
+    editCategoryCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', (e) => {
+        editCategoryCheckboxes.forEach(cb => cb.checked = false);
+        e.target.checked = true;
+      });
+    });
+
+    const editVisibilityCheckboxes = document.querySelectorAll('input[name="edit-post-visibility"]');
+    editVisibilityCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', (e) => {
+        if (e.target.value === "ALL" && e.target.checked) {
+          editVisibilityCheckboxes.forEach((cb) => {
+            if (cb.value !== "ALL") {
+              cb.checked = false;
+            }
+          });
+        } else if (e.target.value !== "ALL" && e.target.checked) {
+          const allCheckbox = document.querySelector(
+            'input[name="edit-post-visibility"][value="ALL"]',
+          );
+          if (allCheckbox) {
+            allCheckbox.checked = false;
+          }
+        }
+      });
+    });
+
+    editPostForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const token = localStorage.getItem("token");
+      const editVisibilityCheckboxes = document.querySelectorAll(
+        'input[name="edit-post-visibility"]:checked',
+      );
+      const visibilityArray = Array.from(editVisibilityCheckboxes).map(
+        (cb) => cb.value,
+      );
+
+      if (visibilityArray.length === 0) {
+        editPostError.textContent = "Selecione pelo menos uma visibilidade";
+        return;
+      }
+
+      const selectedImageCheckbox = document.querySelector(
+        'input[name="edit-post-image"]:checked',
+      );
+      const selectedImage = selectedImageCheckbox
+        ? selectedImageCheckbox.value
+        : "aviso1.png";
+
+      const selectedCategoryCheckbox = document.querySelector(
+        'input[name="edit-post-category"]:checked',
+      );
+      const selectedCategory = selectedCategoryCheckbox
+        ? selectedCategoryCheckbox.value
+        : "EVENT";
+
+      let imageUrl = selectedImage;
+      
+      if (selectedImage === 'custom') {
+        const customCheckbox = document.querySelector('input[name="edit-post-image"][value="custom"]');
+        const customImg = customCheckbox.parentElement.querySelector('img');
+        
+        // Verifica se a imagem já está carregada (opacity === 1)
+        if (customImg && customImg.style.opacity === '1') {
+          // Mantém a imagem atual do post
+          imageUrl = customImg.src;
+        } else {
+          const file = editCustomImageUpload.files[0];
+          if (file) {
+            if (file.size > 5 * 1024 * 1024) {
+              editPostError.textContent = "A imagem é muito grande. Máximo 5MB.";
+              return;
+            }
+            
+            const reader = new FileReader();
+            imageUrl = await new Promise((resolve) => {
+              reader.onload = (e) => {
+                resolve(e.target.result);
+              };
+              reader.onerror = () => {
+                editPostError.textContent = "Erro ao ler a imagem.";
+                resolve(selectedImage);
+              };
+              reader.readAsDataURL(file);
+            });
+          } else {
+            editPostError.textContent = "Selecione uma imagem para upload";
+            return;
+          }
+        }
+      }
+
+      const postId = document.getElementById('edit-post-id').value;
+      const postData = {
+        title: document.getElementById('edit-post-title').value,
+        summary: document.getElementById('edit-post-summary').value,
+        category: selectedCategory,
+        visibility: visibilityArray,
+        imageUrl: imageUrl,
+        eventDate: document.getElementById('edit-post-date').value,
+        location: document.getElementById('edit-post-location').value
+      };
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(postData)
+        });
+
+        if (response.ok) {
+          editPostModal.classList.remove("active");
+          editPostForm.reset();
+          editPostError.textContent = "";
+          editCustomImageUpload.value = '';
+          
+          const customCheckbox = document.querySelector('input[name="edit-post-image"][value="custom"]');
+          const customImg = customCheckbox.parentElement.querySelector('img');
+          customImg.src = './assets/images/aviso1.png';
+          customImg.style.opacity = '0.5';
+          
+          alert('Post atualizado com sucesso!');
+          window.location.reload();
+        } else {
+          editPostError.textContent = "Erro ao atualizar post";
+        }
+      } catch (error) {
+        console.error('Erro ao atualizar post:', error);
+        editPostError.textContent = "Erro ao atualizar post";
+      }
     });
 
     const visibilityCheckboxes = document.querySelectorAll(
@@ -324,6 +605,8 @@ function showLoggedInUser() {
     const imageCheckboxes = document.querySelectorAll(
       'input[name="post-image"]',
     );
+    const customImageUpload = document.getElementById('custom-image-upload');
+    
     imageCheckboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", (e) => {
         if (e.target.checked) {
@@ -332,8 +615,25 @@ function showLoggedInUser() {
               cb.checked = false;
             }
           });
+
+          if (e.target.value === 'custom') {
+            customImageUpload.click();
+          }
         }
       });
+    });
+    
+    customImageUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const customCheckbox = document.querySelector('input[name="post-image"][value="custom"]');
+          const customImg = customCheckbox.parentElement.querySelector('img');
+          customImg.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
     });
 
     const categoryCheckboxes = document.querySelectorAll(
@@ -407,12 +707,40 @@ function showLoggedInUser() {
         ? selectedCategoryCheckbox.value
         : "EVENT";
 
+      let imageUrl = selectedImage;
+      
+     
+      if (selectedImage === 'custom') {
+        const file = customImageUpload.files[0];
+        if (file) {
+          if (file.size > 5 * 1024 * 1024) {
+            createPostError.textContent = "A imagem é muito grande. Máximo 5MB.";
+            return;
+          }
+          
+          const reader = new FileReader();
+          imageUrl = await new Promise((resolve) => {
+            reader.onload = (e) => {
+              resolve(e.target.result);
+            };
+            reader.onerror = () => {
+              createPostError.textContent = "Erro ao ler a imagem.";
+              resolve(selectedImage);
+            };
+            reader.readAsDataURL(file);
+          });
+        } else {
+          createPostError.textContent = "Selecione uma imagem para upload";
+          return;
+        }
+      }
+
       const postData = {
         title: document.getElementById("post-title").value,
         summary: document.getElementById("post-summary").value,
         category: selectedCategory,
         visibility: visibilityArray,
-        imageUrl: selectedImage,
+        imageUrl: imageUrl,
         eventDate: document.getElementById("post-date").value,
         location: document.getElementById("post-location").value,
       };
@@ -433,6 +761,14 @@ function showLoggedInUser() {
           createPostModal.classList.remove("active");
           createPostForm.reset();
           createPostError.textContent = "";
+
+          customImageUpload.value = '';
+
+          const customCheckbox = document.querySelector('input[name="post-image"][value="custom"]');
+          const customImg = customCheckbox.parentElement.querySelector('img');
+          customImg.src = './assets/images/aviso1.png';
+          customImg.style.opacity = '0.5';
+          
           alert("Post/Evento criado com sucesso!");
           if (window.location.pathname.includes("eventos.html")) {
             window.location.reload();

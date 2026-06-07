@@ -37,19 +37,25 @@ body {
 .banner {
   background-color: var(--color-primary);
   color: white;
-  padding: 15px;
+  padding: 30px 40px;
   text-align: center;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
+  box-shadow: 0 8px 25px rgba(30, 144, 255, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  position: relative;
+  overflow: hidden;
 }
 
 .banner img {
-  width: 237px;
-  height: 70px;
+  width: 350px;
+  height: 100px;
   object-fit: contain;
+  filter: brightness(1.1) saturate(1.1);
+  position: relative;
+  z-index: 1;
 }
 
 /* Navegação */
@@ -661,6 +667,7 @@ body.dark-mode .image-checkbox input[type="checkbox"]:checked + img {
   gap: 10px;
   margin-top: 5px;
   flex-wrap: nowrap;
+  justify-content: center;
 }
 
 .category-checkbox {

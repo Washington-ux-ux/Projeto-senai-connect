@@ -1,5 +1,7 @@
 import { Request, Response } from "express"
 import * as service from "../services/postsServices"
+import * as fs from 'fs'
+import * as path from 'path'
 
 export const getPosts = async (req: Request, res: Response) => {
     const response = await service.getPostsService()
@@ -8,12 +10,25 @@ export const getPosts = async (req: Request, res: Response) => {
 
 export const getPostsById = async (req: Request, res: Response) => {
     const { id } = req.params
-    const response = await service.getPostsByIdService(Number(id))
+    const response = await service.getPostsByIdService(id as string)
     return res.status(response.statusCode).json(response.body)
 }
 
 export const createPosts = async (req: Request, res: Response) => {
-    const response = await service.createPostsService(req.body)
+    let imageUrl = req.body.imageUrl || 'aviso1.png';
+
+    if (imageUrl.startsWith('data:image')) {
+        const base64Data = imageUrl.split(',')[1];
+        const buffer = Buffer.from(base64Data, 'base64');
+        const filename = `image-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.png`;
+        const uploadPath = path.join(__dirname, '../../docs/assets/uploads', filename);
+        
+        fs.writeFileSync(uploadPath, buffer);
+        imageUrl = `./assets/uploads/${filename}`;
+    }
+    
+    const postData = { ...req.body, imageUrl };
+    const response = await service.createPostsService(postData)
     return res.status(response.statusCode).json(response.body)
 }
 
@@ -33,5 +48,26 @@ export const emojiPosts = async (req: Request, res: Response) => {
 export const summaryIAPosts = async (req: Request, res: Response) => {
     const { postId, summary } = req.body
     const response = await service.summaryIAPostsService(postId, summary)
+    return res.status(response.statusCode).json(response.body)
+}
+
+export const updatePosts = async (req: Request, res: Response) => {
+    const { id } = req.params
+    let imageUrl = req.body.imageUrl || 'aviso1.png';
+
+    if (imageUrl.startsWith('data:image')) {
+        const base64Data = imageUrl.split(',')[1];
+        const buffer = Buffer.from(base64Data, 'base64');
+        const filename = `image-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.png`;
+        const uploadPath = path.join(__dirname, '../../docs/assets/uploads', filename);
+        
+        fs.writeFileSync(uploadPath, buffer);
+        imageUrl = `./assets/uploads/${filename}`;
+    } else if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+        // Mantém a URL completa como está
+    }
+    
+    const postData = { ...req.body, imageUrl };
+    const response = await service.updatePostsService(id as string, postData)
     return res.status(response.statusCode).json(response.body)
 }

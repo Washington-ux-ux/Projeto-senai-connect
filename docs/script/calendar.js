@@ -5,6 +5,26 @@ const prevMonth = document.getElementById("prevMonth");
 const nextMonth = document.getElementById("nextMonth");
 
 let currentDate = new Date();
+let eventsData = [];
+
+async function loadEvents() {
+    try {
+        const response = await fetch('http://localhost:3000/api/posts');
+        const posts = await response.json();
+        
+        eventsData = posts.filter(post => 
+            post.category === 'EVENT' || post.category === 'ANNOUNCEMENT'
+        ).map(post => ({
+            date: post.eventDate || post.createdAt,
+            title: post.title,
+            summary: post.summary
+        }));
+        
+        renderCalendar();
+    } catch (error) {
+        console.error('Erro ao carregar eventos:', error);
+    }
+}
 
 function renderCalendar() {
 
@@ -43,12 +63,35 @@ function renderCalendar() {
 
         dayElement.textContent = day;
 
+        const dayOfWeek = new Date(year, month, day).getDay();
+
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            dayElement.classList.add("weekend");
+        }
+
         if (
             day === today.getDate() &&
             month === today.getMonth() &&
             year === today.getFullYear()
         ) {
             dayElement.classList.add("today");
+        }
+
+        // Verifica se criei eventos neste dia
+        const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const dayEvents = eventsData.filter(event => {
+            const eventDate = event.date.split('T')[0];
+            return eventDate === dateString;
+        });
+
+        if (dayEvents.length > 0) {
+            dayElement.classList.add("event-day");
+            const eventIndicator = document.createElement("span");
+            eventIndicator.className = "event-indicator";
+            eventIndicator.innerHTML = "★";
+            dayElement.appendChild(eventIndicator);
+            
+            dayElement.title = dayEvents.map(e => `${e.title}: ${e.summary}`).join('\n');
         }
 
         calendarDates.appendChild(dayElement);
@@ -65,4 +108,4 @@ nextMonth.addEventListener("click", () => {
     renderCalendar();
 });
 
-renderCalendar();
+loadEvents();

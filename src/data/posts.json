@@ -30,9 +30,66 @@
       "claps": 0
     },
     "attachmentUrl": "",
-    "imageUrl": "aviso1.png",
-    "eventDate": "2026-06-06",
+    "imageUrl": "aviso2.png",
+    "eventDate": "2026-06-08",
     "location": "SENAI Areias",
     "createdAt": "2026-06-05T17:44:52.609Z"
+  },
+  {
+    "id": "p1780849304689-zni9l25dp",
+    "title": "Aviso importante",
+    "summary": "Purrely é maior que todas as coisas do mundo!!! Purrely >>>>>>>> Resto",
+    "category": "ANNOUNCEMENT",
+    "visibility": [
+      "ALL"
+    ],
+    "author": {},
+    "reactions": {
+      "like": 0,
+      "claps": 0
+    },
+    "attachmentUrl": "",
+    "imageUrl": "./assets/uploads/image-1780852679709-hqwha01jf.png",
+    "eventDate": "2026-06-08",
+    "location": "SENAI Areias",
+    "createdAt": "2026-06-07T16:21:44.689Z"
+  },
+  {
+    "id": "p1780854419776-panyw1m0b",
+    "title": "Apresentação de Projetos Connect",
+    "summary": "Entrega final do projeto integrador no auditório principal.",
+    "category": "EVENT",
+    "visibility": [
+      "ALL"
+    ],
+    "author": {},
+    "reactions": {
+      "like": 0,
+      "claps": 0
+    },
+    "attachmentUrl": "",
+    "imageUrl": "aviso1.png",
+    "eventDate": "2024-06-15",
+    "location": "Auditório A",
+    "createdAt": "2024-06-15T13:30:00Z"
+  },
+  {
+    "id": "p1780859526174-ft3khz6kq",
+    "title": "qqq",
+    "summary": "www",
+    "category": "EVENT",
+    "visibility": [
+      "ALL"
+    ],
+    "author": {},
+    "reactions": {
+      "like": 0,
+      "claps": 0
+    },
+    "attachmentUrl": "",
+    "imageUrl": "http://localhost:3000/assets/uploads/image-1780859526172-8wjdt262f.png",
+    "eventDate": "2026-06-21",
+    "location": "SENAI Areias",
+    "createdAt": "2026-06-07T19:12:06.174Z"
   }
 ]

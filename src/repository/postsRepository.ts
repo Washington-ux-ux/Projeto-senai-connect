@@ -16,9 +16,9 @@ export const getPosts = async () => {
     return readPostsJson();
 }
 
-export const getPostsById = async (id: number) => {
+export const getPostsById = async (id: string) => {
     const posts = await getPosts()
-    return posts.find((post: any) => post.id === String(id))
+    return posts.find((post: any) => post.id === id)
 }
 
 export const createPosts = async (postData: any) => {
@@ -86,4 +86,27 @@ export const summaryIAPosts = async (postId: string, summary: string) => {
     post.summary = summary
     writePostsJson(posts);
     return post
+}
+
+export const updatePosts = async (postId: string, postData: any) => {
+    const posts = readPostsJson();
+    const index = posts.findIndex((post: any) => post.id === postId)
+    if (index === -1) {
+        throw new Error('Post not found')
+    }
+    
+    const updatedPost = {
+        ...posts[index],
+        title: postData.title,
+        summary: postData.summary,
+        category: postData.category,
+        visibility: Array.isArray(postData.visibility) ? postData.visibility : [postData.visibility || 'ALL'],
+        imageUrl: postData.imageUrl,
+        eventDate: postData.eventDate,
+        location: postData.location
+    }
+    
+    posts[index] = updatedPost;
+    writePostsJson(posts);
+    return updatedPost
 }
