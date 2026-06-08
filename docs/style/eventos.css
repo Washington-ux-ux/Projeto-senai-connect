@@ -8,7 +8,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    text-align: center;
 }
 
 .event-card {
@@ -40,6 +39,7 @@
     font-size: 1.6rem;
     margin-top: 20px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .event-card p {
@@ -47,7 +47,8 @@
     font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 15px;
-    flex-grow: 1; 
+    flex-grow: 1;
+    text-align: justify; 
 }
 
 .event-card p:last-child {
@@ -108,7 +109,7 @@ body.dark-mode .btn-delete-event:hover {
 .event-actions {
     display: flex;
     gap: 10px;
-    justify-content: flex-end;
+    justify-content: center;
     margin: 10px 20px 20px;
 }
 

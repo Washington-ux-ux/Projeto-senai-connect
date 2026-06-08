@@ -12,7 +12,6 @@ const writeUserJson = (data: any[]): void => {
     fs.writeFileSync(userFilePath, JSON.stringify(data, null, 2));
 };
 
-// Nota: retorna o usuário logado, ou seja, o usuário que fez login
 export const getMyUser = async (userId: string) => {
     const users = readUserJson();
     const user = users.find((u: any) => u.id === userId)

@@ -421,7 +421,7 @@ function showLoggedInUser() {
         
         if (e.target.value === 'custom') {
           const customImg = e.target.parentElement.querySelector('img');
-          // Só abre o diálogo de upload se a imagem não estiver carregada (opacity < 1)
+
           if (customImg && (customImg.style.opacity === '0.5' || customImg.style.opacity === '')) {
             editCustomImageUpload.click();
           }
@@ -506,10 +506,8 @@ function showLoggedInUser() {
       if (selectedImage === 'custom') {
         const customCheckbox = document.querySelector('input[name="edit-post-image"][value="custom"]');
         const customImg = customCheckbox.parentElement.querySelector('img');
-        
-        // Verifica se a imagem já está carregada (opacity === 1)
+
         if (customImg && customImg.style.opacity === '1') {
-          // Mantém a imagem atual do post
           imageUrl = customImg.src;
         } else {
           const file = editCustomImageUpload.files[0];

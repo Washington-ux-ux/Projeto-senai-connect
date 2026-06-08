@@ -93,10 +93,12 @@
 }
 
 .event-indicator {
-    position: relative;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
     font-size: 12px;
     color: white;
-    margin-top: 2px;
+    pointer-events: none;
 }
 
 /* Tema Escuro */

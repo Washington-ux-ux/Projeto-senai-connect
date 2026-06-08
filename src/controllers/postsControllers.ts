@@ -64,7 +64,7 @@ export const updatePosts = async (req: Request, res: Response) => {
         fs.writeFileSync(uploadPath, buffer);
         imageUrl = `./assets/uploads/${filename}`;
     } else if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-        // Mantém a URL completa como está
+
     }
     
     const postData = { ...req.body, imageUrl };
