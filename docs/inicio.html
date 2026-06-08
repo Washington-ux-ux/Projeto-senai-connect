@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senai Connect - Plataforma de comunicação</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/inicio.css">
+    <link rel="stylesheet" href="./style/profile.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="banner">
+            <div>
+                <img src="./assets/images/Senai.png" alt="Logo do senai">
+            </div>
+
+            <div>
+                <img src="./assets/images/senai-connect.png" alt="Logo do senai connect">
+            </div>
+
+        </div>
+        
+        <nav>
+            <ul>
+                <div id="perfil-placeholder">
+
+                </div>
+                <li><a href="./inicio.html">Inicio</a></li>
+                <li><a href="./eventos.html">Eventos</a></li>
+                <li><a href="./mural.html">Mural de links</a></li>
+                <li><a href="./sobre.html">Sobre</a></li>
+                <i class="fa-solid fa-sun"></i>
+                <i class="fa-solid fa-moon"></i>
+            </ul>
+            
+            <div id="login-container"></div>
+        </nav>
+
+        <header>
+            <h1>Bem-vindo ao Senai Connect</h1>
+            <p>A plataforma de comunicação para alunos e professores do Senai</p>
+        </header>
+
+        <div class="calendar-container">
+            <div class="calendar">
+
+                <div class="calendar-header">
+                    <button id="prevMonth">◀</button>
+
+                    <h2 id="monthYear"></h2>
+
+                    <button id="nextMonth">▶</button>
+                </div>
+
+                <div class="calendar-days">
+                    <div>Dom</div>
+                    <div>Seg</div>
+                    <div>Ter</div>
+                    <div>Qua</div>
+                    <div>Qui</div>
+                    <div>Sex</div>
+                    <div>Sáb</div>
+                </div>
+
+                <div class="calendar-dates" id="calendarDates"></div>
+
+                
+            </div>
+
+            <div class="calendar-legend">
+                <h3>Legenda</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color today"></div>
+                        <span>Hoje</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color normal-day"></div>
+                        <span>Dia Normal</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color weekend"></div>
+                        <span>Fim de Semana</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color event-day">
+                            <span class="legend-star">★</span>
+                        </div>
+                        <span>Dia com Evento</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            
+        </div>
+
+
+
+
+       
+
+
+    </div>
+    
+    <script src="./script/calendar.js"></script>
+    <script src="./script/login.js"></script>
+    <script src="./script/dayNightMode.js"></script>
+    <script src="./script/profile.js"></script>
+</body>
+</html>

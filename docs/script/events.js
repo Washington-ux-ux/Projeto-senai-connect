@@ -96,6 +96,14 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
         } else {
             imageSrc = `./assets/images/${imageUrl}`;
         }
+
+        const categoryTranslations = {
+            'INTERNSHIP': 'Empregabilidade',
+            'EVENT': 'Evento',
+            'PRESENTATION': 'Apresentação',
+            'ANNOUNCEMENT': 'Comunicado'
+        };
+        const translatedCategory = categoryTranslations[event.category] || event.category;
         
         eventCard.innerHTML = `
             <img src="${imageSrc}" alt="${event.title}">
@@ -103,7 +111,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
             <p>${event.description}</p>
             <p>Data do evento: ${formattedDate}</p>
             ${event.location ? `<p>Local: ${event.location}</p>` : ''}
-            <p>Categoria: ${event.category}</p>
+            <p>Categoria: ${translatedCategory}</p>
             <div class="event-actions">
                 ${editButton}
                 ${deleteButton}

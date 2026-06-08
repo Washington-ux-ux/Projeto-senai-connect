@@ -6,6 +6,7 @@ const nextMonth = document.getElementById("nextMonth");
 
 let currentDate = new Date();
 let eventsData = [];
+let modifiedWeekendDays = JSON.parse(localStorage.getItem('modifiedWeekendDays') || '{}');
 
 async function loadEvents() {
     try {
@@ -64,8 +65,11 @@ function renderCalendar() {
         dayElement.textContent = day;
 
         const dayOfWeek = new Date(year, month, day).getDay();
+        const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
-        if (dayOfWeek === 0 || dayOfWeek === 6) {
+        const isModifiedNormal = modifiedWeekendDays[dateString] === 'normal';
+
+        if ((dayOfWeek === 0 || dayOfWeek === 6) && !isModifiedNormal) {
             dayElement.classList.add("weekend");
         }
 
@@ -77,8 +81,6 @@ function renderCalendar() {
             dayElement.classList.add("today");
         }
 
-        // Verifica se criei eventos neste dia
-        const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         const dayEvents = eventsData.filter(event => {
             const eventDate = event.date.split('T')[0];
             return eventDate === dateString;
@@ -90,8 +92,32 @@ function renderCalendar() {
             eventIndicator.className = "event-indicator";
             eventIndicator.innerHTML = "★";
             dayElement.appendChild(eventIndicator);
-            
+
             dayElement.title = dayEvents.map(e => `${e.title}: ${e.summary}`).join('\n');
+        }
+
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        const hasAdminPrivileges =
+            user.role === "ADMIN" ||
+            user.role === "COORDINATOR" ||
+            user.role === "admin" ||
+            user.role === "coordinator";
+
+        if (hasAdminPrivileges && (dayOfWeek === 0 || dayOfWeek === 6)) {
+            dayElement.style.cursor = "pointer";
+            dayElement.title = isModifiedNormal ? 
+                "Clique para marcar como fim de semana" : 
+                "Clique para marcar como dia normal";
+            
+            dayElement.addEventListener("click", () => {
+                if (isModifiedNormal) {
+                    delete modifiedWeekendDays[dateString];
+                } else {
+                    modifiedWeekendDays[dateString] = 'normal';
+                }
+                localStorage.setItem('modifiedWeekendDays', JSON.stringify(modifiedWeekendDays));
+                renderCalendar();
+            });
         }
 
         calendarDates.appendChild(dayElement);
