@@ -1,6 +1,10 @@
 import express, { Request, Response, json } from 'express';
 import router from "./routes"
 import path from "path"
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function createApp() {
     const app = express();
