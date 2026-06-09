@@ -48,7 +48,7 @@ async function loadUserData() {
             return;
         }
 
-        const response = await fetch('http://localhost:3000/api/user/me', {
+        const response = await fetch('https://projeto-senai-connect.onrender.com/api/user/me', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

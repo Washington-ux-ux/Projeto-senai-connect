@@ -11,7 +11,7 @@ async function loadEvents() {
         const user = JSON.parse(localStorage.getItem('user') || '{}');
         const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'COORDINATOR' || user.role === 'admin' || user.role === 'coordinator';
 
-        const postsResponse = await fetch('http://localhost:3000/api/posts');
+        const postsResponse = await fetch('https://projeto-senai-connect.onrender.com/api/posts');
         const posts = await postsResponse.json();
 
         allEventsData = [];
@@ -146,7 +146,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
                 console.log('Clicou em editar (events.js) - ID:', eventId, 'Tipo:', eventType);
                 
                 try {
-                    const response = await fetch(`http://localhost:3000/api/posts/${eventId}`);
+                    const response = await fetch(`https://projeto-senai-connect.onrender.com/api/posts/${eventId}`);
                     
                     if (!response.ok) {
                         throw new Error(`Erro na requisição: ${response.status}`);
@@ -231,7 +231,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
                     const token = localStorage.getItem('token');
                     
                     try {
-                        const response = await fetch(`http://localhost:3000/api/posts/${eventId}`, {
+                        const response = await fetch(`https://projeto-senai-connect.onrender.com/api/posts/${eventId}`, {
                             method: 'DELETE',
                             headers: {
                                 'Authorization': `Bearer ${token}`

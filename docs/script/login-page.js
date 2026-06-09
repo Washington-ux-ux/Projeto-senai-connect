@@ -14,7 +14,7 @@ if (loginForm) {
         const password = document.getElementById("password").value;
 
         try {
-            const response = await fetch("http://localhost:3000/api/user/login", {
+            const response = await fetch("https://projeto-senai-connect.onrender.com/api/user/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
