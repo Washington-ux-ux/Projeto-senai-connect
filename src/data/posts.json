@@ -87,9 +87,47 @@
       "claps": 0
     },
     "attachmentUrl": "",
-    "imageUrl": "http://localhost:3000/assets/uploads/image-1780859526172-8wjdt262f.png",
+    "imageUrl": "./assets/uploads/image-1781110354939-wtt4zxguq.png",
     "eventDate": "2026-06-21",
     "location": "SENAI Areias",
     "createdAt": "2026-06-07T19:12:06.174Z"
+  },
+  {
+    "id": "p1781110783708-wcdhqr7a9",
+    "title": "Feriado de São João",
+    "summary": "Devido ao feriado de São João, nos dias 23 e 24 de junho não haverá aula.",
+    "category": "ANNOUNCEMENT",
+    "visibility": [
+      "ALL"
+    ],
+    "author": {},
+    "reactions": {
+      "like": 0,
+      "claps": 0
+    },
+    "attachmentUrl": "",
+    "imageUrl": "./assets/uploads/image-1781111228842-zv1ec6kj1.png",
+    "eventDate": "2026-06-23",
+    "location": "SENAI Areias",
+    "createdAt": "2026-06-10T16:59:43.708Z"
+  },
+  {
+    "id": "p1781113695719-a75rr3zuc",
+    "title": "sad",
+    "summary": "sadsa",
+    "category": "EVENT",
+    "visibility": [
+      "ALL"
+    ],
+    "author": {},
+    "reactions": {
+      "like": 0,
+      "claps": 0
+    },
+    "attachmentUrl": "",
+    "imageUrl": "aviso3.png",
+    "eventDate": "2026-06-10",
+    "location": "SENAI Areias",
+    "createdAt": "2026-06-10T17:48:15.728Z"
   }
 ]

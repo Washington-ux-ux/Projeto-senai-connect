@@ -10,7 +10,7 @@ let modifiedWeekendDays = JSON.parse(localStorage.getItem('modifiedWeekendDays')
 
 async function loadEvents() {
     try {
-        const response = await fetch('https://projeto-senai-connect.onrender.com/api/posts');
+        const response = await fetch('http://localhost:3000/api/posts');
         const posts = await response.json();
         
         eventsData = posts.filter(post => 

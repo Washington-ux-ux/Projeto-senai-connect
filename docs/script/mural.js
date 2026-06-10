@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('https://projeto-senai-connect.onrender.com/api/links', {
+                const response = await fetch('http://localhost:3000/api/links', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch(`https://projeto-senai-connect.onrender.com/api/links/${linkId}`, {
+                const response = await fetch(`http://localhost:3000/api/links/${linkId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ async function loadLinks() {
                                   user.role === 'admin' || user.role === 'coordinator';
 
     try {
-        const response = await fetch('https://projeto-senai-connect.onrender.com/api/links');
+        const response = await fetch('http://localhost:3000/api/links');
         const links = await response.json();
         
         const headerRow = linksTable.querySelector('tr');
@@ -219,7 +219,7 @@ async function loadLinks() {
                         const token = localStorage.getItem('token');
                         
                         try {
-                            const response = await fetch(`https://projeto-senai-connect.onrender.com/api/links/${linkId}`, {
+                            const response = await fetch(`http://localhost:3000/api/links/${linkId}`, {
                                 method: 'DELETE',
                                 headers: {
                                     'Authorization': `Bearer ${token}`
@@ -250,7 +250,7 @@ async function openEditModal(linkId) {
     const editLinkForm = document.getElementById('edit-link-form');
     
     try {
-        const response = await fetch('https://projeto-senai-connect.onrender.com/api/links');
+        const response = await fetch('http://localhost:3000/api/links');
         const links = await response.json();
         const link = links.find(l => l.id === linkId);
         

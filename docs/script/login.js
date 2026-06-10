@@ -486,7 +486,7 @@ function showLoggedInUser() {
       };
 
       try {
-        const response = await fetch(`https://projeto-senai-connect.onrender.com/api/posts/${postId}`, {
+        const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -683,7 +683,7 @@ function showLoggedInUser() {
       };
 
       try {
-        const response = await fetch("https://projeto-senai-connect.onrender.com/api/posts", {
+        const response = await fetch("http://localhost:3000/api/posts", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -741,7 +741,7 @@ function showLoggedInUser() {
 
       try {
         const response = await fetch(
-          "https://projeto-senai-connect.onrender.com/api/user/register",
+          "http://localhost:3000/api/user/register",
           {
             method: "POST",
             headers: {
