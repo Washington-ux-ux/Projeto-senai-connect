@@ -1,6 +1,10 @@
 /* Css para a pagina eventos.html */
 @import url("https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400..700&display=swap");
 
+body {
+  background-color: #ecf0f6;
+}
+
 .events-container {
   margin: 50px auto;
   max-width: 1400px;
@@ -217,4 +221,3 @@ body.dark-mode .btn-load-more {
 body.dark-mode .btn-load-more:hover {
   background-color: #3a8eef;
 }
-
