@@ -63,39 +63,48 @@ tr:hover {
 }
 
 /* Tema Escuro */
+:root.dark-mode h1,
 body.dark-mode h1 {
   color: #4a9eff;
 }
 
+:root.dark-mode p,
 body.dark-mode p {
   color: #e0e0e0;
 }
 
+:root.dark-mode table,
 body.dark-mode table {
   background-color: #16213e;
 }
 
+:root.dark-mode th,
 body.dark-mode th {
   background-color: #0f3460;
 }
 
+:root.dark-mode td,
 body.dark-mode td {
   border-bottom: 1px solid #0f3460;
   color: #ffffff;
 }
 
+:root.dark-mode tr:nth-child(even),
 body.dark-mode tr:nth-child(even) {
   background-color: #252535;
 }
 
+:root.dark-mode tr:nth-child(odd),
 body.dark-mode tr:nth-child(odd) {
   background-color: #1e1e2e;
 }
 
+:root.dark-mode table a,
 body.dark-mode table a {
   color: white;
 }
 
+:root.dark-mode table a:hover,
 body.dark-mode table a:hover {
   background-color: #4a9eff;
   color: white;
@@ -118,10 +127,12 @@ body.dark-mode table a:hover {
   background-color: #0066cc;
 }
 
+:root.dark-mode .btn-add-link,
 body.dark-mode .btn-add-link {
   background-color: #4a9eff;
 }
 
+:root.dark-mode .btn-add-link:hover,
 body.dark-mode .btn-add-link:hover {
   background-color: #6bb3ff;
 }
@@ -184,32 +195,103 @@ table a:hover {
   box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
 }
 
+:root.dark-mode .btn-edit-link,
 body.dark-mode .btn-edit-link {
   background: linear-gradient(135deg, #004a99 0%, #003373 100%);
   box-shadow: 0 2px 8px rgba(0, 74, 153, 0.3);
 }
 
+:root.dark-mode .btn-edit-link:hover,
 body.dark-mode .btn-edit-link:hover {
   background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
   box-shadow: 0 4px 12px rgba(0, 74, 153, 0.4);
 }
 
+:root.dark-mode .btn-delete-link,
 body.dark-mode .btn-delete-link {
   background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
   box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
 }
 
+:root.dark-mode .btn-delete-link:hover,
 body.dark-mode .btn-delete-link:hover {
   background: linear-gradient(135deg, #e74c3c 0%, #dc3545 100%);
   box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
 }
 
+:root.dark-mode table a,
 body.dark-mode table a {
   background: linear-gradient(135deg, #28a745 0%, #218838 100%);
   box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
 }
 
+:root.dark-mode table a:hover,
 body.dark-mode table a:hover {
   background: linear-gradient(135deg, #34ce57 0%, #28a745 100%);
   box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 30px auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #004a99 0%, #003373 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 74, 153, 0.3);
+}
+
+.pagination button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 74, 153, 0.4);
+}
+
+.pagination button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.pagination .page-info {
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 600;
+}
+
+:root.dark-mode .pagination button,
+body.dark-mode .pagination button {
+  background: linear-gradient(135deg, #4a9eff 0%, #1E90FF 100%);
+  box-shadow: 0 2px 8px rgba(74, 158, 255, 0.3);
+}
+
+:root.dark-mode .pagination button:hover:not(:disabled),
+body.dark-mode .pagination button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #6bb3ff 0%, #4a9eff 100%);
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+}
+
+:root.dark-mode .pagination button:disabled,
+body.dark-mode .pagination button:disabled {
+  background: #3a3a4a;
+}
+
+:root.dark-mode .pagination .page-info,
+body.dark-mode .pagination .page-info {
+  color: #e0e0e0;
 }

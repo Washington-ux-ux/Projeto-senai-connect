@@ -618,50 +618,69 @@ body .container:first-of-type {
 }
 
 /* Tema Escuro */
+:root.dark-mode .about-section,
 body.dark-mode .about-section {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
+:root.dark-mode .about-section h1,
 body.dark-mode .about-section h1 {
     color: #4a9eff;
 }
 
+:root.dark-mode .about-section h2,
 body.dark-mode .about-section h2 {
     color: #e0e0e0;
     border-bottom-color: #4a9eff;
 }
 
+:root.dark-mode .about-section h3,
 body.dark-mode .about-section h3 {
     color: #e0e0e0;
 }
 
+:root.dark-mode .about-section p,
 body.dark-mode .about-section p {
     color: #b0b0b0;
 }
 
+:root.dark-mode .about-intro,
 body.dark-mode .about-intro {
     background-color: #16213e;
     border-left-color: #4a9eff;
 }
 
+:root.dark-mode .about-intro p,
 body.dark-mode .about-intro p {
     color: #e0e0e0;
 }
 
+:root.dark-mode .about-intro strong,
 body.dark-mode .about-intro strong {
     color: #4a9eff;
 }
 
+:root.dark-mode .problem,
+:root.dark-mode .solution,
 body.dark-mode .problem,
 body.dark-mode .solution {
     background-color: #16213e;
 }
 
+:root.dark-mode .problem li,
+:root.dark-mode .solution li,
 body.dark-mode .problem li,
 body.dark-mode .solution li {
     color: #e0e0e0;
 }
 
+:root.dark-mode .objectives,
+:root.dark-mode .features,
+:root.dark-mode .categories,
+:root.dark-mode .users-types,
+:root.dark-mode .benefits,
+:root.dark-mode .extras,
+:root.dark-mode .target-audience,
 body.dark-mode .objectives,
 body.dark-mode .features,
 body.dark-mode .categories,
@@ -672,6 +691,8 @@ body.dark-mode .target-audience {
     background-color: #16213e;
 }
 
+:root.dark-mode .objectives p,
+:root.dark-mode .target-audience p,
 body.dark-mode .objectives p,
 body.dark-mode .target-audience p {
     color: #e0e0e0;

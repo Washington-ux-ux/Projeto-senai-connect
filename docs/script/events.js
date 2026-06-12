@@ -125,6 +125,15 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
             <p> <i class="fa-solid fa-check icon-orange"></i> Data do evento: ${formattedDate}</p>
             ${event.location ? `<p> <i class="fa-solid fa-check icon-orange"></i> Local: ${event.location}</p>` : ""}
             <p> <i class="fa-solid fa-check icon-orange"></i> Categoria: ${translatedCategory}</p>
+            <div class="event-reactions" data-event-id="${event.id}">
+                <button class="reaction-btn" data-reaction="👍" title="Curtir">👍 <span class="reaction-count">0</span></button>
+                <button class="reaction-btn" data-reaction="❤️" title="Amei">❤️ <span class="reaction-count">0</span></button>
+                <button class="reaction-btn" data-reaction="😂" title="Engraçado">😂 <span class="reaction-count">0</span></button>
+                <button class="reaction-btn" data-reaction="😮" title="Impressionante">😮 <span class="reaction-count">0</span></button>
+                <button class="reaction-btn" data-reaction="🎉" title="Celebrar">🎉 <span class="reaction-count">0</span></button>
+                <button class="reaction-btn" data-reaction="👎" title="Não curti">👎 <span class="reaction-count">0</span></button>
+                <button class="share-btn" title="Compartilhar"><i class="fa-solid fa-share-nodes"></i></button>
+            </div>
             <div class="event-actions">
                 ${editButton}
                 ${deleteButton}
@@ -143,6 +152,10 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
       renderEvents(eventsContainer, hasAdminPrivileges);
     });
     eventsContainer.appendChild(loadMoreButton);
+  }
+
+  if (typeof initReactions === 'function') {
+    initReactions();
   }
 
   if (hasAdminPrivileges) {
@@ -269,30 +282,32 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
         e.preventDefault();
         const eventId = button.getAttribute("data-id");
 
-        if (confirm("Tem certeza que deseja excluir este post/evento?")) {
-          const token = localStorage.getItem("token");
+        // Abrir modal de confirmação usando a função do exclude.js
+        if (typeof openDeleteConfirmModal === 'function') {
+          openDeleteConfirmModal(eventId, "post", async (id, type) => {
+            const token = localStorage.getItem("token");
 
-          try {
-            const response = await fetch(
-              `http://localhost:3000/api/posts/${eventId}`,
-              {
-                method: "DELETE",
-                headers: {
-                  Authorization: `Bearer ${token}`,
+            try {
+              const response = await fetch(
+                `http://localhost:3000/api/posts/${id}`,
+                {
+                  method: "DELETE",
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
                 },
-              },
-            );
+              );
 
-            if (response.ok) {
-              alert("Post/Evento excluído com sucesso!");
-              loadEvents();
-            } else {
-              const data = await response.json();
-              alert(data.message || "Erro ao excluir post/evento");
+              if (response.ok) {
+                loadEvents();
+              } else {
+                const data = await response.json();
+                alert(data.message || "Erro ao excluir post/evento");
+              }
+            } catch (error) {
+              alert("Erro de conexão com o servidor");
             }
-          } catch (error) {
-            alert("Erro de conexão com o servidor");
-          }
+          });
         }
       });
     });

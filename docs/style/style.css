@@ -16,6 +16,12 @@
   --color-white: #ffffff;
 }
 
+/* Tema Escuro - Prevenir flash */
+html.dark-mode body {
+  background-color: #1a1a2e !important;
+  color: #e0e0e0 !important;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -76,7 +82,6 @@ nav {
   box-sizing: border-box;
   padding: 15px 20px;
   background-color: var(--color-background);
-  /* border-top: 1px solid var(--color-text); */
 }
 
 nav ul {
@@ -351,28 +356,34 @@ header p {
 }
 
 /* Menu no modo noite */
+:root.dark-mode .btn-nav-user,
 body.dark-mode .btn-nav-user {
   background-color: #4a9eff;
 }
 
+:root.dark-mode .btn-nav-user:hover,
 body.dark-mode .btn-nav-user:hover {
   background-color: #0056b3;
 }
 
+:root.dark-mode .dropdown-menu,
 body.dark-mode .dropdown-menu {
   background-color: #16213e;
 }
 
+:root.dark-mode .dropdown-menu a,
 body.dark-mode .dropdown-menu a {
   color: #e0e0e0;
 }
 
+:root.dark-mode .dropdown-menu a:hover,
 body.dark-mode .dropdown-menu a:hover {
   background-color: #0f3460;
   color: #4a9eff;
 }
 
 /* Tema Escuro */
+:root.dark-mode,
 body.dark-mode {
   --color-background: #1a1a2e;
   --color-text: #e0e0e0;
@@ -380,49 +391,62 @@ body.dark-mode {
   color: var(--color-text);
 }
 
+:root.dark-mode .banner,
 body.dark-mode .banner {
   background-color: #16213e;
 }
 
+:root.dark-mode .banner div:nth-child(2) img,
 body.dark-mode .banner div:nth-child(2) img {
   filter: brightness(1.5) contrast(1.2);
 }
 
+:root.dark-mode nav,
 body.dark-mode nav {
   background-color: #0f3460;
 }
 
+:root.dark-mode nav ul li a,
 body.dark-mode nav ul li a {
   color: #e0e0e0;
 }
 
+:root.dark-mode nav ul li a:hover,
 body.dark-mode nav ul li a:hover {
   color: #1e90ff;
 }
 
+:root.dark-mode a,
 body.dark-mode a {
   color: #4a9eff;
 }
 
+:root.dark-mode a:hover,
 body.dark-mode a:hover {
   background: #4a9eff;
   color: #1a1a2e;
 }
 
+:root.dark-mode header,
 body.dark-mode header {
   background: linear-gradient(rgba(15, 52, 96, 0.95), rgba(15, 52, 96, 0.95));
 }
 
+:root.dark-mode .modal-box,
 body.dark-mode .modal-box {
   background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
   color: #e0e0e0;
   border-color: rgba(74, 158, 255, 0.2);
 }
 
+:root.dark-mode .modal-box h2,
 body.dark-mode .modal-box h2 {
   color: #e0e0e0;
 }
 
+:root.dark-mode .modal-box input,
+:root.dark-mode .modal-box textarea,
+:root.dark-mode .modal-box select,
 body.dark-mode .modal-box input,
 body.dark-mode .modal-box textarea,
 body.dark-mode .modal-box select {
@@ -431,6 +455,9 @@ body.dark-mode .modal-box select {
   color: #e0e0e0;
 }
 
+:root.dark-mode .modal-box input:focus,
+:root.dark-mode .modal-box textarea:focus,
+:root.dark-mode .modal-box select:focus,
 body.dark-mode .modal-box input:focus,
 body.dark-mode .modal-box textarea:focus,
 body.dark-mode .modal-box select:focus {
@@ -438,24 +465,29 @@ body.dark-mode .modal-box select:focus {
   box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.2);
 }
 
+:root.dark-mode .modal-box select,
 body.dark-mode .modal-box select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a9eff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
 }
 
+:root.dark-mode .btn-submit,
 body.dark-mode .btn-submit {
   background: linear-gradient(135deg, #4a9eff 0%, #0066cc 100%);
   box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
 }
 
+:root.dark-mode .btn-submit:hover,
 body.dark-mode .btn-submit:hover {
   background: linear-gradient(135deg, #0066cc 0%, #0055aa 100%);
   box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
 }
 
+:root.dark-mode .close-btn,
 body.dark-mode .close-btn {
   color: #e0e0e0;
 }
 
+:root.dark-mode .close-btn:hover,
 body.dark-mode .close-btn:hover {
   color: #4a9eff;
 }
@@ -557,11 +589,13 @@ body.dark-mode .close-btn:hover {
   }
 
   /* Tema Escuro Mobile */
+  :root.dark-mode nav ul li a,
   body.dark-mode nav ul li a {
     background-color: #16213e;
     color: #e0e0e0;
   }
 
+  :root.dark-mode nav ul li a:hover,
   body.dark-mode nav ul li a:hover {
     background-color: #0f3460;
   }
@@ -600,10 +634,12 @@ body.dark-mode .close-btn:hover {
   font-size: 13px;
 }
 
+:root.dark-mode .visibility-checkbox,
 body.dark-mode .visibility-checkbox {
   border-color: #444;
 }
 
+:root.dark-mode .visibility-checkbox:hover,
 body.dark-mode .visibility-checkbox:hover {
   background-color: #1a1a2e;
   border-color: #4a9eff;
@@ -657,15 +693,18 @@ body.dark-mode .visibility-checkbox:hover {
   border: 3px solid var(--color-primary);
 }
 
+:root.dark-mode .image-checkbox,
 body.dark-mode .image-checkbox {
   border-color: #444;
 }
 
+:root.dark-mode .image-checkbox:hover,
 body.dark-mode .image-checkbox:hover {
   border-color: #4a9eff;
   background-color: #1a1a2e;
 }
 
+:root.dark-mode .image-checkbox input[type="checkbox"]:checked + img,
 body.dark-mode .image-checkbox input[type="checkbox"]:checked + img {
   border-color: #4a9eff;
 }
@@ -703,10 +742,12 @@ body.dark-mode .image-checkbox input[type="checkbox"]:checked + img {
   font-size: 13px;
 }
 
+:root.dark-mode .category-checkbox,
 body.dark-mode .category-checkbox {
   border-color: #444;
 }
 
+:root.dark-mode .category-checkbox:hover,
 body.dark-mode .category-checkbox:hover {
   background-color: #1a1a2e;
   border-color: #4a9eff;
@@ -768,13 +809,105 @@ body.dark-mode .category-checkbox:hover {
   color: var(--color-primary);
 }
 
+:root.dark-mode .sex-options label,
 body.dark-mode .sex-options label {
   border-color: #444;
   background: transparent;
   color: #e0e0e0;
 }
 
+:root.dark-mode .sex-options label:hover,
 body.dark-mode .sex-options label:hover {
   background-color: #1a1a2e;
   border-color: #4a9eff;
+}
+
+/* Modal de Confirmação de Exclusão */
+.confirm-modal {
+  max-width: 400px;
+  text-align: center;
+}
+
+.confirm-modal h2 {
+  color: #ff4757;
+  margin-bottom: 15px;
+}
+
+.confirm-modal p {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-cancel {
+  padding: 10px 25px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.btn-cancel:hover {
+  background: #e8e8e8;
+  transform: translateY(-2px);
+}
+
+.btn-confirm-delete {
+  padding: 10px 25px;
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btn-confirm-delete:hover {
+  background: linear-gradient(135deg, #ff6b81 0%, #ff4757 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+}
+
+/* Tema Escuro - Modal de Confirmação */
+:root.dark-mode .confirm-modal h2,
+body.dark-mode .confirm-modal h2 {
+  color: #ff6b6b;
+}
+
+:root.dark-mode .confirm-modal p,
+body.dark-mode .confirm-modal p {
+  color: #b0b0b0;
+}
+
+:root.dark-mode .btn-cancel,
+body.dark-mode .btn-cancel {
+  background: #1a1a2e;
+  border-color: #0f3460;
+  color: #e0e0e0;
+}
+
+:root.dark-mode .btn-cancel:hover,
+body.dark-mode .btn-cancel:hover {
+  background: #252535;
+}
+
+:root.dark-mode .btn-confirm-delete,
+body.dark-mode .btn-confirm-delete {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+}
+
+:root.dark-mode .btn-confirm-delete:hover,
+body.dark-mode .btn-confirm-delete:hover {
+  background: linear-gradient(135deg, #ff8787 0%, #ff6b6b 100%);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
 }

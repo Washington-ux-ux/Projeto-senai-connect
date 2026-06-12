@@ -61,5 +61,19 @@
     "description": "Acesse os seus sites do senai",
     "url": "https://meusenai.senai.br",
     "createdAt": "2026-05-29T22:48:31.201Z"
+  },
+  {
+    "id": "10",
+    "name": "LinkedIn do Senai",
+    "description": "LinkedIn do Senai",
+    "url": "https://www.linkedin.com/company/senai-nacional/posts/",
+    "createdAt": "2026-06-11T23:18:05.682Z"
+  },
+  {
+    "id": "11",
+    "name": "Fale conosco",
+    "description": "Mande suas duvidas.",
+    "url": "https://www.pe.senai.br/fale-conosco/",
+    "createdAt": "2026-06-11T23:18:41.785Z"
   }
 ]

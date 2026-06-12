@@ -68,6 +68,7 @@ body {
   );
 }
 
+:root.dark-mode .event-card hr,
 body.dark-mode .event-card hr {
   background: linear-gradient(
     90deg,
@@ -115,19 +116,23 @@ body.dark-mode .event-card hr {
 }
 
 /* Tema Escuro */
+:root.dark-mode .event-card,
 body.dark-mode .event-card {
   background-color: #16213e;
   color: #e0e0e0;
 }
 
+:root.dark-mode .event-card h2,
 body.dark-mode .event-card h2 {
   color: #4a9eff;
 }
 
+:root.dark-mode .event-card p,
 body.dark-mode .event-card p {
   color: #e0e0e0;
 }
 
+:root.dark-mode .event-card p:last-child,
 body.dark-mode .event-card p:last-child {
   border-top: 1px solid #0f3460;
 }
@@ -151,10 +156,12 @@ body.dark-mode .event-card p:last-child {
   box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
 }
 
+:root.dark-mode .btn-delete-event,
 body.dark-mode .btn-delete-event {
   background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
 }
 
+:root.dark-mode .btn-delete-event:hover,
 body.dark-mode .btn-delete-event:hover {
   background: linear-gradient(135deg, #ff8787 0%, #ff6b6b 100%);
 }
@@ -185,10 +192,12 @@ body.dark-mode .btn-delete-event:hover {
   box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
 }
 
+:root.dark-mode .btn-edit-event,
 body.dark-mode .btn-edit-event {
   background: linear-gradient(135deg, #1e90ff 0%, #4a9eff 100%);
 }
 
+:root.dark-mode .btn-edit-event:hover,
 body.dark-mode .btn-edit-event:hover {
   background: linear-gradient(135deg, #4a9eff 0%, #1e90ff 100%);
 }
@@ -214,10 +223,133 @@ body.dark-mode .btn-edit-event:hover {
   transform: translateY(-2px);
 }
 
+:root.dark-mode .btn-load-more,
 body.dark-mode .btn-load-more {
   background-color: #4a9eff;
 }
 
+:root.dark-mode .btn-load-more:hover,
 body.dark-mode .btn-load-more:hover {
   background-color: #3a8eef;
+}
+
+/* Sistema de Reações */
+.event-reactions {
+  display: flex;
+  gap: 8px;
+  padding: 15px 20px;
+  border-top: 1px solid #f0f0f0;
+  flex-wrap: wrap;
+}
+
+.reaction-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+  color: #333;
+}
+
+.reaction-btn:hover {
+  background: #e8e8e8;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reaction-btn.active {
+  background: #1e90ff;
+  border-color: #1e90ff;
+  color: white;
+}
+
+.reaction-count {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.reaction-btn.active .reaction-count {
+  color: white;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  color: #333;
+  margin-left: auto;
+}
+
+.share-btn:hover {
+  background: #1e90ff;
+  border-color: #1e90ff;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(30, 144, 255, 0.3);
+}
+
+/* Tema Escuro - Reações */
+:root.dark-mode .event-reactions,
+body.dark-mode .event-reactions {
+  border-top-color: #0f3460;
+}
+
+:root.dark-mode .reaction-btn,
+body.dark-mode .reaction-btn {
+  background: #1a1a2e;
+  border-color: #0f3460;
+  color: #e0e0e0;
+}
+
+:root.dark-mode .reaction-btn:hover,
+body.dark-mode .reaction-btn:hover {
+  background: #252535;
+  box-shadow: 0 2px 8px rgba(74, 158, 255, 0.2);
+}
+
+:root.dark-mode .reaction-btn.active,
+body.dark-mode .reaction-btn.active {
+  background: #4a9eff;
+  border-color: #4a9eff;
+  color: white;
+}
+
+:root.dark-mode .reaction-count,
+body.dark-mode .reaction-count {
+  color: #b0b0b0;
+}
+
+:root.dark-mode .reaction-btn.active .reaction-count,
+body.dark-mode .reaction-btn.active .reaction-count {
+  color: white;
+}
+
+:root.dark-mode .share-btn,
+body.dark-mode .share-btn {
+  background: #1a1a2e;
+  border-color: #0f3460;
+  color: #e0e0e0;
+}
+
+:root.dark-mode .share-btn:hover,
+body.dark-mode .share-btn:hover {
+  background: #4a9eff;
+  border-color: #4a9eff;
+  color: white;
+  box-shadow: 0 2px 8px rgba(74, 158, 255, 0.3);
 }

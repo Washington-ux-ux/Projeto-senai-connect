@@ -101,45 +101,54 @@
     background-color: #fafbff;
 }
 
+:root.dark-mode .profile-dropdown,
 body.dark-mode .profile-dropdown {
     background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     border-color: rgba(74, 158, 255, 0.15);
 }
 
+:root.dark-mode .profile-dropdown h3,
 body.dark-mode .profile-dropdown h3 {
     color: #e0e0e0;
 }
 
+:root.dark-mode .dropdown-divider,
 body.dark-mode .dropdown-divider {
     background: linear-gradient(90deg, transparent, #0f3460, transparent);
 }
 
+:root.dark-mode .info-group label,
 body.dark-mode .info-group label {
     color: #b0b0b0;
 }
 
+:root.dark-mode .info-group label i,
 body.dark-mode .info-group label i {
     color: #4a9eff;
 }
 
+:root.dark-mode .info-group input,
 body.dark-mode .info-group input {
     background-color: #1a1a2e;
     border-color: #0f3460;
     color: #e0e0e0;
 }
 
+:root.dark-mode .info-group input:focus,
 body.dark-mode .info-group input:focus {
     border-color: #4a9eff;
     box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.15);
     background-color: #16213e;
 }
 
+:root.dark-mode .profile-icon,
 body.dark-mode .profile-icon {
     color: #4a9eff;
     background-color: rgba(74, 158, 255, 0.15);
 }
 
+:root.dark-mode .profile-icon:hover,
 body.dark-mode .profile-icon:hover {
     color: #1E90FF;
     background-color: rgba(74, 158, 255, 0.25);

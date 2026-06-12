@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
         btnAddLink.style.display = 'block';
     }
 
+    window.currentPage = 1;
+    window.itemsPerPage = 10;
+    window.allLinks = [];
+
     loadLinks();
 
     if (btnAddLink) {
@@ -139,16 +143,17 @@ async function loadLinks() {
     if (!linksTable) return;
 
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'COORDINATOR' || 
+    const hasAdminPrivileges = user.role === 'ADMIN' || user.role === 'COORDINATOR' ||
                                   user.role === 'admin' || user.role === 'coordinator';
 
     try {
         const response = await fetch('http://localhost:3000/api/links');
         const links = await response.json();
-        
+
+        window.allLinks = links.sort((a, b) => a.name.localeCompare(b.name));
+
         const headerRow = linksTable.querySelector('tr');
         linksTable.innerHTML = '';
-                
 
         if (headerRow) {
             const newHeaderRow = document.createElement('tr');
@@ -171,13 +176,15 @@ async function loadLinks() {
             linksTable.appendChild(newHeaderRow);
         }
 
-        links.sort((a, b) => a.name.localeCompare(b.name));
+        const startIndex = (window.currentPage - 1) * window.itemsPerPage;
+        const endIndex = startIndex + window.itemsPerPage;
+        const paginatedLinks = window.allLinks.slice(startIndex, endIndex);
 
-        links.forEach((link, index) => {
+        paginatedLinks.forEach((link, index) => {
             const row = document.createElement('tr');
             if (hasAdminPrivileges) {
                 row.innerHTML = `
-                    <td>${index + 1}</td>
+                    <td>${startIndex + index + 1}</td>
                     <td>${link.name}</td>
                     <td>${link.description}</td>
                     <td><a href="${link.url}" target="_blank" rel="noopener noreferrer">Acessar</a></td>
@@ -188,7 +195,7 @@ async function loadLinks() {
                 `;
             } else {
                 row.innerHTML = `
-                    <td>${index + 1}</td>
+                    <td>${startIndex + index + 1}</td>
                     <td>${link.name}</td>
                     <td>${link.description}</td>
                     <td><a href="${link.url}" target="_blank" rel="noopener noreferrer">Acessar</a></td>
@@ -197,7 +204,8 @@ async function loadLinks() {
             linksTable.appendChild(row);
         });
 
-       
+        renderPagination(window.allLinks.length, hasAdminPrivileges);
+
         if (hasAdminPrivileges) {
             const editButtons = document.querySelectorAll('.btn-edit-link');
             const deleteButtons = document.querySelectorAll('.btn-delete-link');
@@ -214,28 +222,30 @@ async function loadLinks() {
                 button.addEventListener('click', async (e) => {
                     e.preventDefault();
                     const linkId = button.getAttribute('data-id');
-                    
-                    if (confirm('Tem certeza que deseja excluir este link?')) {
-                        const token = localStorage.getItem('token');
-                        
-                        try {
-                            const response = await fetch(`http://localhost:3000/api/links/${linkId}`, {
-                                method: 'DELETE',
-                                headers: {
-                                    'Authorization': `Bearer ${token}`
-                                }
-                            });
 
-                            if (response.ok) {
-                                alert('Link excluído com sucesso!');
-                                loadLinks();
-                            } else {
-                                const data = await response.json();
-                                alert(data.message || 'Erro ao excluir link');
+                    if (typeof openDeleteConfirmModal === 'function') {
+                        openDeleteConfirmModal(linkId, 'link', async (id, type) => {
+                            const token = localStorage.getItem('token');
+
+                            try {
+                                const response = await fetch(`http://localhost:3000/api/links/${id}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Authorization': `Bearer ${token}`
+                                    }
+                                });
+
+                                if (response.ok) {
+                                    window.currentPage = 1;
+                                    loadLinks();
+                                } else {
+                                    const data = await response.json();
+                                    alert(data.message || 'Erro ao excluir link');
+                                }
+                            } catch (error) {
+                                alert('Erro de conexão com o servidor');
                             }
-                        } catch (error) {
-                            alert('Erro de conexão com o servidor');
-                        }
+                        });
                     }
                 });
             });
@@ -243,6 +253,40 @@ async function loadLinks() {
     } catch (error) {
         console.error('Erro ao carregar links:', error);
     }
+}
+
+function renderPagination(totalItems, hasAdminPrivileges) {
+    const pagination = document.getElementById('pagination');
+    if (!pagination) return;
+
+    const totalPages = Math.ceil(totalItems / window.itemsPerPage);
+
+    if (totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+    }
+
+    let paginationHTML = `
+        <button id="prev-page" ${window.currentPage === 1 ? 'disabled' : ''}>Anterior</button>
+        <span class="page-info">Página ${window.currentPage} de ${totalPages}</span>
+        <button id="next-page" ${window.currentPage === totalPages ? 'disabled' : ''}>Próxima</button>
+    `;
+
+    pagination.innerHTML = paginationHTML;
+
+    document.getElementById('prev-page').addEventListener('click', () => {
+        if (window.currentPage > 1) {
+            window.currentPage--;
+            loadLinks();
+        }
+    });
+
+    document.getElementById('next-page').addEventListener('click', () => {
+        if (window.currentPage < totalPages) {
+            window.currentPage++;
+            loadLinks();
+        }
+    });
 }
 
 async function openEditModal(linkId) {

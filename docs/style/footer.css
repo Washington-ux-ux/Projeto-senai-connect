@@ -129,31 +129,39 @@
 }
 
 /* Tema Escuro */
+:root.dark-mode .footer-container,
 body.dark-mode .footer-container {
   background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
 }
 
+:root.dark-mode .footer-section h3,
 body.dark-mode .footer-section h3 {
   color: #ff6b35;
 }
 
+:root.dark-mode .footer-section h3::after,
 body.dark-mode .footer-section h3::after {
   background: linear-gradient(90deg, #ff6b35, #e84910);
 }
 
+:root.dark-mode .footer-section p,
+:root.dark-mode .footer-section a,
 body.dark-mode .footer-section p,
 body.dark-mode .footer-section a {
   color: #a0a0a0;
 }
 
+:root.dark-mode .footer-section a:hover,
 body.dark-mode .footer-section a:hover {
   color: #ff6b35;
 }
 
+:root.dark-mode .footer-section ul li a::before,
 body.dark-mode .footer-section ul li a::before {
   color: #ff6b35;
 }
 
+:root.dark-mode .social-links a:hover,
 body.dark-mode .social-links a:hover {
   background: #ff6b35;
   box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);

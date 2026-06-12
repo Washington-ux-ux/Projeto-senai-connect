@@ -55,10 +55,10 @@
     "createdAt": "2024-06-15T13:30:00Z"
   },
   {
-    "id": "p1781113695719-a75rr3zuc",
-    "title": "sad",
-    "summary": "sadsa",
-    "category": "EVENT",
+    "id": "p1781226264894-sgny5z1f8",
+    "title": "dd",
+    "summary": "dd",
+    "category": "ANNOUNCEMENT",
     "visibility": [
       "ALL"
     ],
@@ -69,8 +69,8 @@
     },
     "attachmentUrl": "",
     "imageUrl": "aviso3.png",
-    "eventDate": "2026-06-10",
+    "eventDate": "2026-06-12",
     "location": "SENAI Areias",
-    "createdAt": "2026-06-10T17:48:15.728Z"
+    "createdAt": "2026-06-12T01:04:24.894Z"
   }
 ]
