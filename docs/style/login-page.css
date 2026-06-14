@@ -22,21 +22,18 @@ body {
     height: 100vh;
     background-color: white;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-image: url(../assets/images/login-page.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .image-design {
     flex: 1;
-    background: linear-gradient(135deg, #4a9eff 0%, #1E90FF 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
-}
-
-.image-design img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
 }
 
 .login-forms {
