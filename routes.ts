@@ -4,6 +4,7 @@ import * as postsController from "./src/controllers/postsControllers"
 import * as academicEventsController from "./src/controllers/academicEventsController"
 import * as linksController from "./src/controllers/linksControllers"
 import * as reactionsController from "./src/controllers/reactionsControllers"
+import * as authController from "./src/controllers/authControllers"
 import { authenticate, authorize } from "./src/middlewares/authMiddleware";
 
 const router = Router();
@@ -48,5 +49,9 @@ router.get('/reactions/:postId', reactionsController.getReactionsByPostId);
 // Protected Reactions Routes (write operations)
 router.post('/reactions/:postId', authenticate, reactionsController.createOrUpdateReaction);
 router.delete('/reactions/:postId', authenticate, authorize('COORDINATOR', 'ADMIN'), reactionsController.deleteReactionsByPostId);
+
+// Auth Routes
+router.post('/auth/change-password', authenticate, authController.changePassword);
+router.post('/auth/forgot-password', authController.forgotPassword);
 
 export default router;

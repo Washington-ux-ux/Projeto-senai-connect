@@ -27,13 +27,15 @@ if (loginForm) {
             if (response.ok) {
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
-                
+
                 window.location.href = "./inicio.html";
             } else {
-                loginError.textContent = data.message || "Erro ao fazer login";
+                loginError.textContent = data.message || "Email ou senha incorretos";
+                loginError.style.display = "block";
             }
         } catch (error) {
             loginError.textContent = "Erro de conexão com o servidor";
+            loginError.style.display = "block";
         }
     });
 }

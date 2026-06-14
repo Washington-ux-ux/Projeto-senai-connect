@@ -27,5 +27,39 @@
             <label><i class="fa-solid fa-calendar-plus"></i> Data de Criação</label>
             <input type="text" id="userCreatedAt" readonly value="Carregando...">
         </div>
+        <div class="dropdown-divider"></div>
+        <button class="change-password-btn" id="changePasswordBtn">
+            <i class="fa-solid fa-key"></i> Mudar Senha
+        </button>
+        <button class="logout-btn" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> Sair
+        </button>
+    </div>
+
+    <div class="change-password-modal" id="changePasswordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Mudar Senha</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form id="changePasswordForm">
+                <div class="form-group">
+                    <label for="current-password-modal">Senha Atual</label>
+                    <input type="password" id="current-password-modal" placeholder="Digite sua senha atual" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password-modal">Nova Senha</label>
+                    <input type="password" id="new-password-modal" placeholder="Digite a nova senha" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password-modal">Confirmar Nova Senha</label>
+                    <input type="password" id="confirm-password-modal" placeholder="Confirme a nova senha" required>
+                </div>
+                <button type="submit" class="btn-submit">Mudar Senha</button>
+            </form>
+            <div id="changePasswordMessage" class="modal-message"></div>
+        </div>
     </div>
 </div>
