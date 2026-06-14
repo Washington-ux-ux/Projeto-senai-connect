@@ -469,6 +469,47 @@ body .container:first-of-type {
     transform: translateX(10px);
 }
 
+/* Tecnologias */
+.technologies {
+    background: white;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 60px;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.tech-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+.tech-item h3 {
+    color: white;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.tech-item p {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-size: 0.95em;
+}
+
 /* Call to Action */
 .cta {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -539,6 +580,7 @@ body .container:first-of-type {
     .extras,
     .request-status,
     .target-audience,
+    .technologies,
     .cta {
         padding: 30px 20px;
         margin-bottom: 40px;
@@ -681,13 +723,15 @@ body.dark-mode .solution li {
 :root.dark-mode .benefits,
 :root.dark-mode .extras,
 :root.dark-mode .target-audience,
+:root.dark-mode .technologies,
 body.dark-mode .objectives,
 body.dark-mode .features,
 body.dark-mode .categories,
 body.dark-mode .users-types,
 body.dark-mode .benefits,
 body.dark-mode .extras,
-body.dark-mode .target-audience {
+body.dark-mode .target-audience,
+body.dark-mode .technologies {
     background-color: #16213e;
 }
 

@@ -1,31 +1,41 @@
-function loadReactions() {
-  const reactions = JSON.parse(localStorage.getItem("eventReactions") || "{}");
-  const userReactions = JSON.parse(localStorage.getItem("userReactions") || "{}");
+async function loadReactions() {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const userId = user.id;
+
   const reactionContainers = document.querySelectorAll(".event-reactions");
 
-  reactionContainers.forEach((container) => {
+  for (const container of reactionContainers) {
     const eventId = container.getAttribute("data-event-id");
-    const eventReactions = reactions[eventId] || {};
-    const userEventReactions = userReactions[eventId] || [];
 
-    container.querySelectorAll(".reaction-btn").forEach((btn) => {
-      const reaction = btn.getAttribute("data-reaction");
-      const count = eventReactions[reaction] || 0;
-      const countSpan = btn.querySelector(".reaction-count");
-      countSpan.textContent = count;
+    try {
+      const response = await fetch(`http://localhost:3000/api/reactions/${eventId}`);
+      if (!response.ok) continue;
 
-      if (userEventReactions.includes(reaction)) {
-        btn.classList.add("active");
-      }
-    });
-  });
+      const reactionData = await response.json();
+      const eventReactions = reactionData.reactions || {};
+      const userEventReactions = reactionData.userReactions?.[userId] || [];
+
+      container.querySelectorAll(".reaction-btn").forEach((btn) => {
+        const reaction = btn.getAttribute("data-reaction");
+        const count = eventReactions[reaction] || 0;
+        const countSpan = btn.querySelector(".reaction-count");
+        countSpan.textContent = count;
+
+        if (userEventReactions.includes(reaction)) {
+          btn.classList.add("active");
+        }
+      });
+    } catch (error) {
+      console.error("Erro ao carregar reações:", error);
+    }
+  }
 }
 
 function setupReactionButtons() {
   const reactionButtons = document.querySelectorAll(".reaction-btn");
 
   reactionButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", async (e) => {
       e.preventDefault();
       e.stopPropagation();
 
@@ -33,36 +43,46 @@ function setupReactionButtons() {
       const eventId = container.getAttribute("data-event-id");
       const reaction = btn.getAttribute("data-reaction");
 
-      const reactions = JSON.parse(localStorage.getItem("eventReactions") || "{}");
-      const userReactions = JSON.parse(localStorage.getItem("userReactions") || "{}");
+      const token = localStorage.getItem("token");
 
-      if (!reactions[eventId]) {
-        reactions[eventId] = {};
+      const isReacted = btn.classList.contains("active");
+      const action = isReacted ? "remove" : "add";
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/reactions/${eventId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+          body: JSON.stringify({ emoji: reaction, action }),
+        });
+
+        if (response.ok) {
+          const reactionData = await response.json();
+          const eventReactions = reactionData.reactions || {};
+          const user = JSON.parse(localStorage.getItem("user") || "{}");
+          const userId = user.id;
+          const userEventReactions = reactionData.userReactions?.[userId] || [];
+
+          container.querySelectorAll(".reaction-btn").forEach((btn) => {
+            const btnReaction = btn.getAttribute("data-reaction");
+            const count = eventReactions[btnReaction] || 0;
+            const countSpan = btn.querySelector(".reaction-count");
+            countSpan.textContent = count;
+
+            if (userEventReactions.includes(btnReaction)) {
+              btn.classList.add("active");
+            } else {
+              btn.classList.remove("active");
+            }
+          });
+        } else {
+          alert("Erro ao reagir: " + response.statusText);
+        }
+      } catch (error) {
+        alert("Erro ao reagir: " + error.message);
       }
-
-      if (!reactions[eventId][reaction]) {
-        reactions[eventId][reaction] = 0;
-      }
-
-      if (!userReactions[eventId]) {
-        userReactions[eventId] = [];
-      }
-
-      if (userReactions[eventId].includes(reaction)) {
-        reactions[eventId][reaction]--;
-        userReactions[eventId] = userReactions[eventId].filter(r => r !== reaction);
-        btn.classList.remove("active");
-      } else {
-        reactions[eventId][reaction]++;
-        userReactions[eventId].push(reaction);
-        btn.classList.add("active");
-      }
-
-      localStorage.setItem("eventReactions", JSON.stringify(reactions));
-      localStorage.setItem("userReactions", JSON.stringify(userReactions));
-
-      const countSpan = btn.querySelector(".reaction-count");
-      countSpan.textContent = reactions[eventId][reaction];
     });
   });
 }
@@ -90,12 +110,13 @@ function setupShareButtons() {
           text: shareText,
           url: shareUrl,
         }).catch((error) => {
-          console.log("Erro ao compartilhar:", error);
+          console.error("Erro ao compartilhar:", error);
         });
       } else {
         navigator.clipboard.writeText(shareUrl).then(() => {
           alert("URL copiada para a área de transferência!");
-        }).catch(() => {
+        }).catch((error) => {
+          console.error("Erro ao copiar URL:", error);
           alert("Não foi possível compartilhar. Copie a URL manualmente.");
         });
       }

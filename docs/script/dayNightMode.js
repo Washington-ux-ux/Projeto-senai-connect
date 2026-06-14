@@ -2,17 +2,23 @@ const sunIcon = document.querySelector(".fa-sun");
 const moonIcon = document.querySelector(".fa-moon");
 const body = document.body;
 const html = document.documentElement;
-const connectLogo = document.querySelector('img[alt="Logo do senai connect"]');
 const lightLogoSrc = "./assets/images/senai-connect.png";
 const darkLogoSrc = "./assets/images/connectDark.png";
-
 const currentTheme = localStorage.getItem("theme") || "light";
 
+function getConnectLogo() {
+  return document.getElementById("connect-logo");
+}
+
 function updateLogoTheme() {
+  const connectLogo = getConnectLogo();
   if (!connectLogo) return;
-  connectLogo.src = html.classList.contains("dark-mode")
-    ? darkLogoSrc
-    : lightLogoSrc;
+  const isDarkMode = html.classList.contains("dark-mode");
+  const correctSrc = isDarkMode ? darkLogoSrc : lightLogoSrc;
+  
+  if (connectLogo.src !== correctSrc) {
+    connectLogo.src = correctSrc;
+  }
 }
 
 if (currentTheme === "dark") {
@@ -26,6 +32,10 @@ if (currentTheme === "dark") {
 }
 
 updateLogoTheme();
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateLogoTheme();
+});
 
 sunIcon.addEventListener("click", () => {
   html.classList.remove("dark-mode");

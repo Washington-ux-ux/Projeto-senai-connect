@@ -23,7 +23,10 @@ O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados
 - Exclusão de posts por COORDINATOR e ADMIN
 - Categorias: EVENT, INTERNSHIP, PRESENTATION, ANNOUNCEMENT
 - Sistema de visibilidade (ALL, STUDENT, TEACHER, COORDINATOR)
-- Reações com emojis (like, claps)
+- Sistema de reações com múltiplos emojis por usuário (só uma vez cada)
+- Toggle de reações (clicar novamente remove a reação)
+- Botões de reação ficam azuis quando ativos
+- Sistema de compartilhamento de posts (Web Share API)
 - Resumo automático via IA (endpoint disponível)
 
 ### 📅 Eventos Acadêmicos
@@ -51,9 +54,11 @@ O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados
 - Membros em salas de grupo
 
 ### 🌙 Interface do Usuário
-- Tema claro/escuro
+- Tema claro/escuro com transições suaves
+- Logo otimizado para modo dark (fundo transparente)
 - Calendário interativo
 - Menu de usuário com dropdown
+- Modal de confirmação de exclusão customizado
 - Modais para criação de posts, usuários e links
 - Design responsivo
 
@@ -93,6 +98,7 @@ senai-connect/
 │   │   ├── postsControllers.ts
 │   │   ├── academicEventsController.ts
 │   │   ├── linksControllers.ts
+│   │   ├── reactionsControllers.ts
 │   │   ├── chatControllers.ts
 │   │   └── requestsControllers.ts
 │   ├── models/            # Interfaces TypeScript
@@ -107,6 +113,7 @@ senai-connect/
 │   │   ├── postsServices.ts
 │   │   ├── academicEventsServices.ts
 │   │   ├── linksServices.ts
+│   │   ├── reactionsServices.ts
 │   │   ├── chatServices.ts
 │   │   └── requestsServices.ts
 │   ├── repository/        # Acesso aos dados
@@ -114,6 +121,7 @@ senai-connect/
 │   │   ├── postsRepository.ts
 │   │   ├── academicEventsRepository.ts
 │   │   ├── linksRepository.ts
+│   │   ├── reactionsRepository.ts
 │   │   ├── chatRepository.ts
 │   │   └── requestsRepository.ts
 │   ├── middlewares/       # Middlewares Express
@@ -126,6 +134,7 @@ senai-connect/
 │       ├── posts.json
 │       ├── academicEvent.json
 │       ├── links.json
+│       ├── reactions.json
 │       ├── requests.json
 │       ├── chat.json
 │       └── message.json
@@ -141,6 +150,8 @@ senai-connect/
 │   │   ├── mural.js
 │   │   ├── calendar.js
 │   │   ├── dayNightMode.js
+│   │   ├── reactions.js
+│   │   ├── exclude.js
 │   │   └── profile.js
 │   ├── style/             # CSS
 │   │   ├── style.css
@@ -173,8 +184,12 @@ senai-connect/
 - `GET /api/posts/:id` - Obter post por ID
 - `POST /api/posts` - Criar post (TEACHER, COORDINATOR, ADMIN)
 - `DELETE /api/posts/:id` - Excluir post (COORDINATOR, ADMIN)
-- `POST /api/posts/:id/emoji` - Adicionar/remover reação
 - `GET /api/posts/summary` - Resumo IA (TEACHER, COORDINATOR, ADMIN)
+
+### Reações
+- `GET /api/reactions/:postId` - Obter reações de um post
+- `POST /api/reactions/:postId` - Adicionar/remover reação (autenticado)
+- `DELETE /api/reactions/:postId` - Excluir reações de um post (COORDINATOR, ADMIN)
 
 ### Eventos Acadêmicos
 - `GET /api/academic-events` - Listar eventos
@@ -246,8 +261,8 @@ O projeto utiliza arquivos JSON para armazenamento temporário de dados. Para pr
 
 ## 🎨 Páginas do Frontend
 
-- **index.html** - Página inicial com calendário interativo
-- **eventos.html** - Exibição de posts e eventos acadêmicos
+- **inicio.html** - Página inicial com calendário interativo
+- **eventos.html** - Exibição de posts e eventos acadêmicos com sistema de reações
 - **mural.html** - Mural de links úteis
 - **sobre.html** - Informações sobre o projeto
 - **perfil.html** - Perfil do usuário
@@ -257,8 +272,21 @@ O projeto utiliza arquivos JSON para armazenamento temporário de dados. Para pr
 - Migração para banco de dados relacional (MySQL/PostgreSQL)
 - Implementação de WebSocket para chat em tempo real
 - Sistema de notificações push
-- Upload de arquivos para posts
-- Integração com calendário externo (Google Calendar)
+- Upload de imagens nos posts
+- Sistema de comentários nos posts
+- Filtro de eventos por data/categoria
+- Busca de eventos e links
+- Sistema de favoritos para posts e links
+- Perfil do usuário mais completo (bio, foto, etc.)
+- Histórico de atividades do usuário
+- Exportação de eventos para calendário (ICS)
+- Sistema de tags/categorias para posts
+- Chat/mensagens entre usuários
+- Sistema de aprovação de posts (moderação)
+- Analytics de engajamento
+- Integração com Google Calendar
+- Sistema de arquivos/documentos compartilhados
+- Enquete/polls nos posts
 - Aplicativo mobile (React Native)
 - Testes automatizados
 - CI/CD pipeline

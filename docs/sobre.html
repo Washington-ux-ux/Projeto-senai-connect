@@ -22,8 +22,15 @@
             </div>
 
             <div>
-                <img src="./assets/images/senai-connect.png" alt="Logo do senai connect">
+                <img src="" alt="Logo do senai connect" id="connect-logo">
             </div>
+            <script>
+                const theme = localStorage.getItem("theme") || "light";
+                const logoImg = document.getElementById("connect-logo");
+                if (logoImg) {
+                    logoImg.src = theme === "dark" ? "./assets/images/connectDark.png" : "./assets/images/senai-connect.png";
+                }
+            </script>
 
         </div>
         
@@ -45,7 +52,7 @@
     <section class="about-section">
         <div class="container">
             <h1>Sobre o SENAI Connect</h1>
-            
+
             <div class="about-intro">
                 <p>O <strong>SENAI Connect</strong> é uma plataforma de comunicação interna desenvolvida para facilitar a interação entre alunos, professores, coordenação e direção do SENAI.</p>
                 <p>Centralizamos avisos, eventos e informações importantes em um único ambiente digital, tornando a comunicação mais <strong>rápida, organizada e eficiente</strong>.</p>
@@ -54,36 +61,46 @@
             <!-- Funcionalidades Principais -->
             <div class="features">
                 <h2>✨ Funcionalidades</h2>
-                
+
                 <div class="features-grid">
                     <div class="feature-card">
-                        <h3>🔐 Sistema de Login</h3>
-                        <p>Autenticação segura com controle de permissões para diferentes tipos de usuários</p>
+                        <h3>🔐 Sistema de Autenticação</h3>
+                        <p>Login seguro com JWT, controle de sessão e permissões por roles (ADMIN, COORDINATOR, TEACHER, STUDENT)</p>
                     </div>
 
                     <div class="feature-card">
-                        <h3>📢 Eventos e Avisos</h3>
-                        <p>Publicação de avisos e eventos com categorias, imagens e gerenciamento de visibilidade</p>
+                        <h3>📢 Plataforma de Posts</h3>
+                        <p>Criação de posts por professores e coordenação, categorias (EVENT, INTERNSHIP, PRESENTATION, ANNOUNCEMENT), visibilidade controlada</p>
                     </div>
 
                     <div class="feature-card">
-                        <h3>📅 Calendário</h3>
-                        <p>Visualização de eventos em formato de calendário com indicação de dias com atividades</p>
+                        <h3>👍 Sistema de Reações</h3>
+                        <p>Reaja com múltiplos emojis (👍❤️😮🎉😂👎), só uma vez cada, toggle para remover, botões azuis quando ativos, persistência via API</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>📤 Compartilhamento</h3>
+                        <p>Compartilhe posts usando Web Share API ou copiando a URL, integração nativa com redes sociais</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>📅 Calendário Interativo</h3>
+                        <p>Visualização de eventos em formato de calendário, indicação de dias com atividades, navegação por meses</p>
                     </div>
 
                     <div class="feature-card">
                         <h3>🔗 Mural de Links</h3>
-                        <p>Organização de links úteis e recursos importantes para a comunidade</p>
+                        <p>Organização de links úteis, criação e edição por coordenação, interface em tabela com ações administrativas</p>
                     </div>
 
                     <div class="feature-card">
                         <h3>🌙 Tema Escuro</h3>
-                        <p>Interface moderna com opção de tema escuro para melhor experiência visual</p>
+                        <p>Interface moderna com tema escuro otimizado, logo adaptado com fundo transparente, transições suaves</p>
                     </div>
 
                     <div class="feature-card">
                         <h3>🌐 Interface Responsiva</h3>
-                        <p>Compatível com celulares, tablets e computadores</p>
+                        <p>Design responsivo compatível com celulares, tablets e computadores, adaptação automática de layout</p>
                     </div>
                 </div>
             </div>
@@ -94,41 +111,51 @@
                 <div class="categories-list">
                     <span class="category-badge">Empregabilidade</span>
                     <span class="category-badge">Evento</span>
-                    <span class="category-badge">Apresentação</span>
-                    <span class="category-badge">Aviso</span>
+                    <span class="category-badge">Comunicado</span>
                 </div>
             </div>
 
             <!-- Tipos de Usuários -->
             <div class="users-types">
                 <h2>👥 Tipos de Usuários</h2>
-                
+
                 <div class="users-table">
                     <div class="user-type">
-                        <h3>👤 Aluno</h3>
+                        <h3>👤 Aluno (STUDENT)</h3>
                         <ul>
-                            <li>✓ Visualizar eventos</li>
+                            <li>✓ Visualizar posts e eventos</li>
+                            <li>✓ Reagir com emojis</li>
+                            <li>✓ Acessar mural de links</li>
+                            <li>✓ Ver e editar perfil</li>
+                        </ul>
+                    </div>
+
+                    <div class="user-type">
+                        <h3>�‍🏫 Professor (TEACHER)</h3>
+                        <ul>
+                            <li>✓ Visualizar tudo</li>
+                            <li>✓ Reagir com emojis</li>
                             <li>✓ Acessar mural de links</li>
                             <li>✓ Ver perfil</li>
                         </ul>
                     </div>
 
                     <div class="user-type">
-                        <h3>👔 Coordenação</h3>
+                        <h3>👔 Coordenação (COORDINATOR)</h3>
                         <ul>
-                            <li>✓ Criar eventos</li>
-                            <li>✓ Editar eventos</li>
-                            <li>✓ Excluir eventos</li>
-                            <li>✓ Gerenciar usuários</li>
+                            <li>✓ Criar/editar/excluir eventos</li>
+                            <li>✓ Criar/editar/excluir links</li>
+                            <li>✓ Criar usuários</li>
+                            <li>✓ Controle total</li>
                         </ul>
                     </div>
 
                     <div class="user-type">
-                        <h3>⚙️ Administrador</h3>
+                        <h3>⚙️ Administrador (ADMIN)</h3>
                         <ul>
                             <li>✓ Controle total do sistema</li>
                             <li>✓ Gerenciamento de usuários</li>
-                            <li>✓ Configurações avançadas</li>
+                            <li>✓ Todas as permissões</li>
                         </ul>
                     </div>
                 </div>
@@ -140,15 +167,19 @@
                 <div class="benefits-grid">
                     <div class="benefit-item">
                         <h3>📦 Centralização</h3>
-                        <p>Todas as informações em um único lugar</p>
+                        <p>Todas as informações em um único lugar, fácil acesso</p>
                     </div>
                     <div class="benefit-item">
                         <h3>🚀 Facilidade de Uso</h3>
-                        <p>Interface intuitiva e moderna</p>
+                        <p>Interface intuitiva, moderna e amigável</p>
                     </div>
                     <div class="benefit-item">
                         <h3>📱 Acessibilidade</h3>
-                        <p>Acessível de qualquer dispositivo</p>
+                        <p>Acessível de qualquer dispositivo, a qualquer momento</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>🔒 Segurança</h3>
+                        <p>Autenticação segura, controle de acesso por roles</p>
                     </div>
                 </div>
             </div>
@@ -158,14 +189,33 @@
                 <h2>🎓 Público-Alvo</h2>
                 <p>O SENAI Connect é para toda a comunidade educativa:</p>
                 <ul class="audience-list">
-                    <li>👨‍🎓 Alunos em busca de informações</li>
-                    <li>👨‍🏫 Professores para organização</li>
-                    <li>👔 Coordenação para gestão</li>
-                    <li>⚙️ Administradores para controle</li>
+                    <li>👨‍🎓 Alunos em busca de informações e oportunidades</li>
+                    <li>👨‍🏫 Professores para organização e comunicação</li>
+                    <li>👔 Coordenação para gestão e controle</li>
+                    <li>⚙️ Administradores para manutenção do sistema</li>
                 </ul>
             </div>
 
-           
+            <!-- Tecnologias -->
+            <div class="technologies">
+                <h2>🛠️ Tecnologias Utilizadas</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <h3>Backend</h3>
+                        <p>Node.js, Express, TypeScript, JWT, bcrypt</p>
+                    </div>
+                    <div class="tech-item">
+                        <h3>Frontend</h3>
+                        <p>HTML5, CSS3, JavaScript, Font Awesome</p>
+                    </div>
+                    <div class="tech-item">
+                        <h3>Armazenamento</h3>
+                        <p>JSON (prototipagem), planejado: MySQL/PostgreSQL</p>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="cta">
                 <h2>Pronto para Começar?</h2>
                 <p>Entre na plataforma e comece a se conectar com a comunidade SENAI.</p>

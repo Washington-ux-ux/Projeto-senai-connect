@@ -22,8 +22,15 @@
             </div>
 
             <div>
-                <img src="./assets/images/senai-connect.png" alt="Logo do senai connect">
+                <img src="" alt="Logo do senai connect" id="connect-logo">
             </div>
+            <script>
+                const theme = localStorage.getItem("theme") || "light";
+                const logoImg = document.getElementById("connect-logo");
+                if (logoImg) {
+                    logoImg.src = theme === "dark" ? "./assets/images/connectDark.png" : "./assets/images/senai-connect.png";
+                }
+            </script>
 
         </div>
         
