@@ -77,18 +77,18 @@
 }
 
 .calendar-dates div:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     color: white;
     cursor: pointer;
 }
 
 .today {
-    background-color: var(--color-secondary) !important;
+    background-color: green !important;
     color: white;
 }
 
 .weekend {
-    background-color: #d4a5a5 !important;
+    background-color: #888888 !important;
     color: #8b0000;
 }
 
@@ -143,7 +143,7 @@ body.dark-mode .calendar-dates div {
 
 :root.dark-mode .calendar-dates div:hover,
 body.dark-mode .calendar-dates div:hover {
-    background-color: #4a9eff;
+    background-color: var(--color-secondary);
 }
 
 :root.dark-mode .weekend,

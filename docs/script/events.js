@@ -79,11 +79,8 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
     eventCard.className = "event-card";
 
     const dateToDisplay = event.eventDate || event.date;
-    const formattedDate = new Date(dateToDisplay).toLocaleDateString("pt-BR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
+    const dateParts = dateToDisplay.split('T')[0].split('-');
+    const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
 
     let deleteButton = "";
     let editButton = "";
@@ -282,7 +279,6 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
         e.preventDefault();
         const eventId = button.getAttribute("data-id");
 
-        // Abrir modal de confirmação usando a função do exclude.js
         if (typeof openDeleteConfirmModal === 'function') {
           openDeleteConfirmModal(eventId, "post", async (id, type) => {
             const token = localStorage.getItem("token");
