@@ -10,8 +10,8 @@ export const changePassword = async (req: Request, res: Response) => {
 }
 
 export const forgotPassword = async (req: Request, res: Response) => {
-    const { email, newPassword } = req.body
+    const { matricula, newPassword } = req.body
 
-    const response = await service.forgotPasswordService(email, newPassword)
+    const response = await service.forgotPasswordService(matricula, newPassword)
     return res.status(response.statusCode).json(response.body)
 }

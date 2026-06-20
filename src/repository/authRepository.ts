@@ -56,7 +56,7 @@ export const changePasswordRepository = async (userId: string, currentPassword: 
     }
 }
 
-export const forgotPasswordRepository = async (email: string, newPassword: string) => {
+export const forgotPasswordRepository = async (matricula: string, newPassword: string) => {
     try {
         if (!fs.existsSync(usersFilePath)) {
             return {
@@ -68,12 +68,12 @@ export const forgotPasswordRepository = async (email: string, newPassword: strin
         const usersData = fs.readFileSync(usersFilePath, 'utf-8')
         const users = JSON.parse(usersData)
 
-        const userIndex = users.findIndex((u: any) => u.email === email)
+        const userIndex = users.findIndex((u: any) => u.registration === matricula)
 
         if (userIndex === -1) {
             return {
                 statusCode: 404,
-                body: { error: 'Email não encontrado' }
+                body: { error: 'Matrícula não encontrada' }
             }
         }
 

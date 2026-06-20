@@ -13,7 +13,7 @@ export const RegisterUser = async (req: Request, res: Response) => {
 }
 
 export const LoginUser = async (req: Request, res: Response) => {
-    const { email, password } = req.body
-    const response = await service.LoginUserService(email, password)
+    const { matricula, password } = req.body
+    const response = await service.LoginUserService(matricula, password)
     return res.status(response.statusCode).json(response.body)
 }

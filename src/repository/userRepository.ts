@@ -58,9 +58,9 @@ export const RegisterUser = async (userData: any) => {
     return newUser
 }
 
-export const LoginUser = async (email: string, password: string) => {
+export const LoginUser = async (matricula: string, password: string) => {
     const users = readUserJson();
-    const user: any = users.find((u: any) => u.email === email)
+    const user: any = users.find((u: any) => u.registration === matricula)
     if (!user) {
         throw new Error('User not found')
     }
@@ -72,6 +72,7 @@ export const LoginUser = async (email: string, password: string) => {
         password: user.password,
         cpf: user.cpf,
         registration: user.registration,
+        matricula: user.registration,
         role: user.role,
         avatarUrl: user.avatarUrl,
         course: user.course,

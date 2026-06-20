@@ -30,9 +30,9 @@ export const RegisterUserService = async (userData: any) => {
     }
 }
 
-export const LoginUserService = async (email: string, password: string) => {
+export const LoginUserService = async (matricula: string, password: string) => {
     try {
-        const user = await repository.LoginUser(email, password)
+        const user = await repository.LoginUser(matricula, password)
         if (!user) {
             return await httphelper.badRequest({ message: 'User not found' })
         }
@@ -43,16 +43,17 @@ export const LoginUserService = async (email: string, password: string) => {
         }
 
         const token = auth.generateToken(user.id, user.email, user.role)
-        return await httphelper.ok({ 
+        return await httphelper.ok({
             user: {
                 id: user.id,
                 name: user.name,
                 email: user.email,
                 role: user.role,
                 avatarUrl: user.avatarUrl,
-                course: user.course
+                course: user.course,
+                matricula: user.matricula
             },
-            token 
+            token
         })
     } catch (error) {
         return await httphelper.badRequest()

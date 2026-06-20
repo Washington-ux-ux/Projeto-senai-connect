@@ -5,7 +5,7 @@ export const changePasswordService = async (userId: string, currentPassword: str
     return response
 }
 
-export const forgotPasswordService = async (email: string, newPassword: string) => {
-    const response = await repository.forgotPasswordRepository(email, newPassword)
+export const forgotPasswordService = async (matricula: string, newPassword: string) => {
+    const response = await repository.forgotPasswordRepository(matricula, newPassword)
     return response
 }

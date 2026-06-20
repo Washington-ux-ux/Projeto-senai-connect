@@ -1,7 +1,7 @@
 document.getElementById('forgot-password-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
+    const matricula = document.getElementById('matricula').value;
     const newPassword = document.getElementById('new-password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
     const messageDiv = document.getElementById('forgot-password-message');
@@ -30,7 +30,7 @@ document.getElementById('forgot-password-form').addEventListener('submit', async
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, newPassword })
+            body: JSON.stringify({ matricula, newPassword })
         });
 
         const data = await response.json();

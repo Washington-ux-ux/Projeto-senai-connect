@@ -10,7 +10,7 @@ if (loginForm) {
     loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
+        const matricula = document.getElementById("matricula").value;
         const password = document.getElementById("password").value;
 
         try {
@@ -19,7 +19,7 @@ if (loginForm) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ matricula, password }),
             });
 
             const data = await response.json();
