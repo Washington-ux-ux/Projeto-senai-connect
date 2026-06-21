@@ -3,6 +3,127 @@
 /* fontes */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+.banner {
+  background: linear-gradient(135deg, #004a99 0%, #0066cc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.banner-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.banner-logo span {
+  background: #e84910;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.banner-connect {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 2px;
+}
+
+.banner-connect em {
+  color: #ff6b35;
+  font-style: normal;
+}
+
+.nav-principal {
+  background: linear-gradient(90deg, #003373 0%, #004a99 100%);
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 4px;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: white;
+  border-bottom-color: #e84910;
+  background: rgba(255,255,255,0.05);
+}
+
+.theme-toggle {
+  margin-left: auto;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  padding: 6px 14px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.page-header {
+  background: linear-gradient(135deg, #004a99 0%, #0066cc 60%, #4a9eff 100%);
+  color: white;
+  text-align: center;
+  padding: 60px 20px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #ecf0f6;
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.page-header h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
 
 /* Calendário */
 .calendar-container {

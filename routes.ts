@@ -9,48 +9,48 @@ import { authenticate, authorize } from "./src/middlewares/authMiddleware";
 
 const router = Router();
 
-// Public User routes
+// rotas publicas de user
 router.post('/user/register', userController.RegisterUser);
 router.post('/user/login', userController.LoginUser);
 
-// Protected User routes
+// rotas protegidas de user
 router.get('/user/me', authenticate, userController.getMyUser);
 
-// Public Posts routes (read-only)
+// rotas publicas de posts (leitura)
 router.get('/posts', postsController.getPosts);
 router.get('/posts/:id', postsController.getPostsById);
 
-// Protected Posts routes (write operations)
+// rotas protegidas de posts (escrita)
 router.get('/posts/summary', authenticate, authorize('TEACHER', 'COORDINATOR', 'ADMIN'), postsController.summaryIAPosts);
 router.post('/posts', authenticate, authorize('TEACHER', 'COORDINATOR', 'ADMIN'), postsController.createPosts);
 router.put('/posts/:id', authenticate, authorize('TEACHER', 'COORDINATOR', 'ADMIN'), postsController.updatePosts);
 router.delete('/posts/:id', authenticate, authorize('COORDINATOR', 'ADMIN'), postsController.deletePosts);
 router.post('/posts/:id/emoji', authenticate, postsController.emojiPosts);
 
-// Public AcademicEvents Routes (read-only)
+// rotas publicas de academic events (leitura)
 router.get('/academic-events', academicEventsController.getAcademicEvents);
 router.get('/academic-events/date/:calendar', academicEventsController.getAcademicEventByCalendar);
 
-// Protected AcademicEvents Routes (write operations)
+// rotas protegidas de academic events (escrita)
 router.post('/academic-events', authenticate, authorize('COORDINATOR', 'ADMIN'), academicEventsController.createAcademicEvent);
 router.delete('/academic-events/:id', authenticate, authorize('COORDINATOR', 'ADMIN'), academicEventsController.deleteAcademicEvent);
 
-// Public Links Routes (read-only)
+// rotas publicas de links (leitura)
 router.get('/links', linksController.getLinks);
 
-// Protected Links Routes (write operations)
+// rotas protegidas de links (escrita)
 router.post('/links', authenticate, authorize('COORDINATOR', 'ADMIN'), linksController.createLink);
 router.put('/links/:id', authenticate, authorize('COORDINATOR', 'ADMIN'), linksController.updateLink);
 router.delete('/links/:id', authenticate, authorize('COORDINATOR', 'ADMIN'), linksController.deleteLink);
 
-// Public Reactions Routes (read-only)
+// rotas publicas de reactions (leitura)
 router.get('/reactions/:postId', reactionsController.getReactionsByPostId);
 
-// Protected Reactions Routes (write operations)
+// rotas protegidas de reactions (escrita)
 router.post('/reactions/:postId', authenticate, reactionsController.createOrUpdateReaction);
 router.delete('/reactions/:postId', authenticate, authorize('COORDINATOR', 'ADMIN'), reactionsController.deleteReactionsByPostId);
 
-// Auth Routes
+// Rotas de autenticação
 router.post('/auth/change-password', authenticate, authController.changePassword);
 router.post('/auth/forgot-password', authController.forgotPassword);
 

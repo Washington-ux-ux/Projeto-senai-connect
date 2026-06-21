@@ -17,34 +17,25 @@
     <div class="container">
 
         <div class="banner">
-            <div>
-                <img src="./assets/images/Senai.png" alt="Logo do senai" class="img1">
-            </div>
-
-            <div>
-                <img src="" alt="Logo do senai connect" id="connect-logo">
-            </div>
-            <script>
-                const theme = localStorage.getItem("theme") || "light";
-                const logoImg = document.getElementById("connect-logo");
-                if (logoImg) {
-                    logoImg.src = theme === "dark" ? "./assets/images/connectDark.png" : "./assets/images/senai-connect.png";
-                }
-            </script>
-
+          <div class="banner-logo">
+            <span>SENAI</span> Areias
+          </div>
+          <div class="banner-connect">
+            SENAI <em>Connect</em>
+          </div>
         </div>
-        
-        <nav>
-            <ul>
-                <div id="perfil-placeholder"></div>
-                <li><a href="./inicio.html">Início</a></li>
-                <li><a href="./eventos.html">Eventos</a></li>
-                <li><a href="./mural.html">Mural de links</a></li>
-                <li><a href="./sobre.html">Sobre</a></li>
-                <i class="fa-solid fa-sun"></i>
-                <i class="fa-solid fa-moon"></i>
-                <div id="login-container"></div>
-            </ul>
+
+        <nav class="nav-principal">
+          <div class="nav-inner">
+            <div id="perfil-placeholder"></div>
+            <a href="./inicio.html" class="nav-link">Início</a>
+            <a href="./eventos.html" class="nav-link">Eventos</a>
+            <a href="./mural.html" class="nav-link">Mural de Links</a>
+            <a href="./sobre.html" class="nav-link">Sobre</a>
+            <i class="fa-solid fa-sun"></i>
+            <i class="fa-solid fa-moon"></i>
+            <div id="login-container"></div>
+          </div>
         </nav>
     </div>
 
