@@ -115,7 +115,9 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
       categoryTranslations[event.category] || event.category;
 
     eventCard.innerHTML = `
-            <img src="${imageSrc}" alt="${event.title}">
+            <div class="event-image-wrapper">
+                <img src="${imageSrc}" alt="${event.title}">
+            </div>
             <h2>${event.title}</h2>
             <hr>
             <p>${event.description}</p>

@@ -16,7 +16,7 @@
   --color-white: #ffffff;
 }
 
-/* Tema Escuro - Prevenir flash */
+/* Tema Escuro - Prevenir flash ao mudar a pagina no modo escuro */
 html.dark-mode body {
   background-color: #1a1a2e !important;
   color: #e0e0e0 !important;

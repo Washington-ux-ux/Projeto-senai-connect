@@ -72,5 +72,43 @@
     "eventDate": "2026-06-15",
     "location": "SENAI Areias",
     "createdAt": "2026-06-12T01:04:24.894Z"
+  },
+  {
+    "id": "p1782231002952-j0l6kttag",
+    "title": "fgfg",
+    "summary": "Por motivos de muitas chuvas, no dia 06/06/2026, não haverá aula presencialmente. Os professores passaram tarefas online pelo Classroom.",
+    "category": "EVENT",
+    "visibility": [
+      "ALL"
+    ],
+    "author": {},
+    "reactions": {
+      "like": 0,
+      "claps": 0
+    },
+    "attachmentUrl": "",
+    "imageUrl": "http://localhost:3000/assets/uploads/image-1782231002951-w942tc93s.png",
+    "eventDate": "2026-06-23",
+    "location": "SENAI Areias",
+    "createdAt": "2026-06-23T16:10:02.952Z"
+  },
+  {
+    "id": "p1782231036442-ydy28v3b6",
+    "title": "vbvbvb",
+    "summary": "cbcbcb",
+    "category": "EVENT",
+    "visibility": [
+      "ALL"
+    ],
+    "author": {},
+    "reactions": {
+      "like": 0,
+      "claps": 0
+    },
+    "attachmentUrl": "",
+    "imageUrl": "./assets/uploads/image-1782231036440-ygydggdeu.png",
+    "eventDate": "2026-06-23",
+    "location": "SENAI Areias",
+    "createdAt": "2026-06-23T16:10:36.442Z"
   }
 ]

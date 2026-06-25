@@ -324,6 +324,16 @@ function showLoggedInUser() {
 
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("post-date").value = today;
+
+      const customImageUpload = document.getElementById("custom-image-upload");
+      if (customImageUpload && window.setupImageUpload) {
+        window.setupImageUpload(customImageUpload, {
+          onImageProcessed: function(dataUrl, dimensions) {
+            console.log('Imagem customizada processada:', dimensions);
+            customImageUpload.dataset.processedImage = dataUrl;
+          }
+        });
+      }
     });
 
     btnCreateUser.addEventListener("click", (e) => {
