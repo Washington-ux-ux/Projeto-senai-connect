@@ -1,5 +1,3 @@
-// Script para processar e posicionar imagens para cobrir a tela
-
 function processImageForCover(imgElement, options = {}) {
     const {
         container = document.body,
@@ -37,32 +35,27 @@ function processImageForCover(imgElement, options = {}) {
             
             imgElement.style.width = '100%';
             imgElement.style.objectPosition = 'center';
-            
-            // Calcular altura dinâmica baseada na proporção da imagem
+
             const imgRatio = imgWidth / imgHeight;
             const containerWidth = container.clientWidth || imgElement.parentElement.clientWidth;
             
             let calculatedHeight;
             
             if (isHorizontal) {
-                // Imagem horizontal - altura baseada na proporção
                 calculatedHeight = containerWidth / imgRatio;
                 imgElement.style.height = `${calculatedHeight}px`;
                 imgElement.style.objectFit = 'contain';
                 imgElement.style.maxHeight = '300px';
             } else if (isVertical) {
-                // Imagem vertical - altura fixa para não ficar muito alta
                 calculatedHeight = Math.min(containerWidth / imgRatio, 300);
                 imgElement.style.height = `${calculatedHeight}px`;
                 imgElement.style.objectFit = 'cover';
             } else {
-                // Imagem quadrada - altura baseada na largura
                 calculatedHeight = containerWidth;
                 imgElement.style.height = `${calculatedHeight}px`;
                 imgElement.style.objectFit = 'cover';
             }
             
-            // Limitar altura mínima e máxima
             if (calculatedHeight < 120) {
                 imgElement.style.height = '120px';
                 imgElement.style.objectFit = 'cover';
@@ -217,11 +210,61 @@ window.applyCoverToImages = applyCoverToImages;
 
 document.addEventListener('DOMContentLoaded', function() {
     applyCoverToImages('event-image');
-    
-    // Processar imagens dos cards de evento
+
     const eventImages = document.querySelectorAll('.event-card img');
     eventImages.forEach(img => {
-        processImageForCover(img, { useObjectFit: true, preferContain: false });
+        const imgObj = new Image();
+        imgObj.crossOrigin = 'anonymous';
+        
+        imgObj.onload = function() {
+            const imgWidth = imgObj.naturalWidth;
+            const imgHeight = imgObj.naturalHeight;
+            const wrapper = img.closest('.event-image-wrapper');
+            
+            if (wrapper) {
+                const containerWidth = wrapper.clientWidth;
+                const imgRatio = imgWidth / imgHeight;
+                
+                let idealHeight;
+                let objectFitValue;
+                
+                if (imgWidth > imgHeight) {
+                    idealHeight = Math.round(containerWidth / imgRatio);
+                    objectFitValue = 'cover';
+
+                    if (idealHeight > 400) {
+                        idealHeight = 400;
+                    }
+                    if (idealHeight < 150) {
+                        idealHeight = 150;
+                    }
+                } else if (imgHeight > imgWidth) {
+                    idealHeight = Math.round(Math.min(containerWidth / imgRatio, 400));
+                    objectFitValue = 'cover';
+
+                    if (idealHeight < 150) {
+                        idealHeight = 150;
+                    }
+                } else {
+                    idealHeight = containerWidth;
+                    objectFitValue = 'cover';
+                    
+                    if (idealHeight > 400) {
+                        idealHeight = 400;
+                    }
+                    if (idealHeight < 150) {
+                        idealHeight = 150;
+                    }
+                }
+                
+                wrapper.style.height = `${idealHeight}px`;
+                img.style.objectFit = objectFitValue;
+                
+                console.log(`Imagem ${imgWidth}x${imgHeight}: Altura definida como ${idealHeight}px, object-fit: ${objectFitValue}`);
+            }
+        };
+        
+        imgObj.src = img.src;
     });
     
     const customUpload = document.getElementById('custom-image-upload');

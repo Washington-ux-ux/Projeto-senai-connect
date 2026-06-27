@@ -34,8 +34,8 @@ function showLoggedInUser() {
 
   if (hasAdminPrivileges) {
     dropdownContent = `
-            <a href="#" id="btn-create-post">Criar Post/Evento</a>
-            <a href="#" id="btn-create-user">Registrar Novo Usuário</a>
+            <a href="#" id="btn-create-post">Novo Comunicado</a>
+            <a href="#" id="btn-create-user">Novo Usuário</a>
             <a href="#" id="btn-logout">Sair</a>
         `;
   } else {
@@ -54,12 +54,11 @@ function showLoggedInUser() {
                 ${dropdownContent}
             </div>
         </div>
-        
-        <!-- Modal para criar post/evento -->
+
         <div id="create-post-modal" class="modal-overlay">
             <div class="modal-box">
                 <span id="btn-create-post-close" class="close-btn">&times;</span>
-                <h2>Criar Post/Evento</h2>
+                <h2>Novo comunicado</h2>
                 <form id="create-post-form">
                     <div class="input-group">
                         <label>Selecione Layout:</label>
