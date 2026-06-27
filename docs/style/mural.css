@@ -132,11 +132,13 @@ body.dark-mode .page-header::after {
   font-weight: 700;
   margin-bottom: 12px;
   text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  color: var(--primary-color);
 }
 
 .page-header p {
   font-size: 1.1rem;
   opacity: 0.9;
+  color: var(--primary-color);
 }
 
 .image-cover {
@@ -213,7 +215,7 @@ tr:hover {
 /* Tema Escuro */
 :root.dark-mode h1,
 body.dark-mode h1 {
-  color: #4a9eff;
+  color: var(--primary-color);
 }
 
 :root.dark-mode p,

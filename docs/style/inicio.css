@@ -12,11 +12,6 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-:root.dark-mode .banner,
-body.dark-mode .banner {
-  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
-}
-
 .banner-logo {
   display: flex;
   align-items: center;
@@ -46,6 +41,11 @@ body.dark-mode .banner {
 .banner-connect em {
   color: #ff6b35;
   font-style: normal;
+}
+
+:root.dark-mode .banner,
+body.dark-mode .banner {
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
 }
 
 .nav-principal {
@@ -128,7 +128,7 @@ body.dark-mode .page-header::after {
   left: 0;
   right: 0;
   height: 60px;
-  background: #ecf0f6;
+  background: var(--color-background);
   clip-path: ellipse(55% 100% at 50% 100%);
 }
 
