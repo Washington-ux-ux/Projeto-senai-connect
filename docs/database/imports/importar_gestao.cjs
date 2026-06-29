@@ -22,7 +22,7 @@ async function importarGestao() {
         await client.connect();
         console.log('Conectado ao PostgreSQL.');
 
-        const workbook = xlsx.readFile(path.resolve(process.cwd(), 'src', 'data', 'Gestao.xlsx'));
+        const workbook = xlsx.readFile(path.resolve(process.cwd(), 'docs', 'database', 'xlsx', 'Gestao.xlsx'));
 
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];

@@ -100,9 +100,9 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
     ) {
       imageSrc = imageUrl;
     } else if (imageUrl.startsWith("./assets/uploads/")) {
-      imageSrc = imageUrl;
+      imageSrc = `../../assets/uploads/${imageUrl.replace("./assets/uploads/", "")}`;
     } else {
-      imageSrc = `./assets/images/${imageUrl}`;
+      imageSrc = `../../assets/images/${imageUrl}`;
     }
 
     const categoryTranslations = {
@@ -257,10 +257,12 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
                   post.imageUrl.startsWith("data:image") ||
                   post.imageUrl.startsWith("./assets/uploads/")
                 ) {
-                  customImg.src = post.imageUrl;
+                  customImg.src = post.imageUrl.startsWith("./assets/uploads/") 
+                    ? `../../assets/uploads/${post.imageUrl.replace("./assets/uploads/", "")}`
+                    : post.imageUrl;
                   customImg.style.opacity = "1";
                 } else {
-                  customImg.src = `./assets/images/${post.imageUrl}`;
+                  customImg.src = `../../assets/images/${post.imageUrl}`;
                   customImg.style.opacity = "1";
                 }
               }

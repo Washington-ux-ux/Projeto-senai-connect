@@ -75,5 +75,12 @@
     "description": "Mande suas duvidas.",
     "url": "https://www.pe.senai.br/fale-conosco/",
     "createdAt": "2026-06-11T23:18:41.785Z"
+  },
+  {
+    "id": "12",
+    "name": "Futuro Digital",
+    "description": "Saiba tudo sobre os cursos SENAI PE com turmas abertas.",
+    "url": "https://www.futuro.digital/senai-pe",
+    "createdAt": "2026-06-29T21:00:23.489Z"
   }
 ]

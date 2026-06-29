@@ -93,10 +93,10 @@
     "createdAt": "2026-06-23T16:10:02.952Z"
   },
   {
-    "id": "p1782231036442-ydy28v3b6",
-    "title": "vbvbvb",
-    "summary": "cbcbcb",
-    "category": "EVENT",
+    "id": "p1782766971281-ikm05uikr",
+    "title": "Reunião dos professores",
+    "summary": "No dia 01 de Julho, Haverá reunião dos professores, portanto não haverá aula.",
+    "category": "ANNOUNCEMENT",
     "visibility": [
       "ALL"
     ],
@@ -106,9 +106,9 @@
       "claps": 0
     },
     "attachmentUrl": "",
-    "imageUrl": "./assets/uploads/image-1782231036440-ygydggdeu.png",
-    "eventDate": "2026-06-23",
+    "imageUrl": "./assets/uploads/image-1782767295753-qpk9tb1dk.png",
+    "eventDate": "2026-07-01",
     "location": "SENAI Areias",
-    "createdAt": "2026-06-23T16:10:36.442Z"
+    "createdAt": "2026-06-29T21:02:51.281Z"
   }
 ]

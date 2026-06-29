@@ -15,7 +15,7 @@ function showLoginForm() {
   const btnOpen = document.getElementById("btn-login-open");
 
   btnOpen.addEventListener("click", () => {
-    window.location.href = "./index.html";
+    window.location.href = "../../index.html";
   });
 }
 
@@ -65,22 +65,22 @@ function showLoggedInUser() {
                         <div class="image-selector">
                             <label class="image-checkbox">
                                 <input type="checkbox" name="post-image" value="aviso1.png" checked>
-                                <img src="./assets/images/aviso1.png" alt="Aviso 1">
+                                <img src="../../assets/images/aviso1.png" alt="Aviso 1">
                                 <span>Aviso 1</span>
                             </label>
                             <label class="image-checkbox">
                                 <input type="checkbox" name="post-image" value="aviso2.png">
-                                <img src="./assets/images/aviso2.png" alt="Aviso 2">
+                                <img src="../../assets/images/aviso2.png" alt="Aviso 2">
                                 <span>Aviso 2</span>
                             </label>
                             <label class="image-checkbox">
                                 <input type="checkbox" name="post-image" value="aviso3.png">
-                                <img src="./assets/images/aviso3.png" alt="Aviso 3">
+                                <img src="../../assets/images/aviso3.png" alt="Aviso 3">
                                 <span>Aviso 3</span>
                             </label>
                             <label class="image-checkbox">
                                 <input type="checkbox" name="post-image" value="custom">
-                                <img src="./assets/images/aviso1.png" alt="Imagem própria" style="opacity: 0.5;">
+                                <img src="../../assets/images/aviso1.png" alt="Imagem própria" style="opacity: 0.5;">
                                 <span>Imagem própria</span>
                             </label>
                         </div>
@@ -236,22 +236,22 @@ function showLoggedInUser() {
                         <div class="image-selector">
                             <label class="image-checkbox">
                                 <input type="checkbox" name="edit-post-image" value="aviso1.png">
-                                <img src="./assets/images/aviso1.png" alt="Aviso 1">
+                                <img src="../../assets/images/aviso1.png" alt="Aviso 1">
                                 <span>Aviso 1</span>
                             </label>
                             <label class="image-checkbox">
                                 <input type="checkbox" name="edit-post-image" value="aviso2.png">
-                                <img src="./assets/images/aviso2.png" alt="Aviso 2">
+                                <img src="../../assets/images/aviso2.png" alt="Aviso 2">
                                 <span>Aviso 2</span>
                             </label>
                             <label class="image-checkbox">
                                 <input type="checkbox" name="edit-post-image" value="aviso3.png">
-                                <img src="./assets/images/aviso3.png" alt="Aviso 3">
+                                <img src="../../assets/images/aviso3.png" alt="Aviso 3">
                                 <span>Aviso 3</span>
                             </label>
                             <label class="image-checkbox">
                                 <input type="checkbox" name="edit-post-image" value="custom">
-                                <img src="./assets/images/aviso1.png" alt="Imagem própria" style="opacity: 0.5;">
+                                <img src="../../assets/images/aviso1.png" alt="Imagem própria" style="opacity: 0.5;">
                                 <span>Imagem própria</span>
                             </label>
                         </div>
@@ -512,7 +512,7 @@ function showLoggedInUser() {
           
           const customCheckbox = document.querySelector('input[name="edit-post-image"][value="custom"]');
           const customImg = customCheckbox.parentElement.querySelector('img');
-          customImg.src = './assets/images/aviso1.png';
+          customImg.src = '../../assets/images/aviso1.png';
           customImg.style.opacity = '0.5';
           
           alert('Post atualizado com sucesso!');
@@ -712,7 +712,7 @@ function showLoggedInUser() {
 
           const customCheckbox = document.querySelector('input[name="post-image"][value="custom"]');
           const customImg = customCheckbox.parentElement.querySelector('img');
-          customImg.src = './assets/images/aviso1.png';
+          customImg.src = '../../assets/images/aviso1.png';
           customImg.style.opacity = '0.5';
           
           alert("Post/Evento criado com sucesso!");

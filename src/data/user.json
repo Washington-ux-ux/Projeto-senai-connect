@@ -100,5 +100,19 @@
     "gender": "Masculino",
     "birthdate": "2002-03-20",
     "createdAt": "2026-06-02T21:51:01.759Z"
+  },
+  {
+    "id": "9",
+    "name": "Purrely",
+    "email": "purrely@hotmail.com",
+    "password": "$2b$10$WZN8AjltgQDuBuj0sVybkOoFZWKBNUfnFzCbkd0NXO2TXe2cONViO",
+    "cpf": "000000000",
+    "registration": "02",
+    "role": "COORDINATOR",
+    "avatarUrl": "",
+    "course": "",
+    "gender": "Masculino",
+    "birthdate": "",
+    "createdAt": "2026-06-29T21:09:55.713Z"
   }
 ]

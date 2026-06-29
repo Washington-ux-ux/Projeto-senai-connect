@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senai Connect - Comunicados Senai Areias</title>
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/eventos.css">
-    <link rel="stylesheet" href="./style/profile.css">
-    <link rel="stylesheet" href="./style/footer.css">
+    <title>Senai Connect - Mural de Links</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/mural.css">
+    <link rel="stylesheet" href="../../style/profile.css">
+    <link rel="stylesheet" href="../../style/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
-    <script src="./script/theme-init.js"></script>
-    <script src="./script/image-cover.js"></script>
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    <script src="../../script/theme-init.js"></script>
+    <script src="../../script/image-cover.js"></script>
 </head>
 <body>
 
@@ -40,26 +40,76 @@
         </nav>
 
         <header class="page-header">
-          <h1>Eventos</h1>
-          <p>Acompanhe os eventos e comunicados do Senai Areias</p>
+          <h1>Mural de Links</h1>
+          <p>Bem-vindo ao Mural de Links do Senai Areias! Aqui você pode encontrar os links relacionados ao Senai Areias.</p>
         </header>
+        
+        <button id="btn-add-link" class="btn-add-link" style="display: none;">+ Adicionar Novo Link</button>
 
-        <div class="events-container">
+        <table id="links-table">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Link</th>
+                <th>Ações</th>
+            </tr>
+        </table>
+
+        <div id="pagination" class="pagination"></div>
+
+        <div id="add-link-modal" class="modal-overlay">
+            <div class="modal-box">
+                <span id="btn-add-link-close" class="close-btn">&times;</span>
+                <h2>Adicionar Novo Link</h2>
+                <form id="add-link-form">
+                    <div class="input-group">
+                        <label>Nome do link:</label>
+                        <input type="text" id="link-name" placeholder="Nome do link" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Descrição:</label>
+                        <input type="text" id="link-description" placeholder="Descrição" required>
+                    </div>
+                    <div class="input-group">
+                        <label>URL do link:</label>
+                        <input type="url" id="link-url" placeholder="URL do link" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Adicionar</button>
+                </form>
+                <p id="add-link-error" class="error-message"></p>
+            </div>
         </div>
 
-        
-        
+        <div id="edit-link-modal" class="modal-overlay">
+            <div class="modal-box">
+                <span id="btn-edit-link-close" class="close-btn">&times;</span>
+                <h2>Editar Link</h2>
+                <form id="edit-link-form">
+                    <input type="hidden" id="edit-link-id">
+                    <div class="input-group">
+                        <label>Nome do link:</label>
+                        <input type="text" id="edit-link-name" placeholder="Nome do link" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Descrição:</label>
+                        <input type="text" id="edit-link-description" placeholder="Descrição" required>
+                    </div>
+                    <div class="input-group">
+                        <label>URL do link:</label>
+                        <input type="url" id="edit-link-url" placeholder="URL do link" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Salvar</button>
+                </form>
+                <p id="edit-link-error" class="error-message"></p>
+            </div>
+        </div>
 
 
 
 
 
-
-
-
-
-
-
+       
 
     </div>
 
@@ -107,11 +157,10 @@
         </div>
     </footer>
 
-     <script src="./script/login.js"></script>
-     <script src="./script/dayNightMode.js"></script>
-     <script src="./script/profile.js"></script>
-     <script src="./script/events.js"></script>
-     <script src="./script/reactions.js"></script>
-     <script src="./script/exclude.js"></script>
+    <script src="../../script/login.js"></script>
+    <script src="../../script/dayNightMode.js"></script>
+    <script src="../../script/profile.js"></script>
+    <script src="../../script/mural.js"></script>
+    <script src="../../script/exclude.js"></script>
 </body>
 </html>

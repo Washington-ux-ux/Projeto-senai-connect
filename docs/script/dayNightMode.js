@@ -2,8 +2,8 @@ const sunIcon = document.querySelector(".fa-sun");
 const moonIcon = document.querySelector(".fa-moon");
 const body = document.body;
 const html = document.documentElement;
-const lightLogoSrc = "./assets/images/senai-connect.png";
-const darkLogoSrc = "./assets/images/connectDark.png";
+const lightLogoSrc = "../../assets/images/senai-connect.png";
+const darkLogoSrc = "../../assets/images/connectDark.png";
 const currentTheme = localStorage.getItem("theme") || "light";
 
 function getConnectLogo() {

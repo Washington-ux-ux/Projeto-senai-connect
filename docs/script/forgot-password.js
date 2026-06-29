@@ -42,7 +42,7 @@ document.getElementById('forgot-password-form').addEventListener('submit', async
             messageDiv.textContent = data.message || 'Senha recuperada com sucesso!';
             document.getElementById('forgot-password-form').reset();
             setTimeout(() => {
-                window.location.href = './index.html';
+                window.location.href = '../../index.html';
             }, 2000);
         } else {
             messageDiv.style.color = '#ff4757';

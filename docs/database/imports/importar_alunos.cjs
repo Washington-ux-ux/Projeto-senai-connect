@@ -50,7 +50,7 @@ async function importarPlanilha() {
         }
         console.log('Colunas detectadas via information_schema:', tableCols);
 
-        const workbook = xlsx.readFile(path.resolve(process.cwd(), 'src', 'data', 'alunos.xlsx'));
+        const workbook = xlsx.readFile(path.resolve(process.cwd(), 'docs', 'database', 'xlsx', 'alunos.xlsx'));
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const dados = xlsx.utils.sheet_to_json(worksheet);

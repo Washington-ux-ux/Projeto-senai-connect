@@ -1,6 +1,6 @@
 const token = localStorage.getItem("token");
 if (token) {
-    window.location.href = "./inicio.html";
+    window.location.href = "./html/pages/inicio.html";
 }
 
 const loginForm = document.getElementById("login-form");
@@ -28,7 +28,7 @@ if (loginForm) {
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
 
-                window.location.href = "./inicio.html";
+                window.location.href = "./html/pages/inicio.html";
             } else {
                 loginError.textContent = data.message || "Email ou senha incorretos";
                 loginError.style.display = "block";

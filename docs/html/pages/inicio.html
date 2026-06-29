@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senai Connect - Mural de Links</title>
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/mural.css">
-    <link rel="stylesheet" href="./style/profile.css">
-    <link rel="stylesheet" href="./style/footer.css">
+    <title>Senai Connect - Plataforma de comunicação</title>
+    <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/inicio.css">
+    <link rel="stylesheet" href="../../style/profile.css">
+    <link rel="stylesheet" href="../../style/footer.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
-    <script src="./script/theme-init.js"></script>
-    <script src="./script/image-cover.js"></script>
+    <script src="../../script/theme-init.js"></script>
+    <script src="../../script/image-cover.js"></script>
 </head>
 <body>
 
@@ -40,80 +40,67 @@
         </nav>
 
         <header class="page-header">
-          <h1>Mural de Links</h1>
-          <p>Bem-vindo ao Mural de Links do Senai Areias! Aqui você pode encontrar os links relacionados ao Senai Areias.</p>
+          <h1>Bem-vindo ao Senai Connect</h1>
+          <p>A plataforma de comunicação para alunos e professores do Senai</p>
         </header>
-        
-        <button id="btn-add-link" class="btn-add-link" style="display: none;">+ Adicionar Novo Link</button>
 
-        <table id="links-table">
-            <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Link</th>
-                <th>Ações</th>
-            </tr>
-        </table>
+        <div class="calendar-container">
+            <div class="calendar">
 
-        <div id="pagination" class="pagination"></div>
+                <div class="calendar-header">
+                    <button id="prevMonth">◀</button>
 
-        <div id="add-link-modal" class="modal-overlay">
-            <div class="modal-box">
-                <span id="btn-add-link-close" class="close-btn">&times;</span>
-                <h2>Adicionar Novo Link</h2>
-                <form id="add-link-form">
-                    <div class="input-group">
-                        <label>Nome do link:</label>
-                        <input type="text" id="link-name" placeholder="Nome do link" required>
+                    <h2 id="monthYear"></h2>
+
+                    <button id="nextMonth">▶</button>
+                </div>
+
+                <div class="calendar-days">
+                    <div>Dom</div>
+                    <div>Seg</div>
+                    <div>Ter</div>
+                    <div>Qua</div>
+                    <div>Qui</div>
+                    <div>Sex</div>
+                    <div>Sáb</div>
+                </div>
+
+                <div class="calendar-dates" id="calendarDates"></div>
+
+                
+            </div>
+
+            <div class="calendar-legend">
+                <h3>Legenda</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color today"></div>
+                        <span>Hoje</span>
                     </div>
-                    <div class="input-group">
-                        <label>Descrição:</label>
-                        <input type="text" id="link-description" placeholder="Descrição" required>
+                    <div class="legend-item">
+                        <div class="legend-color normal-day"></div>
+                        <span>Dia Normal</span>
                     </div>
-                    <div class="input-group">
-                        <label>URL do link:</label>
-                        <input type="url" id="link-url" placeholder="URL do link" required>
+                    <div class="legend-item">
+                        <div class="legend-color weekend"></div>
+                        <span>Fim de Semana</span>
                     </div>
-                    <button type="submit" class="btn-submit">Adicionar</button>
-                </form>
-                <p id="add-link-error" class="error-message"></p>
+                    <div class="legend-item">
+                        <div class="legend-color event-day">
+                            <span class="legend-star">★</span>
+                        </div>
+                        <span>Dia com Evento</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div id="edit-link-modal" class="modal-overlay">
-            <div class="modal-box">
-                <span id="btn-edit-link-close" class="close-btn">&times;</span>
-                <h2>Editar Link</h2>
-                <form id="edit-link-form">
-                    <input type="hidden" id="edit-link-id">
-                    <div class="input-group">
-                        <label>Nome do link:</label>
-                        <input type="text" id="edit-link-name" placeholder="Nome do link" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Descrição:</label>
-                        <input type="text" id="edit-link-description" placeholder="Descrição" required>
-                    </div>
-                    <div class="input-group">
-                        <label>URL do link:</label>
-                        <input type="url" id="edit-link-url" placeholder="URL do link" required>
-                    </div>
-                    <button type="submit" class="btn-submit">Salvar</button>
-                </form>
-                <p id="edit-link-error" class="error-message"></p>
-            </div>
+        <div class="">
+            
         </div>
 
+       <footer class="footer-container">
 
-
-
-
-       
-
-    </div>
-
-    <footer class="footer-container">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Sobre</h3>
@@ -150,17 +137,21 @@
                     <li><a href="https://transparencia.pe.senai.br/duvidas-frequentes/" target="_blank" rel="noopener noreferrer">FAQ</a></li>
                 </ul>
             </div>
-        </div>
+        </div> 
 
         <div class="footer-bottom">
             <p>© 2026 Senai Connect. Todos os direitos reservados.</p>
         </div>
-    </footer>
 
-    <script src="./script/login.js"></script>
-    <script src="./script/dayNightMode.js"></script>
-    <script src="./script/profile.js"></script>
-    <script src="./script/mural.js"></script>
-    <script src="./script/exclude.js"></script>
+       </footer>
+       
+
+
+    </div>
+    
+    <script src="../../script/calendar.js"></script>
+    <script src="../../script/login.js"></script>
+    <script src="../../script/dayNightMode.js"></script>
+    <script src="../../script/profile.js"></script>
 </body>
 </html>

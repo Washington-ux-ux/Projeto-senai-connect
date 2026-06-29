@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx server.ts",
-    "bd": "node docs/script/importar_alunos.cjs",
-    "all": "node docs/script/importar_alunos.cjs && node docs/script/importar_gestao.cjs && tsx server.ts"
+    "bd": "node docs/database/imports/importar_alunos.cjs && node docs/database/imports/importar_gestao.cjs",
+    "all": "node docs/database/imports/importar_alunos.cjs && node docs/database/imports/importar_gestao.cjs && tsx server.ts"
   },
   "keywords": [],
   "author": "",

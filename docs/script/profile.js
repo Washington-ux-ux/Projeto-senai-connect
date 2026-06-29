@@ -3,7 +3,16 @@ async function incluirPerfil() {
     if (!placeholder) return;
 
     try {
-        const response = await fetch("perfil.html");
+        // Detectar o contexto para usar o caminho correto
+        const currentPath = window.location.pathname;
+        let perfilPath = "../utils/perfil.html";
+        
+        // Se estiver em docs/html/utils/, usar caminho relativo local
+        if (currentPath.includes('/html/utils/')) {
+            perfilPath = "./perfil.html";
+        }
+        
+        const response = await fetch(perfilPath);
         const html = await response.text();
 
         placeholder.innerHTML = html;
@@ -100,7 +109,16 @@ async function incluirPerfil() {
             logoutBtn.addEventListener('click', () => {
                 localStorage.removeItem('token');
                 localStorage.removeItem('user');
-                window.location.href = './index.html';
+                // Detectar contexto para usar o caminho correto
+                const currentPath = window.location.pathname;
+                let indexPath = '../../index.html';
+                
+                // Se estiver em docs/html/utils/, usar caminho relativo local
+                if (currentPath.includes('/html/utils/')) {
+                    indexPath = '../../index.html';
+                }
+                
+                window.location.href = indexPath;
             });
         }
 
