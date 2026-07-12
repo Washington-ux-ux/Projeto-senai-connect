@@ -4,7 +4,7 @@ Plataforma corporativa de comunicação interna para o SENAI, desenvolvida para 
 
 ## 📌 Sobre o Projeto
 
-O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados, eventos, links úteis e solicitações institucionais em um único ambiente digital. O sistema utiliza autenticação JWT, controle de acesso por roles e armazenamento em JSON para prototipagem rápida.
+O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados, eventos, links úteis e solicitações institucionais em um único ambiente digital. O sistema utiliza autenticação JWT, controle de acesso por roles e armazenamento em PostgreSQL para persistência de dados.
 
 ---
 
@@ -12,58 +12,43 @@ O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados
 ## 🎯 Funcionalidades Implementadas
 
 ### 🔐 Sistema de Autenticação
-- Registro de usuários com criptografia de senhas (bcrypt)
-- Login com autenticação JWT
+- Login com matrícula (registration) e senha em texto plano
+- Autenticação JWT com token contendo userId, matricula e role
 - Controle de sessão via localStorage
 - Middleware de autenticação e autorização por roles
-- Roles: ADMIN, COORDINATOR, DIRECTOR, TEACHER, STUDENT
+- Identificação de usuário por matricula (única) em vez de ID
+- Roles: Administrador, Coordenadores, professores e alunos
 
 ### 📢 Plataforma de Posts/Comunicados
-- Criação de posts por TEACHER, COORDINATOR e ADMIN
-- Exclusão de posts por COORDINATOR e ADMIN
-- Categorias: EVENT, INTERNSHIP, PRESENTATION, ANNOUNCEMENT
-- Sistema de visibilidade (ALL, STUDENT, TEACHER, COORDINATOR)
+- Criação de posts por Administradores e Coordenadores
+- Exclusão de posts por Administradores e Coordenadores
+- Categorias: Eventos, Empregabilidade e Comunicados
+- Sistema de visibilidade (Todos, Alunos, Professores e coordenadores)
 - Sistema de reações com múltiplos emojis por usuário (só uma vez cada)
 - Toggle de reações (clicar novamente remove a reação)
 - Botões de reação ficam azuis quando ativos
 - Sistema de compartilhamento de posts (Web Share API)
-- Resumo automático via IA (endpoint disponível)
 
 ### 📅 Eventos Acadêmicos
-- Criação de eventos por COORDINATOR e ADMIN
-- Exclusão de eventos por COORDINATOR e ADMIN
-- Tipos: EXAM, HOLIDAY, PRESENTATION, WORK
-- Exibição unificada com posts na página de eventos
+- Criação de eventos por Administradores e Coordenadores
+- Exclusão de eventos por Administradores e Coordenadores
+- Tipos: Evento, Empregabilidade e Comunicado
+- Calendário interativo integrado com eventos acadêmicos
+- Visualização de eventos marcados com indicadores no calendário
 
 ### 🔗 Mural de Links
 - Visualização de links úteis para todos os usuários
-- Criação de links por COORDINATOR e ADMIN
-- Edição e exclusão de links por COORDINATOR e ADMIN
+- Criação de links por Administradores e Coordenadores
+- Edição e exclusão de links por Administradores e Coordenadores
 - Interface em tabela com ações administrativas
-
-### 📋 Sistema de Solicitações
-- Envio de solicitações por alunos
-- Status: SENT, ANALYZING, RESPONDED, FINISHED
-- Sistema de protocolos
-- Agendamento de reuniões
-
-### 💬 Chat Corporativo
-- Salas de chat (PRIVATE, GROUP)
-- Mensagens com suporte a arquivos
-- Mensagens fixadas
-- Membros em salas de grupo
 
 ### 🌙 Interface do Usuário
 - Tema claro/escuro com transições suaves
-- Logo otimizado para modo dark (fundo transparente)
 - Calendário interativo
 - Menu de usuário com dropdown
 - Modal de confirmação de exclusão customizado
 - Modais para criação de posts, usuários e links
-- Design responsivo
-
 ---
-
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -71,8 +56,8 @@ O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados
 - **Node.js** + **Express** - Servidor web e API REST
 - **TypeScript** - Tipagem estática
 - **JWT** - Autenticação via tokens
-- **bcrypt** - Criptografia de senhas
-- **JSON** - Armazenamento de dados (prototipagem)
+- **PostgreSQL** - Banco de dados relacional
+- **pg** - Cliente PostgreSQL para Node.js
 
 ### Frontend
 - **HTML5** - Estrutura das páginas
@@ -87,65 +72,54 @@ O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados
 
 ---
 
-
 ## 📂 Estrutura do Projeto
 
 ```
 senai-connect/
 ├── src/
+│   ├── config/            # Configurações
+│   │   └── database.ts    # Configuração do PostgreSQL
 │   ├── controllers/        # Controladores da API
 │   │   ├── usersControllers.ts
 │   │   ├── postsControllers.ts
 │   │   ├── academicEventsController.ts
 │   │   ├── linksControllers.ts
 │   │   ├── reactionsControllers.ts
-│   │   ├── chatControllers.ts
-│   │   └── requestsControllers.ts
-│   ├── models/            # Interfaces TypeScript
-│   │   ├── user-model.ts
-│   │   ├── posts-model.ts
-│   │   ├── academicEvent-model.ts
-│   │   ├── requests-model.ts
-│   │   ├── chatRoom-model.ts
-│   │   └── message-model.ts
+│   │   └── authControllers.ts
 │   ├── services/           # Lógica de negócio
 │   │   ├── usersServices.ts
 │   │   ├── postsServices.ts
 │   │   ├── academicEventsServices.ts
 │   │   ├── linksServices.ts
 │   │   ├── reactionsServices.ts
-│   │   ├── chatServices.ts
-│   │   └── requestsServices.ts
-│   ├── repository/        # Acesso aos dados
+│   │   └── authServices.ts
+│   ├── repository/        # Acesso aos dados (PostgreSQL)
 │   │   ├── userRepository.ts
 │   │   ├── postsRepository.ts
 │   │   ├── academicEventsRepository.ts
 │   │   ├── linksRepository.ts
-│   │   ├── reactionsRepository.ts
-│   │   ├── chatRepository.ts
-│   │   └── requestsRepository.ts
+│   │   └── reactionsRepository.ts
 │   ├── middlewares/       # Middlewares Express
 │   │   └── authMiddleware.ts
 │   ├── utils/             # Utilitários
 │   │   ├── auth.ts
 │   │   └── http-helper.ts
-│   └── data/              # Arquivos JSON (banco de dados)
+│   └── data/              # Arquivos JSON usados durante a prototipagem
 │       ├── user.json
 │       ├── posts.json
-│       ├── academicEvent.json
 │       ├── links.json
-│       ├── reactions.json
-│       ├── requests.json
-│       ├── chat.json
-│       └── message.json
+│       └── reactions.json
 ├── docs/                  # Frontend
-│   ├── index.html         # Página inicial com calendário
-│   ├── eventos.html       # Página de eventos
-│   ├── mural.html         # Mural de links
-│   ├── sobre.html         # Página sobre o projeto
-│   ├── perfil.html        # Perfil do usuário
+│   ├── html/              # Páginas HTML
+│   │   ├── index.html     # Página inicial com calendário
+│   │   ├── eventos.html   # Página de eventos
+│   │   ├── mural.html     # Mural de links
+│   │   ├── sobre.html     # Página sobre o projeto
+│   │   └── utils/         # Componentes reutilizáveis
+│   │       └── perfil.html # Dropdown de perfil
 │   ├── script/            # JavaScript do frontend
 │   │   ├── login.js
+│   │   ├── login-page.js
 │   │   ├── events.js
 │   │   ├── mural.js
 │   │   ├── calendar.js
@@ -160,7 +134,18 @@ senai-connect/
 │   │   ├── mural.css
 │   │   ├── sobre.css
 │   │   └── profile.css
-│   └── assets/            # Imagens e ícones
+│   ├── assets/            # Imagens e ícones
+│   │   ├── images/
+│   │   └── uploads/      # Uploads de imagens
+│   └── database/         # Scripts de banco de dados
+│       ├── recreate_tables.cjs    # Recria todas as tabelas
+│       ├── imports/
+│       │   ├── importar_alunos.cjs    # Importa alunos do Excel
+│       │   ├── importar_gestao.cjs     # Importa gestores do Excel
+│       │   ├── importar_dados.cjs      # Importa posts e links
+│       │   └── importar_eventos.cjs    # Importa eventos de exemplo
+│       ├── update_passwords.cjs        # Atualiza senhas para texto plano
+│       └── check_tables.cjs            # Verifica tabelas e contagens
 ├── server.ts              # Entry point do servidor
 ├── app.ts                 # Configuração do Express
 ├── routes.ts              # Definição das rotas da API
@@ -175,63 +160,91 @@ senai-connect/
 ## � API Endpoints
 
 ### Autenticação
-- `POST /api/user/register` - Registrar novo usuário
-- `POST /api/user/login` - Fazer login
+- `POST /api/user/login` - Fazer login com matrícula e senha
 - `GET /api/user/me` - Obter dados do usuário autenticado
+- `POST /api/auth/change-password` - Alterar senha (autenticado)
+- `POST /api/auth/forgot-password` - Recuperar senha
 
 ### Posts
 - `GET /api/posts` - Listar todos os posts
 - `GET /api/posts/:id` - Obter post por ID
-- `POST /api/posts` - Criar post (TEACHER, COORDINATOR, ADMIN)
-- `DELETE /api/posts/:id` - Excluir post (COORDINATOR, ADMIN)
-- `GET /api/posts/summary` - Resumo IA (TEACHER, COORDINATOR, ADMIN)
+- `POST /api/posts` - Criar post (Administradores e Coordenadores)
+- `PUT /api/posts/:id` - Atualizar post (Administradores e Coordenadores)
+- `DELETE /api/posts/:id` - Excluir post (Administradores e Coordenadores)
+- `POST /api/posts/:id/emoji` - Adicionar/remover emoji (autenticado)
 
 ### Reações
 - `GET /api/reactions/:postId` - Obter reações de um post
 - `POST /api/reactions/:postId` - Adicionar/remover reação (autenticado)
-- `DELETE /api/reactions/:postId` - Excluir reações de um post (COORDINATOR, ADMIN)
+- `DELETE /api/reactions/:postId` - Excluir reações de um post (Administradores e Coordenadores)
 
 ### Eventos Acadêmicos
 - `GET /api/academic-events` - Listar eventos
 - `GET /api/academic-events/date/:calendar` - Buscar por data
-- `POST /api/academic-events` - Criar evento (COORDINATOR, ADMIN)
-- `DELETE /api/academic-events/:id` - Excluir evento (COORDINATOR, ADMIN)
+- `POST /api/academic-events` - Criar evento (Administradores e Coordenadores)
+- `DELETE /api/academic-events/:id` - Excluir evento (Administradores e Coordenadores)
 
 ### Links
 - `GET /api/links` - Listar links
-- `POST /api/links` - Criar link (COORDINATOR, ADMIN)
-- `PUT /api/links/:id` - Atualizar link (COORDINATOR, ADMIN)
-- `DELETE /api/links/:id` - Excluir link (COORDINATOR, ADMIN)
-
-### Chat
-- `GET /api/chat/room` - Listar salas de chat
-- `GET /api/chat/messages/:roomId` - Obter mensagens da sala
-
-### Solicitações
-- `GET /api/requests` - Listar todas as solicitações
-- `GET /api/requests/my` - Listar solicitações do usuário
-- `POST /api/requests` - Criar solicitação
-- `PUT /api/requests/:id` - Atualizar solicitação
+- `POST /api/links` - Criar link (Administradores e Coordenadores)
+- `PUT /api/links/:id` - Atualizar link (Administradores e Coordenadores)
+- `DELETE /api/links/:id` - Excluir link (Administradores e Coordenadores)
 
 ## 👥 Roles e Permissões
 
 | Role | Permissões |
 |------|------------|
-| **STUDENT** | Visualizar posts, eventos, links; enviar solicitações |
-| **TEACHER** | Criar posts; visualizar tudo |
-| **COORDINATOR** | Criar/excluir posts, eventos, links; criar usuários; gerenciar solicitações |
-| **ADMIN** | Controle total do sistema |
+| **Aluno** | Visualizar posts, eventos, links; reagir a posts |
+| **Professor** | Criar/editar posts; visualizar tudo; reagir a posts |
+| **Coordenador** | Criar/excluir posts, eventos, links; gerenciar tudo |
+| **Administrador** | Controle total do sistema |
 
 ## 🚀 Como Executar
 
-### Pré-requisitos
-- Node.js instalado
-- npm ou yarn
+### Instalação via GitHub
 
-### Instalação
+1. **Clone o repositório:**
+```bash
+git clone https://github.com/Washington-ux-ux/Projeto-senai-connect.git
+
+cd Projeto-senai-connect
+```
+
+2. **Instale as dependências:**
 ```bash
 npm install
 ```
+
+### Pré-requisitos
+- Node.js instalado
+- PostgreSQL instalado e rodando
+- npm ou yarn
+
+### Configuração do Banco de Dados
+
+Configure as variáveis de ambiente no arquivo `.env`:
+```
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=senai_connect
+DB_USER=postgres
+DB_PASSWORD=sua_senha
+PORT=3000
+JWT_SECRET=sua-chave-secreta-aqui
+```
+
+Execute o script de configuração completa:
+```bash
+npm run setup
+```
+
+Este script irá automaticamente:
+- Criar o banco de dados se não existir
+- Recriar todas as tabelas
+- Importar alunos e gestores (se houver arquivos Excel)
+- Importar posts e links
+- Importar eventos de exemplo
+- Atualizar senhas para texto plano (123321)
 
 ### Executar em desenvolvimento
 ```bash
@@ -240,37 +253,50 @@ npm run dev
 
 O servidor será iniciado em `http://localhost:3000`
 
-### Variáveis de Ambiente
-Crie um arquivo `.env` na raiz do projeto:
-```
-PORT=3000
-JWT_SECRET=sua-chave-secreta-aqui
-```
+### Scripts Disponíveis
+- `npm run setup` - Configuração completa do banco de dados (cria banco, tabelas e importa dados)
+- `npm run dev` - Inicia o servidor em modo desenvolvimento
+- `npm run create-db` - Cria as tabelas do banco de dados
+- `npm run bd` - Importa alunos e gestores dos arquivos Excel
+- `node docs/database/imports/importar_dados.cjs` - Importa posts e links
+- `node docs/database/imports/importar_eventos.cjs` - Importa eventos de exemplo
+- `node docs/database/update_passwords.cjs` - Atualiza senhas para texto plano (123321)
+- `node docs/database/check_tables.cjs` - Verifica tabelas e contagens de registros
 
-## � Segurança
+## 🔒 Segurança
 
-- Senhas criptografadas com bcrypt
+- Senhas armazenadas em texto plano (para prototipagem)
 - Autenticação via JWT com expiração de 24h
+- Token contém userId, matricula e role
 - Middleware de autenticação em rotas protegidas
 - Autorização baseada em roles (RBAC)
-- Validação de dados nos controllers
+- Identificação de usuário por matricula (única) em vez de ID
 
-## 📊 Dados
+## 📊 Banco de Dados
 
-O projeto utiliza arquivos JSON para armazenamento temporário de dados. Para produção, recomenda-se migrar para um banco de dados relacional como MySQL ou PostgreSQL.
+O projeto utiliza PostgreSQL para persistência de dados. O esquema inclui as seguintes tabelas:
+
+### Tabelas Principais
+- **alunos** - Dados dos alunos (id, name, registration, role, password, createdat)
+- **gestores** - Dados dos gestores/professores (id, name, registration, role, cargo, password, createdat)
+- **posts** - Posts/comunicados (id, title, summary, category, visibility, author_name, author_id, reactions, attachmenturl, imageurl, eventdate, location, createdat)
+- **links** - Links úteis (id, name, description, url, createdat)
+- **academic_events** - Eventos acadêmicos (id, title, description, type, startDate, endDate, location, author_id, author_name, createdat)
+- **reactions** - Reações aos posts (id, post_id, user_id, emoji, createdat)
+
+### Importação de Dados
+Os dados podem ser importados de arquivos Excel (alunos e gestores) usando os scripts em `docs/database/imports/`.
 
 ## 🎨 Páginas do Frontend
 
-- **inicio.html** - Página inicial com calendário interativo
+- **index.html** - Página inicial com calendário interativo
 - **eventos.html** - Exibição de posts e eventos acadêmicos com sistema de reações
 - **mural.html** - Mural de links úteis
 - **sobre.html** - Informações sobre o projeto
-- **perfil.html** - Perfil do usuário
+- **Perfil (dropdown)** - Perfil do usuário com informações básicas
 
 ## 📈 Futuras Melhorias
 
-- Migração para banco de dados relacional (MySQL/PostgreSQL)
-- Implementação de WebSocket para chat em tempo real
 - Sistema de notificações push
 - Upload de imagens nos posts
 - Sistema de comentários nos posts
@@ -279,17 +305,11 @@ O projeto utiliza arquivos JSON para armazenamento temporário de dados. Para pr
 - Sistema de favoritos para posts e links
 - Perfil do usuário mais completo (bio, foto, etc.)
 - Histórico de atividades do usuário
-- Exportação de eventos para calendário (ICS)
-- Sistema de tags/categorias para posts
 - Chat/mensagens entre usuários
 - Sistema de aprovação de posts (moderação)
 - Analytics de engajamento
-- Integração com Google Calendar
 - Sistema de arquivos/documentos compartilhados
 - Enquete/polls nos posts
-- Aplicativo mobile (React Native)
-- Testes automatizados
-- CI/CD pipeline
 
 ## 👨‍💻 Desenvolvimento
 

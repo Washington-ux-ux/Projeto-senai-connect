@@ -10,15 +10,13 @@ let modifiedWeekendDays = JSON.parse(localStorage.getItem('modifiedWeekendDays')
 
 async function loadEvents() {
     try {
-        const response = await fetch('http://localhost:3000/api/posts');
-        const posts = await response.json();
+        const response = await fetch('http://localhost:3000/api/academic-events');
+        const events = await response.json();
         
-        eventsData = posts.filter(post => 
-            post.category === 'EVENT' || post.category === 'ANNOUNCEMENT'
-        ).map(post => ({
-            date: post.eventDate || post.createdAt,
-            title: post.title,
-            summary: post.summary
+        eventsData = events.map(event => ({
+            date: event.startDate,
+            title: event.title,
+            summary: event.description
         }));
         
         renderCalendar();

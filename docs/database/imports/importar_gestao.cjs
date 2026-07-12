@@ -2,8 +2,9 @@ const dotenv = require('dotenv');
 const path = require('path');
 const xlsx = require('xlsx');
 const { Client } = require('pg');
+const bcrypt = require('bcrypt');
 
-dotenv.config({ path: path.resolve(process.cwd(), 'conexao.env') });
+dotenv.config();
 
 async function importarGestao() {
     const client = new Client({
@@ -31,8 +32,12 @@ async function importarGestao() {
 
         console.log(`Encontrados ${dados.length} registros.`);
 
+        // Hash da senha padrão "123321"
+        const defaultPasswordHash = await bcrypt.hash('123321', 10);
+
         let insertedCount = 0;
         let skippedCount = 0;
+        let currentId = 1;
 
         for (const linha of dados) {
             const codigo = linha['RA'];
@@ -40,7 +45,7 @@ async function importarGestao() {
             const cargo = linha['CARGO'];
 
             if (!codigo || !nomeGestor) {
-                console.log('Linha ignorada:', linha);
+                skippedCount += 1;
                 continue;
             }
 
@@ -49,24 +54,25 @@ async function importarGestao() {
             const cargoStr = cargo ? String(cargo).trim() : null;
 
             const existsRes = await client.query(
-                'SELECT 1 FROM gestores WHERE codigo = $1 LIMIT 1',
+                'SELECT 1 FROM gestores WHERE registration = $1 LIMIT 1',
                 [codigoStr]
             );
 
             if (existsRes.rowCount > 0) {
-                console.log('Registro já existe, ignorando:', codigoStr);
                 skippedCount += 1;
                 continue;
             }
 
-            console.log('Inserindo:', codigoStr, nomeGestorStr, cargoStr);
+            const userId = String(currentId++);
+            const role = cargoStr && cargoStr.toLowerCase().includes('coord') ? 'COORDINATOR' : 
+                        cargoStr && cargoStr.toLowerCase().includes('admin') ? 'ADMIN' : 'TEACHER';
 
             await client.query(
                 `
-                INSERT INTO gestores (nome_gestor, codigo, cargo)
-                VALUES ($1, $2, $3)
+                INSERT INTO gestores (id, name, registration, role, cargo, password, createdat)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
                 `,
-                [nomeGestorStr, codigoStr, cargoStr]
+                [userId, nomeGestorStr, codigoStr, role, cargoStr, defaultPasswordHash, new Date().toISOString()]
             );
             insertedCount += 1;
         }

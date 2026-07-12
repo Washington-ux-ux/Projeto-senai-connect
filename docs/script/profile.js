@@ -3,11 +3,9 @@ async function incluirPerfil() {
     if (!placeholder) return;
 
     try {
-        // Detectar o contexto para usar o caminho correto
         const currentPath = window.location.pathname;
         let perfilPath = "../utils/perfil.html";
         
-        // Se estiver em docs/html/utils/, usar caminho relativo local
         if (currentPath.includes('/html/utils/')) {
             perfilPath = "./perfil.html";
         }
@@ -109,11 +107,9 @@ async function incluirPerfil() {
             logoutBtn.addEventListener('click', () => {
                 localStorage.removeItem('token');
                 localStorage.removeItem('user');
-                // Detectar contexto para usar o caminho correto
                 const currentPath = window.location.pathname;
                 let indexPath = '../../index.html';
-                
-                // Se estiver em docs/html/utils/, usar caminho relativo local
+
                 if (currentPath.includes('/html/utils/')) {
                     indexPath = '../../index.html';
                 }
@@ -153,9 +149,6 @@ async function loadUserData() {
             if(document.getElementById('userName')) {
                 document.getElementById('userName').value = "Não logado";
                 document.getElementById('userRole').value = "Não logado";
-                document.getElementById('userSex').value = "Não logado";
-                document.getElementById('userClass').value = "Não logado";
-                document.getElementById('userCreatedAt').value = "Não logado";
             }
             return;
         }
@@ -188,32 +181,6 @@ async function loadUserData() {
                 'student': 'Aluno'
             };
             document.getElementById('userRole').value = roleMap[data.role] || data.role || 'Não informado';
-            
-            document.getElementById('userSex').value = data.gender || 'Não informado';
-            
-            
-            
-            document.getElementById('userClass').value = data.course || 'Não informado';
-            
-            const userClassField = document.getElementById('userClass');
-            const userClassLabel = userClassField?.previousElementSibling;
-            if (userClassField && userClassLabel) {
-                const rolesWithoutClass = ['ADMIN', 'COORDINATOR', 'TEACHER', 'admin', 'coordinator', 'teacher'];
-                if (rolesWithoutClass.includes(data.role)) {
-                    userClassField.style.display = 'none';
-                    userClassLabel.style.display = 'none';
-                } else {
-                    userClassField.style.display = 'block';
-                    userClassLabel.style.display = 'block';
-                }
-            }
-            
-            if (data.createdAt) {
-                const createdAt = new Date(data.createdAt);
-                document.getElementById('userCreatedAt').value = createdAt.toLocaleDateString('pt-BR');
-            } else {
-                document.getElementById('userCreatedAt').value = 'Não informado';
-            }
         }
         
     } catch (error) {
@@ -221,9 +188,6 @@ async function loadUserData() {
         if(document.getElementById('userName')) {
             document.getElementById('userName').value = "Erro ao carregar";
             document.getElementById('userRole').value = "-";
-            document.getElementById('userSex').value = "-";
-            document.getElementById('userClass').value = "-";
-            document.getElementById('userCreatedAt').value = "-";
         }
     }
 }

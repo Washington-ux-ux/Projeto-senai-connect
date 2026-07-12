@@ -3,6 +3,7 @@ import * as auth from '../utils/auth';
 
 export interface AuthRequest extends Request {
     userId?: string;
+    userMatricula?: string;
     userEmail?: string;
     userRole?: string;
 }
@@ -21,7 +22,8 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
     }
 
     req.userId = decoded.userId;
-    req.userEmail = decoded.email;
+    req.userMatricula = decoded.matricula; 
+    req.userEmail = decoded.matricula; 
     req.userRole = decoded.role;
 
     next();

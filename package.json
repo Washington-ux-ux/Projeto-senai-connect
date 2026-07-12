@@ -6,6 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx server.ts",
+    "setup": "node docs/database/setup.cjs",
+    "create-db": "node docs/database/recreate_tables.cjs",
     "bd": "node docs/database/imports/importar_alunos.cjs && node docs/database/imports/importar_gestao.cjs",
     "all": "node docs/database/imports/importar_alunos.cjs && node docs/database/imports/importar_gestao.cjs && tsx server.ts"
   },

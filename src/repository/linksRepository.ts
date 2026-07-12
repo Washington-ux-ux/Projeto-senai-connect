@@ -1,65 +1,46 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const linksFilePath = path.join(__dirname, '../data/links.json');
-
-const readLinksJson = (): any[] => {
-    const data = fs.readFileSync(linksFilePath, 'utf-8');
-    return JSON.parse(data);
-};
-
-const writeLinksJson = (data: any[]): void => {
-    fs.writeFileSync(linksFilePath, JSON.stringify(data, null, 2));
-};
+import pool from '../config/database';
 
 export const getLinks = async () => {
-    return readLinksJson();
+  const result = await pool.query('SELECT * FROM links ORDER BY "createdat" DESC');
+  return result.rows;
 }
 
 export const createLink = async (linkData: any) => {
-    const links = readLinksJson();
-    const newLink = {
-        id: String(links.length + 1),
-        name: linkData.name,
-        description: linkData.description,
-        url: linkData.url,
-        createdAt: new Date().toISOString()
-    }
-    links.push(newLink);
-    writeLinksJson(links);
-    return newLink
+  const result = await pool.query(
+    `INSERT INTO links (id, name, description, url, "createdat")
+     VALUES ($1, $2, $3, $4, $5)
+     RETURNING *`,
+    [
+      linkData.id,
+      linkData.name,
+      linkData.description,
+      linkData.url,
+      new Date().toISOString()
+    ]
+  );
+  
+  return result.rows[0];
 }
 
 export const updateLink = async (id: string, linkData: any) => {
-    const links = readLinksJson();
-    const index = links.findIndex((link: any) => link.id === id)
-    if (index === -1) {
-        throw new Error('Link not found')
-    }
-    
-    links[index] = {
-        ...links[index],
-        name: linkData.name,
-        description: linkData.description,
-        url: linkData.url
-    }
-    writeLinksJson(links);
-    return links[index]
+  const result = await pool.query(
+    'UPDATE links SET name = $1, description = $2, url = $3 WHERE id = $4 RETURNING *',
+    [linkData.name, linkData.description, linkData.url, id]
+  );
+  
+  if (result.rows.length === 0) {
+    throw new Error('Link not found');
+  }
+  
+  return result.rows[0];
 }
 
 export const deleteLink = async (id: string) => {
-    const links = readLinksJson();
-    const index = links.findIndex((link: any) => link.id === id)
-    if (index === -1) {
-        throw new Error('Link not found')
-    }
-    
-    const deletedLink = links[index]
-    links.splice(index, 1);
-    writeLinksJson(links);
-    return deletedLink
+  const result = await pool.query('DELETE FROM links WHERE id = $1 RETURNING *', [id]);
+  
+  if (result.rows.length === 0) {
+    throw new Error('Link not found');
+  }
+  
+  return result.rows[0];
 }

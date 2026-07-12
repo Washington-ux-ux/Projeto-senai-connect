@@ -1,58 +1,53 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const academicEventsFilePath = path.join(__dirname, '../data/academicEvent.json');
-
-const readAcademicEventsJson = (): any[] => {
-    const data = fs.readFileSync(academicEventsFilePath, 'utf-8');
-    return JSON.parse(data);
-};
-
-const writeAcademicEventsJson = (data: any[]): void => {
-    fs.writeFileSync(academicEventsFilePath, JSON.stringify(data, null, 2));
-};
+import pool from '../config/database';
 
 export const getAllAcademicEvents = async () => {
-    return readAcademicEventsJson();
+    const result = await pool.query('SELECT * FROM academic_events ORDER BY "startDate" ASC');
+    return result.rows;
 }
 
 export const getAcademicEventByDate = async (date: string) => {
-    const events = readAcademicEventsJson().filter((event: any) => event.date.startsWith(date));
-    if (events.length === 0) {
+    const result = await pool.query(
+        'SELECT * FROM academic_events WHERE DATE("startDate") = $1 ORDER BY "startDate" ASC',
+        [date]
+    );
+    
+    if (result.rows.length === 0) {
         throw new Error('No events found for the given date');
     }
-    return events;
+    
+    return result.rows;
 }
 
 export const createAcademicEvent = async (eventData: any) => {
-    const events = readAcademicEventsJson();
-    const newEvent = {
-        id: String(events.length + 1),
-        title: eventData.title,
-        description: eventData.description,
-        date: eventData.date,
-        type: eventData.type || 'EVENT',
-        location: eventData.location || '',
-        isHoliday: eventData.isHoliday || false
-    }
-    events.push(newEvent);
-    writeAcademicEventsJson(events);
-    return newEvent
+    const result = await pool.query(
+        `INSERT INTO academic_events (id, title, description, type, "startDate", "endDate", location, author_id, author_name, "createdat")
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+         RETURNING *`,
+        [
+            eventData.id,
+            eventData.title,
+            eventData.description || '',
+            eventData.type || 'EVENT',
+            eventData.startDate,
+            eventData.endDate || null,
+            eventData.location || '',
+            eventData.authorId || null,
+            eventData.authorName || null,
+            new Date().toISOString()
+        ]
+    );
+    
+    return result.rows[0];
 }
 
 export const deleteAcademicEvent = async (id: string) => {
-    const events = readAcademicEventsJson();
-    const index = events.findIndex((event: any) => event.id === id)
-    if (index === -1) {
-        throw new Error('Event not found')
+    const result = await pool.query('DELETE FROM academic_events WHERE id = $1 RETURNING *', [id]);
+    
+    if (result.rows.length === 0) {
+        throw new Error('Event not found');
     }
-    const deletedEvent = events.splice(index, 1)[0];
-    writeAcademicEventsJson(events);
-    return deletedEvent
+    
+    return result.rows[0];
 }
 
     

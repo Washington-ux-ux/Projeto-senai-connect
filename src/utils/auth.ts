@@ -12,9 +12,9 @@ export const comparePassword = async (password: string, hash: string): Promise<b
     return bcrypt.compare(password, hash);
 };
 
-export const generateToken = (userId: string, email: string, role: string): string => {
+export const generateToken = (userId: string, matricula: string, role: string): string => {
     return jwt.sign(
-        { userId, email, role },
+        { userId, matricula, role },
         JWT_SECRET,
         { expiresIn: '24h' }
     );

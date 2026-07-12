@@ -42,10 +42,10 @@ async function loadEvents() {
             id: post.id,
             title: post.title,
             description: post.summary || post.content,
-            date: post.createdAt,
-            eventDate: post.eventDate,
+            date: post.createdat,
+            eventdate: post.eventdate,
             category: post.category,
-            imageUrl: post.imageUrl || "aviso1.png",
+            imageurl: post.imageurl || "aviso1.png",
             location: post.location || "SENAI Areias",
           });
         }
@@ -78,7 +78,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
     const eventCard = document.createElement("div");
     eventCard.className = "event-card";
 
-    const dateToDisplay = event.eventDate || event.date;
+    const dateToDisplay = event.eventdate || event.createdat;
     const dateParts = dateToDisplay.split('T')[0].split('-');
     const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
 
@@ -89,7 +89,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
       editButton = `<button class="btn-edit-event" data-id="${event.id}" data-type="post">Editar</button>`;
     }
 
-    const imageUrl = event.imageUrl || "aviso1.png";
+    const imageUrl = event.imageurl || "aviso1.png";
 
     let imageSrc;
     if (imageUrl.startsWith("data:image")) {
@@ -209,8 +209,8 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
           editPostId.value = post.id;
           editPostTitle.value = post.title;
           editPostSummary.value = post.summary;
-          editPostDate.value = post.eventDate
-            ? post.eventDate.split("T")[0]
+          editPostDate.value = post.eventdate
+            ? post.eventdate.split("T")[0]
             : new Date().toISOString().split("T")[0];
           editPostLocation.value = post.location || "SENAI Areias";
 
@@ -236,7 +236,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
           );
           let imageFound = false;
           imageCheckboxes.forEach((checkbox) => {
-            if (checkbox.value === post.imageUrl) {
+            if (checkbox.value === post.imageurl) {
               checkbox.checked = true;
               imageFound = true;
             } else {
@@ -244,7 +244,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
             }
           });
 
-          if (!imageFound && post.imageUrl) {
+          if (!imageFound && post.imageurl) {
             const customCheckbox = document.querySelector(
               'input[name="edit-post-image"][value="custom"]',
             );
@@ -254,15 +254,15 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
                 customCheckbox.parentElement.querySelector("img");
               if (customImg) {
                 if (
-                  post.imageUrl.startsWith("data:image") ||
-                  post.imageUrl.startsWith("./assets/uploads/")
+                  post.imageurl.startsWith("data:image") ||
+                  post.imageurl.startsWith("./assets/uploads/")
                 ) {
-                  customImg.src = post.imageUrl.startsWith("./assets/uploads/") 
-                    ? `../../assets/uploads/${post.imageUrl.replace("./assets/uploads/", "")}`
-                    : post.imageUrl;
+                  customImg.src = post.imageurl.startsWith("./assets/uploads/") 
+                    ? `../../assets/uploads/${post.imageurl.replace("./assets/uploads/", "")}`
+                    : post.imageurl;
                   customImg.style.opacity = "1";
                 } else {
-                  customImg.src = `../../assets/images/${post.imageUrl}`;
+                  customImg.src = `../../assets/images/${post.imageurl}`;
                   customImg.style.opacity = "1";
                 }
               }
