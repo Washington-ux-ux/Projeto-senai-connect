@@ -27,7 +27,7 @@ document.getElementById('change-password-form').addEventListener('submit', async
     try {
         const token = localStorage.getItem('token');
         
-        const response = await fetch('http://localhost:3000/api/auth/change-password', {
+        const response = await fetch(`${window.API_BASE_URL}/api/auth/change-password`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

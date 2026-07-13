@@ -25,7 +25,7 @@ document.getElementById('forgot-password-form').addEventListener('submit', async
     }
 
     try {
-        const response = await fetch('http://localhost:3000/api/auth/forgot-password', {
+        const response = await fetch('https://projeto-senai-connect.onrender.com/api/auth/forgot-password', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

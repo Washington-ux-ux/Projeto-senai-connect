@@ -64,7 +64,7 @@ async function incluirPerfil() {
                 try {
                     const token = localStorage.getItem('token');
 
-                    const response = await fetch('http://localhost:3000/api/auth/change-password', {
+                    const response = await fetch(`${window.API_BASE_URL}/api/auth/change-password`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ async function loadUserData() {
             return;
         }
 
-        const response = await fetch('http://localhost:3000/api/user/me', {
+        const response = await fetch(`${window.API_BASE_URL}/api/user/me`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

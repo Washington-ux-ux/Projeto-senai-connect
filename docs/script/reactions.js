@@ -8,7 +8,7 @@ async function loadReactions() {
     const eventId = container.getAttribute("data-event-id");
 
     try {
-      const response = await fetch(`http://localhost:3000/api/reactions/${eventId}`);
+      const response = await fetch(`${window.API_BASE_URL}/api/reactions/${eventId}`);
       if (!response.ok) continue;
 
       const reactionData = await response.json();
@@ -49,7 +49,7 @@ function setupReactionButtons() {
       const action = isReacted ? "remove" : "add";
 
       try {
-        const response = await fetch(`http://localhost:3000/api/reactions/${eventId}`, {
+        const response = await fetch(`${window.API_BASE_URL}/api/reactions/${eventId}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

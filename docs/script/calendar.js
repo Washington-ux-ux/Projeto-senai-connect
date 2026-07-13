@@ -10,7 +10,7 @@ let modifiedWeekendDays = JSON.parse(localStorage.getItem('modifiedWeekendDays')
 
 async function loadEvents() {
     try {
-        const response = await fetch('http://localhost:3000/api/academic-events');
+        const response = await fetch(`${window.API_BASE_URL}/api/academic-events`);
         const events = await response.json();
         
         eventsData = events.map(event => ({

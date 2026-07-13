@@ -14,7 +14,7 @@ async function loadEvents() {
       user.role === "admin" ||
       user.role === "coordinator";
 
-    const postsResponse = await fetch("http://localhost:3000/api/posts");
+    const postsResponse = await fetch(`${window.API_BASE_URL}/api/posts`);
     const posts = await postsResponse.json();
 
     allEventsData = [];
@@ -180,7 +180,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
 
         try {
           const response = await fetch(
-            `http://localhost:3000/api/posts/${eventId}`,
+            `${window.API_BASE_URL}/api/posts/${eventId}`,
           );
 
           if (!response.ok) {
@@ -289,7 +289,7 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
 
             try {
               const response = await fetch(
-                `http://localhost:3000/api/posts/${id}`,
+                `${window.API_BASE_URL}/api/posts/${id}`,
                 {
                   method: "DELETE",
                   headers: {
