@@ -22,7 +22,16 @@ if (loginForm) {
                 body: JSON.stringify({ matricula, password }),
             });
 
-            const data = await response.json();
+            const rawBody = await response.text();
+            let data = null;
+
+            try {
+                data = rawBody ? JSON.parse(rawBody) : null;
+            } catch {
+                loginError.textContent = "Servidor indisponível. Aguarde alguns segundos e tente novamente.";
+                loginError.style.display = "block";
+                return;
+            }
 
             if (response.ok) {
                 localStorage.setItem("token", data.token);
@@ -30,11 +39,11 @@ if (loginForm) {
 
                 window.location.href = "./index.html";
             } else {
-                loginError.textContent = data.message || "Email ou senha incorretos";
+                loginError.textContent = data?.message || "Matrícula ou senha incorretos";
                 loginError.style.display = "block";
             }
         } catch (error) {
-            loginError.textContent = "Erro de conexão com o servidor";
+            loginError.textContent = "Erro de conexão com o servidor. Verifique se o serviço no Render está ativo.";
             loginError.style.display = "block";
         }
     });

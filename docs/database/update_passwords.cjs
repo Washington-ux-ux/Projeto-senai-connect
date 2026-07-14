@@ -1,16 +1,10 @@
 const dotenv = require('dotenv');
-const { Client } = require('pg');
+const { createClient } = require('./db-client.cjs');
 
 dotenv.config();
 
 async function updatePasswords() {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,
-        database: process.env.DB_NAME,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD ? String(process.env.DB_PASSWORD) : undefined,
-    });
+    const client = createClient();
 
     try {
         await client.connect();

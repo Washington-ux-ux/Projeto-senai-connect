@@ -1,19 +1,13 @@
 const dotenv = require('dotenv');
 const path = require('path');
 const xlsx = require('xlsx');
-const { Client } = require('pg');
+const { createClient } = require('../db-client.cjs');
 const bcrypt = require('bcrypt');
 
 dotenv.config();
 
 async function importarPlanilha() {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,
-        database: process.env.DB_NAME,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD ? String(process.env.DB_PASSWORD) : undefined,
-    });
+    const client = createClient();
 
     console.log('DB_HOST:', process.env.DB_HOST);
     console.log('DB_PORT:', process.env.DB_PORT);

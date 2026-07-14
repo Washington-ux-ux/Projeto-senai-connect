@@ -1,3 +1,4 @@
+import { cpSync } from 'fs'
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
@@ -7,4 +8,7 @@ export default defineConfig({
   clean: true,
   dts: false,
   sourcemap: false,
+  onSuccess: async () => {
+    cpSync('docs', 'dist/docs', { recursive: true })
+  },
 })

@@ -1,4 +1,2 @@
-// Configuração dinâmica de URL base
-window.API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://localhost:3000'
-  : 'https://projeto-senai-connect.onrender.com';
+// Usa o mesmo host do frontend (funciona em localhost e no Render)
+window.API_BASE_URL = window.location.origin;
