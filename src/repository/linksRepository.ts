@@ -6,12 +6,13 @@ export const getLinks = async () => {
 }
 
 export const createLink = async (linkData: any) => {
+  const linkId = linkData.id || Math.floor(Math.random() * 1000000000);
   const result = await pool.query(
     `INSERT INTO links (id, name, description, url, "createdat")
      VALUES ($1, $2, $3, $4, $5)
      RETURNING *`,
     [
-      linkData.id,
+      linkId,
       linkData.name,
       linkData.description,
       linkData.url,
