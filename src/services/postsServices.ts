@@ -35,8 +35,9 @@ export const createPostsService = async (postData: any) => {
         } else {
             return await httphelper.badRequest()
         }
-    } catch (error) {
-        return await httphelper.badRequest()
+    } catch (error: any) {
+        console.error('Erro ao criar post:', error);
+        return await httphelper.badRequest(error.message || 'Erro ao criar post')
     }
 }
 

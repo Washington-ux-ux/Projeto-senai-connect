@@ -12,12 +12,14 @@ export const getPostsById = async (id: string) => {
 
 export const createPosts = async (postData: any) => {
   const reactions = JSON.stringify(postData.reactions || { like: 0, claps: 0 });
+  const postId = postData.id || `post-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  
   const result = await pool.query(
     `INSERT INTO posts (id, title, summary, category, visibility, "author_name", "author_id", reactions, "attachmenturl", "imageurl", "eventdate", location, "createdat")
      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
      RETURNING *`,
     [
-      postData.id,
+      postId,
       postData.title,
       postData.summary || '',
       postData.category,
