@@ -681,6 +681,8 @@ function showLoggedInUser() {
         }
       }
 
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+
       const postData = {
         title: document.getElementById("post-title").value,
         summary: document.getElementById("post-summary").value,
@@ -689,6 +691,8 @@ function showLoggedInUser() {
         imageUrl: imageUrl,
         eventDate: document.getElementById("post-date").value,
         location: document.getElementById("post-location").value,
+        authorName: user.name || "Usuário",
+        authorId: user.registration || "unknown",
       };
 
       try {
