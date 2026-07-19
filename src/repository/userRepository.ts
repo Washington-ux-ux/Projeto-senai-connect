@@ -36,7 +36,7 @@ export const getMyUser = async (userMatricula: string) => {
 export const RegisterUser = async (userData: any) => {
   const role = userData.role || 'STUDENT';
   const tableName = role === 'STUDENT' ? 'alunos' : 'gestores';
-  const userId = userData.id || `user-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const userId = userData.id || Math.floor(Math.random() * 1000000000);
   
   if (role === 'STUDENT') {
     const result = await pool.query(
