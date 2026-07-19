@@ -25,8 +25,9 @@ export const RegisterUserService = async (userData: any) => {
         } else {
             return await httphelper.badRequest()
         }
-    } catch (error) {
-        return await httphelper.badRequest()
+    } catch (error: any) {
+        console.error('Erro ao registrar usuário:', error);
+        return await httphelper.badRequest(error.message || 'Erro ao registrar usuário')
     }
 }
 

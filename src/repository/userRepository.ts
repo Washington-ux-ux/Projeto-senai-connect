@@ -36,6 +36,7 @@ export const getMyUser = async (userMatricula: string) => {
 export const RegisterUser = async (userData: any) => {
   const role = userData.role || 'STUDENT';
   const tableName = role === 'STUDENT' ? 'alunos' : 'gestores';
+  const userId = userData.id || `user-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   
   if (role === 'STUDENT') {
     const result = await pool.query(
@@ -43,7 +44,7 @@ export const RegisterUser = async (userData: any) => {
        VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
       [
-        userData.id,
+        userId,
         userData.name,
         userData.registration,
         role,
@@ -58,7 +59,7 @@ export const RegisterUser = async (userData: any) => {
        VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING *`,
       [
-        userData.id,
+        userId,
         userData.name,
         userData.registration,
         role,
