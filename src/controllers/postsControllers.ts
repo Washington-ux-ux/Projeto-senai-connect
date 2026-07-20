@@ -35,7 +35,7 @@ export const createPosts = async (req: Request, res: Response) => {
             
             const uploadPath = path.join(uploadDir, filename);
             fs.writeFileSync(uploadPath, buffer);
-            imageUrl = `./assets/uploads/${filename}`;
+            imageUrl = `/assets/uploads/${filename}`;
         } catch (error) {
             console.error('Erro ao salvar imagem:', error);
             imageUrl = 'aviso1.png';
@@ -77,13 +77,24 @@ export const updatePosts = async (req: Request, res: Response) => {
     let imageUrl = req.body.imageUrl || 'aviso1.png';
 
     if (imageUrl.startsWith('data:image')) {
-        const base64Data = imageUrl.split(',')[1];
-        const buffer = Buffer.from(base64Data, 'base64');
-        const filename = `image-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.png`;
-        const uploadPath = path.join(__dirname, '../../docs/assets/uploads', filename);
-        
-        fs.writeFileSync(uploadPath, buffer);
-        imageUrl = `./assets/uploads/${filename}`;
+        try {
+            const base64Data = imageUrl.split(',')[1];
+            const buffer = Buffer.from(base64Data, 'base64');
+            const filename = `image-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.png`;
+            const uploadDir = path.join(__dirname, '../../docs/assets/uploads');
+            
+            // Criar diretório se não existir
+            if (!fs.existsSync(uploadDir)) {
+                fs.mkdirSync(uploadDir, { recursive: true });
+            }
+            
+            const uploadPath = path.join(uploadDir, filename);
+            fs.writeFileSync(uploadPath, buffer);
+            imageUrl = `/assets/uploads/${filename}`;
+        } catch (error) {
+            console.error('Erro ao salvar imagem:', error);
+            imageUrl = 'aviso1.png';
+        }
     } else if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
 
     }
