@@ -35,7 +35,7 @@ export const createPosts = async (req: Request, res: Response) => {
             
             const uploadPath = path.join(uploadDir, filename);
             fs.writeFileSync(uploadPath, buffer);
-            imageUrl = `/assets/uploads/${filename}`;
+            imageUrl = `assets/uploads/${filename}`;
         } catch (error) {
             console.error('Erro ao salvar imagem:', error);
             imageUrl = 'aviso1.png';
@@ -90,7 +90,7 @@ export const updatePosts = async (req: Request, res: Response) => {
             
             const uploadPath = path.join(uploadDir, filename);
             fs.writeFileSync(uploadPath, buffer);
-            imageUrl = `/assets/uploads/${filename}`;
+            imageUrl = `assets/uploads/${filename}`;
         } catch (error) {
             console.error('Erro ao salvar imagem:', error);
             imageUrl = 'aviso1.png';
