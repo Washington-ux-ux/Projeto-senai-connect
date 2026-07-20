@@ -15,6 +15,7 @@ function createApp() {
     app.use(express.urlencoded({ extended: true, limit: '50mb' }));
     
     app.use(express.static(path.join(__dirname, 'docs')));
+    app.use('/assets', express.static(path.join(__dirname, 'docs/assets')));
     app.use('/api', router);
 
     console.log("App created successfully");
