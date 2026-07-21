@@ -366,6 +366,10 @@ body.dark-mode .event-day {
     position: relative;
 }
 
+.legend-color.event-today {
+    background-color: #ff4444;
+}
+
 .legend-star {
     position: absolute;
     bottom: 2px;
