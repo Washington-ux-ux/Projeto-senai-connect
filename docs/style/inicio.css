@@ -313,6 +313,12 @@ body.dark-mode .event-day {
     color: white;
 }
 
+:root.dark-mode .event-today,
+body.dark-mode .event-today {
+    background-color: #ff4444 !important;
+    color: white;
+}
+
 /* Legenda do Calendário */
 .calendar-legend {
     width: 200px;
@@ -412,6 +418,11 @@ body.dark-mode .legend-color.weekend {
 :root.dark-mode .legend-color.event-day,
 body.dark-mode .legend-color.event-day {
     background-color: #1E90FF;
+}
+
+:root.dark-mode .legend-color.event-today,
+body.dark-mode .legend-color.event-today {
+    background-color: #ff4444;
 }
 
 :root.dark-mode .legend-item span,
