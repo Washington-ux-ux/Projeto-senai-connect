@@ -247,6 +247,13 @@ body.dark-mode .page-header::after {
     overflow: visible;
 }
 
+.event-today {
+    background-color: #ff4444 !important;
+    color: white;
+    position: relative;
+    overflow: visible;
+}
+
 .event-indicator {
     position: absolute;
     bottom: 5px;

@@ -92,6 +92,15 @@ function renderCalendar() {
             dayElement.appendChild(eventIndicator);
 
             dayElement.title = dayEvents.map(e => `${e.title}: ${e.summary}`).join('\n');
+
+            // Se hoje tiver evento, adicionar classe para cor vermelha
+            if (
+                day === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()
+            ) {
+                dayElement.classList.add("event-today");
+            }
         }
 
         const user = JSON.parse(localStorage.getItem("user") || "{}");
