@@ -152,9 +152,7 @@ body.dark-mode .page-header::after {
 }
 
 
-/* ==========================================================================
-   Calendário (Cores Atualizadas)
-   ========================================================================== */
+/*Calendário*/
 .calendar-container {
     display: flex;
     gap: 20px;
@@ -213,6 +211,7 @@ body.dark-mode .page-header::after {
     color: #004a99;
 }
 
+/* Dias do Calendário (Modo Claro) */
 .calendar-dates div {
     height: 80px;
     background-color: #f1f5f9;
@@ -225,6 +224,7 @@ body.dark-mode .page-header::after {
     font-weight: bold;
     transition: 0.3s;
     flex-shrink: 0;
+    border: 1px solid transparent;
 }
 
 .calendar-dates div:hover {
@@ -235,31 +235,31 @@ body.dark-mode .page-header::after {
 
 /* Estados dos Dias */
 .today {
-    background-color: #10b981 !important; /* Verde Esmeralda moderno */
+    background-color: #10b981 !important;
     color: white !important;
 }
 
 .weekend {
-    background-color: #e2e8f0 !important; /* Cinza suave e limpo */
-    color: #64748b !important;            /* Texto com bom contraste */
+    background-color: #e2e8f0 !important;
+    color: #64748b !important;
 }
 
 .event-day {
-    background-color: #0066cc !important; /* Azul primário */
+    background-color: #0066cc !important;
     color: white !important;
     position: relative;
     overflow: visible;
 }
 
 .event-today {
-    background-color: #e84910 !important; /* Laranja/Coral sincronizado com a marca */
+    background-color: #e84910 !important;
     color: white !important;
     position: relative;
     overflow: visible;
 }
 
 .event-past {
-    background-color: #94a3b8 !important; /* Cinza neutro suave */
+    background-color: #94a3b8 !important;
     color: white !important;
     position: relative;
     overflow: visible;
@@ -274,7 +274,7 @@ body.dark-mode .page-header::after {
     pointer-events: none;
 }
 
-/* Tema Escuro - Calendário */
+/* Tema Escuro - Calendário (Com alto contraste entre dia normal e fim de semana) */
 :root.dark-mode .calendar,
 body.dark-mode .calendar {
     background-color: #16213e;
@@ -301,10 +301,11 @@ body.dark-mode .calendar-days div {
     color: #4a9eff;
 }
 
+/* Dia Normal no Modo Noite */
 :root.dark-mode .calendar-dates div,
 body.dark-mode .calendar-dates div {
-    background-color: #1a1a2e;
-    color: #e0e0e0;
+    background-color: #222e48;
+    color: #f1f5f9;
 }
 
 :root.dark-mode .calendar-dates div:hover,
@@ -313,10 +314,12 @@ body.dark-mode .calendar-dates div:hover {
     color: white;
 }
 
+/* Fim de Semana no Modo Noite (Destacado) */
 :root.dark-mode .weekend,
 body.dark-mode .weekend {
-    background-color: #0f172a !important;
+    background-color: #0f1420 !important;
     color: #64748b !important;
+    border: 1px dashed rgba(255, 255, 255, 0.12) !important;
 }
 
 :root.dark-mode .event-day,
@@ -337,9 +340,7 @@ body.dark-mode .event-past {
     color: white !important;
 }
 
-/* ==========================================================================
-   Legenda do Calendário (Cores Atualizadas)
-   ========================================================================== */
+/* Legenda do calendario */
 .calendar-legend {
     width: 200px;
     padding: 20px;
@@ -373,6 +374,7 @@ body.dark-mode .event-past {
     height: 30px;
     border-radius: 5px;
     flex-shrink: 0;
+    border: 1px solid transparent;
 }
 
 .legend-color.today {
@@ -431,12 +433,13 @@ body.dark-mode .legend-color.today {
 
 :root.dark-mode .legend-color.normal-day,
 body.dark-mode .legend-color.normal-day {
-    background-color: #1a1a2e;
+    background-color: #222e48;
 }
 
 :root.dark-mode .legend-color.weekend,
 body.dark-mode .legend-color.weekend {
-    background-color: #0f172a;
+    background-color: #0f1420;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
 :root.dark-mode .legend-color.event-day,
