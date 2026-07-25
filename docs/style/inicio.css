@@ -152,7 +152,9 @@ body.dark-mode .page-header::after {
 }
 
 
-/* Calendário */
+/* ==========================================================================
+   Calendário (Cores Atualizadas)
+   ========================================================================== */
 .calendar-container {
     display: flex;
     gap: 20px;
@@ -164,9 +166,9 @@ body.dark-mode .page-header::after {
 
 .calendar {
     flex: 1;
-    background-color: var(--color-white);
+    background-color: #ffffff;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     padding: 30px;
 }
 
@@ -179,12 +181,12 @@ body.dark-mode .page-header::after {
 
 .calendar-header h2 {
     font-family: var(--font-secondary);
-    color: var(--color-primary);
+    color: #004a99;
     font-size: 2rem;
 }
 
 .calendar-header button {
-    background-color: var(--color-primary);
+    background-color: #0066cc;
     color: white;
     border: none;
     padding: 10px 16px;
@@ -195,7 +197,7 @@ body.dark-mode .page-header::after {
 }
 
 .calendar-header button:hover {
-    background-color: #006edc;
+    background-color: #004a99;
 }
 
 .calendar-days,
@@ -208,12 +210,13 @@ body.dark-mode .page-header::after {
 .calendar-days div {
     text-align: center;
     font-weight: bold;
-    color: var(--color-secondary);
+    color: #004a99;
 }
 
 .calendar-dates div {
     height: 80px;
-    background-color: #f0f0f0;
+    background-color: #f1f5f9;
+    color: #1e293b;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -225,38 +228,39 @@ body.dark-mode .page-header::after {
 }
 
 .calendar-dates div:hover {
-    background-color: var(--color-secondary);
+    background-color: #0066cc;
     color: white;
     cursor: pointer;
 }
 
+/* Estados dos Dias */
 .today {
-    background-color: green !important;
-    color: white;
+    background-color: #10b981 !important; /* Verde Esmeralda moderno */
+    color: white !important;
 }
 
 .weekend {
-    background-color: #888888 !important;
-    color: #8b0000;
+    background-color: #e2e8f0 !important; /* Cinza suave e limpo */
+    color: #64748b !important;            /* Texto com bom contraste */
 }
 
 .event-day {
-    background-color: #4a9eff !important;
-    color: white;
+    background-color: #0066cc !important; /* Azul primário */
+    color: white !important;
     position: relative;
     overflow: visible;
 }
 
 .event-today {
-    background-color: #ff4444 !important;
-    color: white;
+    background-color: #e84910 !important; /* Laranja/Coral sincronizado com a marca */
+    color: white !important;
     position: relative;
     overflow: visible;
 }
 
 .event-past {
-    background-color: #808080 !important;
-    color: white;
+    background-color: #94a3b8 !important; /* Cinza neutro suave */
+    color: white !important;
     position: relative;
     overflow: visible;
 }
@@ -270,11 +274,11 @@ body.dark-mode .page-header::after {
     pointer-events: none;
 }
 
-/* Tema Escuro */
+/* Tema Escuro - Calendário */
 :root.dark-mode .calendar,
 body.dark-mode .calendar {
     background-color: #16213e;
-    color: #e0e0e0;
+    color: #f1f5f9;
 }
 
 :root.dark-mode .calendar-header h2,
@@ -284,17 +288,17 @@ body.dark-mode .calendar-header h2 {
 
 :root.dark-mode .calendar-header button,
 body.dark-mode .calendar-header button {
-    background-color: #4a9eff;
+    background-color: #0066cc;
 }
 
 :root.dark-mode .calendar-header button:hover,
 body.dark-mode .calendar-header button:hover {
-    background-color: #1E90FF;
+    background-color: #4a9eff;
 }
 
 :root.dark-mode .calendar-days div,
 body.dark-mode .calendar-days div {
-    color: #e0e0e0;
+    color: #4a9eff;
 }
 
 :root.dark-mode .calendar-dates div,
@@ -305,45 +309,48 @@ body.dark-mode .calendar-dates div {
 
 :root.dark-mode .calendar-dates div:hover,
 body.dark-mode .calendar-dates div:hover {
-    background-color: var(--color-secondary);
+    background-color: #0066cc;
+    color: white;
 }
 
 :root.dark-mode .weekend,
 body.dark-mode .weekend {
-    background-color: #3a1a1a !important;
-    color: #ff6b6b;
+    background-color: #0f172a !important;
+    color: #64748b !important;
 }
 
 :root.dark-mode .event-day,
 body.dark-mode .event-day {
-    background-color: #1E90FF !important;
-    color: white;
+    background-color: #4a9eff !important;
+    color: white !important;
 }
 
 :root.dark-mode .event-today,
 body.dark-mode .event-today {
-    background-color: #ff4444 !important;
-    color: white;
+    background-color: #ff6b35 !important;
+    color: white !important;
 }
 
 :root.dark-mode .event-past,
 body.dark-mode .event-past {
-    background-color: #606060 !important;
-    color: white;
+    background-color: #475569 !important;
+    color: white !important;
 }
 
-/* Legenda do Calendário */
+/* ==========================================================================
+   Legenda do Calendário (Cores Atualizadas)
+   ========================================================================== */
 .calendar-legend {
     width: 200px;
     padding: 20px;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     flex-shrink: 0;
 }
 
 .calendar-legend h3 {
-    color: var(--color-secondary);
+    color: #004a99;
     margin-bottom: 15px;
     text-align: center;
     font-size: 1.2rem;
@@ -369,28 +376,28 @@ body.dark-mode .event-past {
 }
 
 .legend-color.today {
-    background-color: var(--color-secondary);
+    background-color: #10b981;
 }
 
 .legend-color.normal-day {
-    background-color: #f0f0f0;
+    background-color: #f1f5f9;
 }
 
 .legend-color.weekend {
-    background-color: #d4a5a5;
+    background-color: #e2e8f0;
 }
 
 .legend-color.event-day {
-    background-color: #4a9eff;
+    background-color: #0066cc;
     position: relative;
 }
 
 .legend-color.event-today {
-    background-color: #ff4444;
+    background-color: #e84910;
 }
 
 .legend-color.event-past {
-    background-color: #808080;
+    background-color: #94a3b8;
 }
 
 .legend-star {
@@ -402,7 +409,7 @@ body.dark-mode .event-past {
 }
 
 .legend-item span {
-    color: var(--color-text);
+    color: #1e293b;
     font-size: 0.9rem;
 }
 
@@ -419,7 +426,7 @@ body.dark-mode .calendar-legend h3 {
 
 :root.dark-mode .legend-color.today,
 body.dark-mode .legend-color.today {
-    background-color: #4a9eff;
+    background-color: #10b981;
 }
 
 :root.dark-mode .legend-color.normal-day,
@@ -429,22 +436,22 @@ body.dark-mode .legend-color.normal-day {
 
 :root.dark-mode .legend-color.weekend,
 body.dark-mode .legend-color.weekend {
-    background-color: #3a1a1a;
+    background-color: #0f172a;
 }
 
 :root.dark-mode .legend-color.event-day,
 body.dark-mode .legend-color.event-day {
-    background-color: #1E90FF;
+    background-color: #4a9eff;
 }
 
 :root.dark-mode .legend-color.event-today,
 body.dark-mode .legend-color.event-today {
-    background-color: #ff4444;
+    background-color: #ff6b35;
 }
 
 :root.dark-mode .legend-color.event-past,
 body.dark-mode .legend-color.event-past {
-    background-color: #606060;
+    background-color: #475569;
 }
 
 :root.dark-mode .legend-item span,

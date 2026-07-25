@@ -1,0 +1,288 @@
+[33mcommit 3e485ed8cb82bb22b112372764e8cf4e8f32eabc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Thu Jul 16 14:53:27 2026 -0300
+
+    link corrigido
+
+[33mcommit 568adeac0b19cea528dadf049a9deadc3e129fb8[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Wed Jul 15 06:29:59 2026 -0300
+
+    teste render
+
+[33mcommit 9bc5e9b477961fd73e717ee4fa8ac333d49d487e[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Wed Jul 15 06:24:24 2026 -0300
+
+    Mover tsup para dependencies para instalação no Render
+
+[33mcommit c5ba77520069e9e011fd3620caead40bbd9f7f5a[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jul 14 21:51:17 2026 -0300
+
+    Corrigir startCommand no render.yaml para usar dist/server.js
+
+[33mcommit c61719bbc4f6d4a99c8f8c84f05e028ee43f0d19[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon Jul 13 21:23:22 2026 -0300
+
+    teste render
+
+[33mcommit c6bc4959282f9a6076f35b94bf28f51ad14f5916[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon Jul 13 19:55:34 2026 -0300
+
+    Adicionar configuração de deploy no Render
+
+[33mcommit e68285925ffb8212f13f4b74822e0f72f5806af3[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon Jul 13 19:52:14 2026 -0300
+
+    Corrigir config.js para expor API_BASE_URL no window
+
+[33mcommit f0d87293d30ddcd79f91035dbd254f56bb7f1857[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon Jul 13 19:49:03 2026 -0300
+
+    teste
+
+[33mcommit c17a2640a6eabcb835cca1a3766888b40afc2537[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun Jul 12 14:48:49 2026 -0300
+
+    rodando no postgre
+
+[33mcommit cdfae9632916ba8dfe903f7cf22b568a677143a1[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon Jun 29 18:16:14 2026 -0300
+
+    organização de pastas e arquivos do projeto
+
+[33mcommit 9b35667df56c87136d9e5e114e3d2ccea36583e8[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun Jun 28 23:42:35 2026 -0300
+
+    adicionado bd de gestores
+
+[33mcommit 96ae12f0bbc65257f86e2a2e82a50d8375f0990b[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun Jun 28 12:32:35 2026 -0300
+
+    bd alunos conectado
+
+[33mcommit f77ce609c8201d57371edaf5adcf5c5d50367494[m
+Merge: c217e24 120f0de
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sat Jun 27 15:19:57 2026 -0300
+
+    tamanho das imagens e eventos virar comunicados
+
+[33mcommit c217e24864f4a193da74ae7c34fa4272b6916e2b[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sat Jun 27 15:13:04 2026 -0300
+
+    tamanho das imagens e eventos virar comunicados
+
+[33mcommit 120f0de54236a527ae15ff964c840b3afb3a73fd[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Thu Jun 25 15:56:37 2026 -0300
+
+    pequenas coisas
+
+[33mcommit a0eaef4c9b89d83e460c22071f512c0e573357e3[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Thu Jun 25 12:40:48 2026 -0300
+
+    alterações
+
+[33mcommit b72ed85cef0a87288399d57fc60f53dd65fec617[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun Jun 21 16:48:52 2026 -0300
+
+    mudanças drasticas no design
+
+[33mcommit bf219076e6229dfa14a41f3cb41379c120398210[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sat Jun 20 00:05:30 2026 -0300
+
+    no login, substituido email por matricula
+
+[33mcommit 49e81227392d16a3f2f9333bbb7de386bd96568a[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jun 16 20:49:53 2026 -0300
+
+    concertado problema onde marcava a data um dia anterior
+
+[33mcommit 42093b5cec73b52cd35e55d381aa634b0abf925b[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun Jun 14 17:52:35 2026 -0300
+
+    mudar a senha realizado
+
+[33mcommit b7c7c94c2237239b002c5f56f681ec8797388b80[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun Jun 14 14:08:21 2026 -0300
+
+    pagina de login estilizada com sucesso
+
+[33mcommit 79a2b335f88ec49368d21c1a2a3678d6354bea11[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun Jun 14 12:47:49 2026 -0300
+
+    aperfeiçoamento do modo dark,imagens do banner e pagina sobre
+
+[33mcommit 7fec5e7930f3d364715fc43591ce5594bc057c1e[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Fri Jun 12 11:22:28 2026 -0300
+
+    paginalização do mural de links e reactions
+
+[33mcommit a2364347d5435a6e90b4f0b84c183e3a9f09d69d[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Thu Jun 11 16:02:57 2026 -0300
+
+    estilizações feitas
+
+[33mcommit 35e9ec4c50f81b838fb63e5d2a715ac1c63a4f54[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Wed Jun 10 20:33:21 2026 -0300
+
+    footer feito
+
+[33mcommit 42e4d0b10ed7e6326c710e55e88b6748c0a603d2[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Wed Jun 10 16:14:47 2026 -0300
+
+    volta ao local host e atualizações de css
+
+[33mcommit c8249ab43ce6ef21d145903a5d35159c256d8c5c[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jun 9 12:03:07 2026 -0300
+
+    teste 4
+
+[33mcommit b3a8221ed9faf6be938b1560ce984c8c345eabd1[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jun 9 11:33:55 2026 -0300
+
+    teste 3
+
+[33mcommit d9f99723bfe434800475f57c1e7194e4e1849d14[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jun 9 11:21:42 2026 -0300
+
+    teste 2
+
+[33mcommit 366b0ea956347e386542fb2a10edaf0880204c7c[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jun 9 11:07:27 2026 -0300
+
+    teste
+
+[33mcommit ff384e141e32defc2e500320d5cb56e2ef2e4cc0[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon Jun 8 20:24:54 2026 -0300
+
+    pagina de login feita, legenda do lado do calendario e transformar final de semana em dia normal
+
+[33mcommit 44019706487054e53fe7a8383c35c15b068cb032[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon Jun 8 12:27:20 2026 -0300
+
+    pequenas mudanças de css e pagina sobre alterada
+
+[33mcommit c36dc3dbcf7329881e64c941a8d1398c276cf37f[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun Jun 7 16:13:43 2026 -0300
+
+    edite no eventos, calendario feito, exclusão de academicEvents
+
+[33mcommit a5baec019c5698ba6fc0d78725d76492333d79c3[m
+Author: Mathzus <matheuslimob@gmail.com>
+Date:   Fri Jun 5 16:01:31 2026 -0300
+
+    mudanças em nomes
+
+[33mcommit 25490cb865d4a48ae0f1baa906ed7e4069cc62d4[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Fri Jun 5 12:55:59 2026 -0300
+
+    mundanças no criar evento
+
+[33mcommit 5bb3871c95ff1fa85f4214c69af2dfecde7ea1ca[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jun 2 23:42:19 2026 -0300
+
+    mostrar mais adicionado
+
+[33mcommit c397c9ac4f74329d7159cef6a75e756da6bfe02a[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jun 2 18:45:30 2026 -0300
+
+    melhorar a estilização e criar cordenador
+
+[33mcommit 2832e15e2751a32a057915f2e85040ca6656bd54[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue Jun 2 12:30:31 2026 -0300
+
+    ajustes minimos
+
+[33mcommit 042e87d5948e0525a9a3227842aad638130a713d[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon Jun 1 18:14:11 2026 -0300
+
+    Role diretor deletada, edição e exclusão no mural e registro de cordenador
+
+[33mcommit 29ae11e2f19f58113b6ef167cb78f918e1bfa9a7[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sat May 30 16:16:33 2026 -0300
+
+    pequenos detalhes
+
+[33mcommit 0153182a4b192f5ecc8ed35927b284992fb0f62c[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Fri May 29 19:59:07 2026 -0300
+
+    perfil atualizado e mural finalizado
+
+[33mcommit be5edc37731d60d4b2f52091748f80b71c916d32[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Thu May 28 15:16:01 2026 -0300
+
+    inicio do backend, funcões por hierarquia iniciadas
+
+[33mcommit 086b78f9e8dd952cf60601aebe5208a0643f47b6[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Wed May 27 19:05:41 2026 -0300
+
+    feito o login de verdade e autenticação
+
+[33mcommit 869ce6156fc3bad330ed58b59acd1105d9cf632d[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue May 26 20:15:34 2026 -0300
+
+    adicionado perfil e alterações mobile
+
+[33mcommit d76bc7341ee3ce513da519130da0d2605d09933f[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Mon May 25 22:05:18 2026 -0300
+
+    modo dia e noite adicionado
+
+[33mcommit 71a2de0fa54d9df6d7db50d3e61fcc3bcecd4634[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun May 24 18:21:46 2026 -0300
+
+    ajustes no front-end e login visual completo
+
+[33mcommit 42b4d2fb203e5f27b8e9c192d882b9b723e16dda[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Sun May 24 14:31:57 2026 -0300
+
+    front-end quase finalizado
+
+[33mcommit a65af87ff3660a5a89646003946a870a59b0b1e7[m
+Author: Washington-ux-ux <lyniker21@hotmail.com>
+Date:   Tue May 19 10:25:21 2026 -0300
+
+    API feita
