@@ -93,6 +93,12 @@ function renderCalendar() {
 
             dayElement.title = dayEvents.map(e => `${e.title}: ${e.summary}`).join('\n');
 
+            // Verificar se o evento já passou
+            const eventDate = new Date(dateString);
+            if (eventDate < today && eventDate.toDateString() !== today.toDateString()) {
+                dayElement.classList.add("event-past");
+            }
+
             // Se hoje tiver evento, adicionar classe para cor vermelha
             if (
                 day === today.getDate() &&

@@ -254,6 +254,13 @@ body.dark-mode .page-header::after {
     overflow: visible;
 }
 
+.event-past {
+    background-color: #808080 !important;
+    color: white;
+    position: relative;
+    overflow: visible;
+}
+
 .event-indicator {
     position: absolute;
     bottom: 5px;
@@ -319,6 +326,12 @@ body.dark-mode .event-today {
     color: white;
 }
 
+:root.dark-mode .event-past,
+body.dark-mode .event-past {
+    background-color: #606060 !important;
+    color: white;
+}
+
 /* Legenda do Calendário */
 .calendar-legend {
     width: 200px;
@@ -376,6 +389,10 @@ body.dark-mode .event-today {
     background-color: #ff4444;
 }
 
+.legend-color.event-past {
+    background-color: #808080;
+}
+
 .legend-star {
     position: absolute;
     bottom: 2px;
@@ -423,6 +440,11 @@ body.dark-mode .legend-color.event-day {
 :root.dark-mode .legend-color.event-today,
 body.dark-mode .legend-color.event-today {
     background-color: #ff4444;
+}
+
+:root.dark-mode .legend-color.event-past,
+body.dark-mode .legend-color.event-past {
+    background-color: #606060;
 }
 
 :root.dark-mode .legend-item span,
