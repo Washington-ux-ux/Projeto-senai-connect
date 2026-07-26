@@ -1,6 +1,7 @@
 import * as httphelper from '../utils/http-helper'
 import * as repository from '../repository/userRepository'
 import * as auth from '../utils/auth'
+import bcrypt from 'bcrypt'
 
 export const getMyUserService = async (userId: string) => {
     try {
@@ -46,11 +47,8 @@ export const LoginUserService = async (matricula: string, password: string) => {
 
         console.log("User found:", user);
         console.log("DB password:", user.password, "type:", typeof user.password);
-        console.log("Password comparison - input:", password, "vs db:", user.password);
-        console.log("Strict equality:", password === user.password);
-        console.log("Trim comparison:", password.trim() === user.password.trim());
 
-        const isPasswordValid = password === user.password
+        const isPasswordValid = await bcrypt.compare(password, user.password)
         
         if (!isPasswordValid) {
             console.log("Password validation FAILED");
