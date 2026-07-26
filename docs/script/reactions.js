@@ -104,6 +104,17 @@ function setupShareButtons() {
       const shareUrl = window.location.href;
       const shareText = `${eventTitle} - ${eventDescription}`;
 
+      // Tentar usar WhatsApp Web diretamente se estiver no desktop
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      
+      if (!isMobile) {
+        // No desktop, usar link direto do WhatsApp com texto pré-preenchido
+        const whatsappUrl = `https://web.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+        window.open(whatsappUrl, '_blank');
+        return;
+      }
+
+      // No mobile, usar Web Share API
       if (navigator.share) {
         navigator.share({
           title: eventTitle,
