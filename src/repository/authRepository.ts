@@ -1,36 +1,31 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import { fileURLToPath } from 'url'
-import bcrypt from 'bcrypt'
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const usersFilePath = path.join(__dirname, '../../src/data/user.json');
+import pool from '../config/database';
+import bcrypt from 'bcrypt';
 
 export const changePasswordRepository = async (userId: string, currentPassword: string, newPassword: string) => {
     try {
-        if (!fs.existsSync(usersFilePath)) {
-            return {
-                statusCode: 500,
-                body: { error: 'Arquivo de usuários não encontrado' }
-            }
+        // Buscar usuário na tabela alunos
+        let result = await pool.query(
+            'SELECT id, name, registration as "matricula", role, password FROM alunos WHERE id = $1',
+            [userId]
+        );
+
+        // Se não encontrar, buscar na tabela gestores
+        if (result.rows.length === 0) {
+            result = await pool.query(
+                'SELECT id, name, registration as "matricula", role, password FROM gestores WHERE id = $1',
+                [userId]
+            );
         }
 
-        const usersData = fs.readFileSync(usersFilePath, 'utf-8')
-        const users = JSON.parse(usersData)
-
-        const userIndex = users.findIndex((user: any) => user.id === userId)
-
-        if (userIndex === -1) {
+        if (result.rows.length === 0) {
             return {
                 statusCode: 404,
                 body: { error: 'Usuário não encontrado' }
             }
         }
 
-        const user = users[userIndex]
-        const isPasswordValid = await bcrypt.compare(currentPassword, user.password)
+        const user = result.rows[0];
+        const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
 
         if (!isPasswordValid) {
             return {
@@ -39,16 +34,20 @@ export const changePasswordRepository = async (userId: string, currentPassword: 
             }
         }
 
-        const hashedNewPassword = await bcrypt.hash(newPassword, 10)
-        users[userIndex].password = hashedNewPassword
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+        const tableName = user.role === 'STUDENT' ? 'alunos' : 'gestores';
 
-        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2))
+        await pool.query(
+            `UPDATE ${tableName} SET password = $1 WHERE id = $2`,
+            [hashedNewPassword, userId]
+        );
 
         return {
             statusCode: 200,
             body: { message: 'Senha alterada com sucesso' }
         }
-    } catch (error) {
+    } catch (error: any) {
+        console.error('Erro ao alterar senha:', error);
         return {
             statusCode: 500,
             body: { error: 'Erro ao alterar senha' }
@@ -58,35 +57,42 @@ export const changePasswordRepository = async (userId: string, currentPassword: 
 
 export const forgotPasswordRepository = async (matricula: string, newPassword: string) => {
     try {
-        if (!fs.existsSync(usersFilePath)) {
-            return {
-                statusCode: 500,
-                body: { error: 'Arquivo de usuários não encontrado' }
-            }
+        // Buscar usuário na tabela alunos
+        let result = await pool.query(
+            'SELECT id, name, registration as "matricula", role FROM alunos WHERE registration = $1',
+            [matricula]
+        );
+
+        // Se não encontrar, buscar na tabela gestores
+        if (result.rows.length === 0) {
+            result = await pool.query(
+                'SELECT id, name, registration as "matricula", role FROM gestores WHERE registration = $1',
+                [matricula]
+            );
         }
 
-        const usersData = fs.readFileSync(usersFilePath, 'utf-8')
-        const users = JSON.parse(usersData)
-
-        const userIndex = users.findIndex((u: any) => u.registration === matricula)
-
-        if (userIndex === -1) {
+        if (result.rows.length === 0) {
             return {
                 statusCode: 404,
                 body: { error: 'Matrícula não encontrada' }
             }
         }
 
-        const hashedNewPassword = await bcrypt.hash(newPassword, 10)
-        users[userIndex].password = hashedNewPassword
+        const user = result.rows[0];
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+        const tableName = user.role === 'STUDENT' ? 'alunos' : 'gestores';
 
-        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2))
+        await pool.query(
+            `UPDATE ${tableName} SET password = $1 WHERE registration = $2`,
+            [hashedNewPassword, matricula]
+        );
 
         return {
             statusCode: 200,
             body: { message: 'Senha alterada com sucesso!' }
         }
-    } catch (error) {
+    } catch (error: any) {
+        console.error('Erro ao processar solicitação:', error);
         return {
             statusCode: 500,
             body: { error: 'Erro ao processar solicitação' }
