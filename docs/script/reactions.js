@@ -100,43 +100,18 @@ function setupShareButtons() {
       const eventCard = container.closest(".event-card");
       const eventTitle = eventCard.querySelector("h2").textContent;
       const eventDescription = eventCard.querySelector("p").textContent;
-      const eventImage = eventCard.querySelector("img");
 
       const shareUrl = window.location.href;
       const shareText = `${eventTitle} - ${eventDescription}`;
 
       if (navigator.share) {
-        const shareData = {
+        navigator.share({
           title: eventTitle,
           text: shareText,
           url: shareUrl,
-        };
-
-        // Adicionar imagem se disponível e suportado pelo navegador
-        if (eventImage && eventImage.src) {
-          // Alguns navegadores suportam sharing de arquivos
-          fetch(eventImage.src)
-            .then(response => response.blob())
-            .then(blob => {
-              const file = new File([blob], 'event-image.jpg', { type: 'image/jpeg' });
-              if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                shareData.files = [file];
-              }
-              navigator.share(shareData).catch((error) => {
-                console.error("Erro ao compartilhar:", error);
-              });
-            })
-            .catch(() => {
-              // Se falhar ao carregar a imagem, compartilhar sem ela
-              navigator.share(shareData).catch((error) => {
-                console.error("Erro ao compartilhar:", error);
-              });
-            });
-        } else {
-          navigator.share(shareData).catch((error) => {
-            console.error("Erro ao compartilhar:", error);
-          });
-        }
+        }).catch((error) => {
+          console.error("Erro ao compartilhar:", error);
+        });
       } else {
         navigator.clipboard.writeText(shareUrl).then(() => {
           alert("URL copiada para a área de transferência!");
