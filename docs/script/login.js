@@ -671,13 +671,13 @@ function showLoggedInUser() {
             };
             reader.onerror = () => {
               createPostError.textContent = "Erro ao ler a imagem.";
-              resolve("aviso1.png"); // Fallback para imagem padrão
+              resolve(selectedImage);
             };
             reader.readAsDataURL(file);
           });
         } else {
-          // Se custom selecionado mas sem arquivo, usar imagem padrão
-          imageUrl = "aviso1.png";
+          createPostError.textContent = "Selecione uma imagem para upload";
+          return;
         }
       }
 
