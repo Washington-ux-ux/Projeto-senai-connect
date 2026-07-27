@@ -3,6 +3,17 @@ import * as service from "../services/postsServices"
 import * as fs from 'fs'
 import * as path from 'path'
 import { fileURLToPath } from 'url'
+import { v2 as cloudinary } from 'cloudinary'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+// Configurar Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'ndlf6c5q',
+  api_key: process.env.CLOUDINARY_API_KEY || '353173624675616',
+  api_secret: process.env.CLOUDINARY_API_SECRET || 'FdKUZ3Knmluv28jIo9eM6CCBphc',
+})
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,20 +36,31 @@ export const createPosts = async (req: Request, res: Response) => {
         try {
             const base64Data = imageUrl.split(',')[1];
             const buffer = Buffer.from(base64Data, 'base64');
-            const filename = `image-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.png`;
-            const uploadDir = path.join(__dirname, '../../docs/assets/uploads');
             
-            // Criar diretório se não existir
-            if (!fs.existsSync(uploadDir)) {
-                fs.mkdirSync(uploadDir, { recursive: true });
-            }
+            // Upload para Cloudinary usando upload com buffer
+            const result = await new Promise((resolve, reject) => {
+                cloudinary.uploader.upload_stream(
+                    { 
+                        folder: 'senai-connect/posts',
+                        resource_type: 'image',
+                        transformation: [
+                            { width: 800, height: 600, crop: 'limit' },
+                            { quality: 'auto' }
+                        ]
+                    },
+                    (error, result) => {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            resolve(result);
+                        }
+                    }
+                ).end(buffer);
+            });
             
-            const uploadPath = path.join(uploadDir, filename);
-            fs.writeFileSync(uploadPath, buffer);
-            const baseUrl = process.env.RENDER_EXTERNAL_URL || 'https://projeto-senai-connect.onrender.com';
-            imageUrl = `${baseUrl}/assets/uploads/${filename}`;
+            imageUrl = (result as any).secure_url;
         } catch (error) {
-            console.error('Erro ao salvar imagem:', error);
+            console.error('Erro ao salvar imagem no Cloudinary:', error);
             imageUrl = 'aviso1.png';
         }
     }
@@ -81,24 +103,35 @@ export const updatePosts = async (req: Request, res: Response) => {
         try {
             const base64Data = imageUrl.split(',')[1];
             const buffer = Buffer.from(base64Data, 'base64');
-            const filename = `image-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.png`;
-            const uploadDir = path.join(__dirname, '../../docs/assets/uploads');
             
-            // Criar diretório se não existir
-            if (!fs.existsSync(uploadDir)) {
-                fs.mkdirSync(uploadDir, { recursive: true });
-            }
+            // Upload para Cloudinary usando upload com buffer
+            const result = await new Promise((resolve, reject) => {
+                cloudinary.uploader.upload_stream(
+                    { 
+                        folder: 'senai-connect/posts',
+                        resource_type: 'image',
+                        transformation: [
+                            { width: 800, height: 600, crop: 'limit' },
+                            { quality: 'auto' }
+                        ]
+                    },
+                    (error, result) => {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            resolve(result);
+                        }
+                    }
+                ).end(buffer);
+            });
             
-            const uploadPath = path.join(uploadDir, filename);
-            fs.writeFileSync(uploadPath, buffer);
-            const baseUrl = process.env.RENDER_EXTERNAL_URL || 'https://projeto-senai-connect.onrender.com';
-            imageUrl = `${baseUrl}/assets/uploads/${filename}`;
+            imageUrl = (result as any).secure_url;
         } catch (error) {
-            console.error('Erro ao salvar imagem:', error);
+            console.error('Erro ao salvar imagem no Cloudinary:', error);
             imageUrl = 'aviso1.png';
         }
     } else if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-
+        // Mantém a URL existente se já for uma URL externa
     }
     
     const postData = { ...req.body, imageUrl };
