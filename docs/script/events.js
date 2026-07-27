@@ -101,6 +101,9 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
       imageSrc = imageUrl;
     } else if (imageUrl.startsWith("./assets/uploads/")) {
       imageSrc = `../../assets/uploads/${imageUrl.replace("./assets/uploads/", "")}`;
+    } else if (imageUrl === "custom" || !imageUrl) {
+      // Se for custom sem imagem ou vazio, usar imagem padrão
+      imageSrc = `../../assets/images/aviso1.png`;
     } else {
       imageSrc = `../../assets/images/${imageUrl}`;
     }
