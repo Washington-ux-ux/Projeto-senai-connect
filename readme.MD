@@ -28,6 +28,7 @@ O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados
 - Toggle de reações (clicar novamente remove a reação)
 - Botões de reação ficam azuis quando ativos
 - Sistema de compartilhamento de posts (Web Share API)
+- Upload de imagens via Cloudinary (armazenamento em nuvem persistente)
 
 ### 📅 Eventos Acadêmicos
 - Criação de eventos por Administradores e Coordenadores
@@ -58,6 +59,7 @@ O **SENAI Connect** é uma aplicação web full-stack que centraliza comunicados
 - **JWT** - Autenticação via tokens
 - **PostgreSQL** - Banco de dados relacional
 - **pg** - Cliente PostgreSQL para Node.js
+- **Cloudinary** - Armazenamento de imagens em nuvem
 
 ### Frontend
 - **HTML5** - Estrutura das páginas
@@ -231,6 +233,7 @@ DB_USER=postgres
 DB_PASSWORD=sua_senha
 PORT=3000
 JWT_SECRET=sua-chave-secreta-aqui
+CLOUDINARY_URL=cloudinary://API_KEY:API_SECRET@CLOUD_NAME
 ```
 
 Execute o script de configuração completa:
@@ -298,14 +301,12 @@ Os dados podem ser importados de arquivos Excel (alunos e gestores) usando os sc
 ## 📈 Futuras Melhorias
 
 - Sistema de notificações push
-- Upload de imagens nos posts
 - Sistema de comentários nos posts
 - Filtro de eventos por data/categoria
 - Busca de eventos e links
 - Sistema de favoritos para posts e links
 - Perfil do usuário mais completo (bio, foto, etc.)
 - Histórico de atividades do usuário
-- Chat/mensagens entre usuários
 - Sistema de aprovação de posts (moderação)
 - Analytics de engajamento
 - Sistema de arquivos/documentos compartilhados
