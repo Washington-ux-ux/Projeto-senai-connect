@@ -254,6 +254,12 @@ function renderEvents(eventsContainer, hasAdminPrivileges) {
                 customCheckbox.parentElement.querySelector("img");
               if (customImg) {
                 if (
+                  post.imageurl.startsWith("http://") ||
+                  post.imageurl.startsWith("https://")
+                ) {
+                  customImg.src = post.imageurl;
+                  customImg.style.opacity = "1";
+                } else if (
                   post.imageurl.startsWith("data:image") ||
                   post.imageurl.startsWith("./assets/uploads/")
                 ) {
