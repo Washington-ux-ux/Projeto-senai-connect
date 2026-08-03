@@ -8,7 +8,6 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-// Configurar Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'ndlf6c5q',
   api_key: process.env.CLOUDINARY_API_KEY || '353173624675616',
@@ -36,8 +35,7 @@ export const createPosts = async (req: Request, res: Response) => {
         try {
             const base64Data = imageUrl.split(',')[1];
             const buffer = Buffer.from(base64Data, 'base64');
-            
-            // Upload para Cloudinary usando upload com buffer
+
             const result = await new Promise((resolve, reject) => {
                 cloudinary.uploader.upload_stream(
                     { 
@@ -64,8 +62,7 @@ export const createPosts = async (req: Request, res: Response) => {
             imageUrl = 'aviso1.png';
         }
     }
-    
-    // Adicionar campos obrigatórios do usuário autenticado
+
     const postData = { 
         ...req.body, 
         imageUrl,
@@ -103,8 +100,7 @@ export const updatePosts = async (req: Request, res: Response) => {
         try {
             const base64Data = imageUrl.split(',')[1];
             const buffer = Buffer.from(base64Data, 'base64');
-            
-            // Upload para Cloudinary usando upload com buffer
+
             const result = await new Promise((resolve, reject) => {
                 cloudinary.uploader.upload_stream(
                     { 
@@ -131,7 +127,7 @@ export const updatePosts = async (req: Request, res: Response) => {
             imageUrl = 'aviso1.png';
         }
     } else if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-        // Mantém a URL existente se já for uma URL externa
+        
     }
     
     const postData = { ...req.body, imageUrl };

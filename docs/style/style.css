@@ -187,8 +187,10 @@ header p {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   padding: 40px;
   border-radius: 16px;
-  width: 100%;
-  max-width: 500px;
+  width: min(100%, 500px);
+  max-width: calc(100vw - 32px);
+  max-height: 90vh;
+  overflow-y: auto;
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -201,6 +203,19 @@ header p {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.5px;
+}
+
+.modal-box .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.modal-box .input-group label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #333;
 }
 
 .close-btn {
@@ -588,6 +603,39 @@ body.dark-mode .close-btn:hover {
     padding: 20px;
   }
 
+  .modal-box {
+    padding: 28px 18px 20px;
+    width: min(92vw, 420px);
+    max-height: 88vh;
+  }
+
+  .modal-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+
+  .modal-box form {
+    gap: 14px;
+  }
+
+  .image-checkbox {
+    flex-basis: calc(50% - 10px);
+    max-width: none;
+  }
+
+  .category-checkbox,
+  .visibility-checkbox {
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .sex-options {
+    max-width: none;
+  }
+
+  .sex-options label {
+    flex: 1 1 140px;
+  }
+
   /* Tema Escuro Mobile */
   :root.dark-mode nav ul li a,
   body.dark-mode nav ul li a {
@@ -606,7 +654,7 @@ body.dark-mode .close-btn:hover {
   margin-top: 5px;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -618,7 +666,8 @@ body.dark-mode .close-btn:hover {
   border: 1px solid #ddd;
   border-radius: 4px;
   transition: all 0.2s ease;
-  flex-shrink: 0;
+  flex: 1 1 120px;
+  justify-content: center;
 }
 
 .visibility-checkbox:hover {
@@ -650,7 +699,7 @@ body.dark-mode .visibility-checkbox:hover {
   display: flex;
   gap: 10px;
   margin-top: 5px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -663,7 +712,9 @@ body.dark-mode .visibility-checkbox:hover {
   border: 2px solid #ddd;
   border-radius: 6px;
   transition: all 0.2s ease;
-  flex-shrink: 0;
+  flex: 1 1 90px;
+  min-width: 90px;
+  max-width: 120px;
   position: relative;
 }
 
@@ -714,7 +765,7 @@ body.dark-mode .image-checkbox input[type="checkbox"]:checked + img {
   display: flex;
   gap: 10px;
   margin-top: 5px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -726,7 +777,8 @@ body.dark-mode .image-checkbox input[type="checkbox"]:checked + img {
   border: 1px solid #ddd;
   border-radius: 4px;
   transition: all 0.2s ease;
-  flex-shrink: 0;
+  flex: 1 1 120px;
+  justify-content: center;
 }
 
 .category-checkbox:hover {
@@ -764,7 +816,7 @@ body.dark-mode .category-checkbox:hover {
   gap: 12px;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   max-width: 360px;
   margin: 8px auto 0;
 }
@@ -775,7 +827,8 @@ body.dark-mode .category-checkbox:hover {
   justify-content: center;
   gap: 8px;
   padding: 8px 14px;
-  min-width: 140px;
+  min-width: 120px;
+  flex: 1 1 120px;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
   cursor: pointer;
