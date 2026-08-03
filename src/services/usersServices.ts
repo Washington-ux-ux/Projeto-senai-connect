@@ -48,7 +48,7 @@ export const LoginUserService = async (matricula: string, password: string) => {
         console.log("User found:", user);
         console.log("DB password:", user.password, "type:", typeof user.password);
 
-        const isPasswordValid = await bcrypt.compare(password, user.password)
+        const isPasswordValid = password === user.password
         
         if (!isPasswordValid) {
             console.log("Password validation FAILED");
